@@ -1,6 +1,6 @@
-// Project: Weather Poser
+// Project: LeoML Parser
 // Author: Daniel Krentzlin
-// Project begin: 18.18.2022
+// Project begin: 04.07.2023
 // Dev Environment: Android Studio
 // Platform: Windows 11
 // Copyright: Walnut IT 2023
@@ -12,7 +12,7 @@ import 'package:leoml_parser/leoml_parser.dart';
 import 'package:leoml_parser/src/exception/first_object_is_not_type_exception.dart';
 import 'package:leoml_parser/src/exception/is_not_list_exception.dart';
 import 'package:leoml_parser/src/exception/type_does_not_match_exception.dart';
-import 'package:leoml_parser/src/templates/blog/blog.dart';
+import 'package:leoml_parser/src/templates/widget_factory.dart';
 
 import '../test_documents/blog/blog_1.dart';
 import '../test_documents/first_object_is_not_type_json.dart';
@@ -25,10 +25,15 @@ void main() {
     test('should return a column', () async {
       // given
       const leoMLDocument = blog1;
+      const expectedLength = 23;
 
       // when
       final leoMLDocumentParser = LeoMLDocumentParser();
-      final blog = BlogMock(type: 'blog');
+      final widgetFactory = LeoMLParserWidgetFactory();
+      final blog = BlogMock(
+        type: 'blog',
+        widgetFactory: widgetFactory,
+      );
 
       final result = await leoMLDocumentParser.parseToColumn(
         leoMLDocument: leoMLDocument,
@@ -36,8 +41,10 @@ void main() {
       );
 
       // then
-      expect(result is Column, isTrue,
-          reason: 'Expected result to be a Column widget');
+      expect(result.children.isNotEmpty, isTrue,
+          reason: 'Expected result to be a non empty list');
+      expect(result.children.length == expectedLength, isTrue,
+          reason: 'Expected a list length of 23');
     });
 
     test('should return a set of widgets', () async {
@@ -46,7 +53,11 @@ void main() {
 
       // when
       final leoMLDocumentParser = LeoMLDocumentParser();
-      final blog = BlogMock(type: 'blog');
+      final widgetFactory = LeoMLParserWidgetFactory();
+      final blog = BlogMock(
+        type: 'blog',
+        widgetFactory: widgetFactory,
+      );
 
       final result = await leoMLDocumentParser.parseToSet(
         leoMLDocument: leoMLDocument,

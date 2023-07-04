@@ -1,6 +1,6 @@
-// Project: Weather Poser
+// Project: LeoML Parser
 // Author: Daniel Krentzlin
-// Project begin: 18.18.2022
+// Project begin: 04.07.2023
 // Dev Environment: Android Studio
 // Platform: Windows 11
 // Copyright: Walnut IT 2023
@@ -86,7 +86,7 @@ Set<Widget> _createSet(_IsolateModel isolateModel) {
 }
 
 /// Parses the LeoML document, asserts its validity, and returns the parsed list.
-_parseLeoMLDocument(_IsolateModel isolateModel) {
+List _parseLeoMLDocument(_IsolateModel isolateModel) {
   final list = jsonDecode(
     isolateModel.leoMLDocument,
   );
@@ -102,5 +102,8 @@ _parseLeoMLDocument(_IsolateModel isolateModel) {
   if (list.first['type'] != isolateModel.contentTemplate.type) {
     throw TypeDoesNotMatchException();
   }
+
+  list.removeAt(0);
+
   return list;
 }

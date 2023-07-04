@@ -1,13 +1,17 @@
-// Project: Weather Poser
+// Project: LeoML Parser
 // Author: Daniel Krentzlin
-// Project begin: 18.18.2022
+// Project begin: 04.07.2023
 // Dev Environment: Android Studio
 // Platform: Windows 11
 // Copyright: Walnut IT 2023
 // ID: 20230704083437
 // 04.07.2023 08:34
 import 'package:flutter/widgets.dart';
+import 'package:leoml_parser/src/exception/blog_first_object_is_not_headline_exception.dart';
+import 'package:leoml_parser/src/exception/blog_opening_does_not_contains_text_tag_exception.dart';
+import 'package:leoml_parser/src/exception/blog_second_object_is_not_opening_exception.dart';
 import 'package:leoml_parser/src/templates/content_template.dart';
+import 'package:leoml_parser/src/templates/widget_factory.dart';
 
 /// Represents a blog content template.
 class Blog extends ContentTemplate {
@@ -24,7 +28,10 @@ class Blog extends ContentTemplate {
     this.list,
     this.citation,
     this.image,
-  }) : super(type: 'blog');
+  }) : super(
+          type: 'blog',
+          widgetFactory: LeoMLParserWidgetFactory(),
+        );
 
   /// The headline widget for the blog.
   final Widget? headline;
@@ -48,14 +55,38 @@ class Blog extends ContentTemplate {
   final Widget? image;
 
   @override
-  Column parseToColumn({required List parsedLeoMLDocument}) {
-    // TODO: Implement the logic to parse the `Blog` to a `Column` widget.
-    throw UnimplementedError();
-  }
+  bool assertLeoMLStructure(List parsedLeoMLDocument) {
+    bool hasSubHeadline = false;
 
-  @override
-  Set<Widget> parseToSet({required List parsedLeoMLDocument}) {
-    // TODO: Implement the logic to parse the `Blog` to a `Set` of widgets.
-    throw UnimplementedError();
+    for (var index = 0; index < parsedLeoMLDocument.length; index++) {
+      final object = parsedLeoMLDocument[index];
+
+      // 1. first object is headline
+      if (index == 0 && object.keys.first != 'headline') {
+        throw BlogFirstObjectIsNotHeadlineException();
+      }
+
+      // 2. second object is opening
+      if (index == 1 && object.keys[index] != 'opening') {
+        throw BlogSecondObjectIsNotOpeningException();
+      }
+
+      // 3. if it is an opening, it contains the text
+      if (object.keys[index] == 'opening' &&
+          !((object['opening'] as Map).containsKey('text'))) {
+        throw BlogOpeningDoesNotContainsTextTagException();
+      }
+
+      // 4. contains at least one sub headline
+      // if(!hasSubHeadline && )
+
+      // 5. contains at least one section
+
+      // 6. if it contains a list, it has at least 2 elements
+
+      // 7. if it contains an image, an image url is set
+    }
+
+    return true;
   }
 }
