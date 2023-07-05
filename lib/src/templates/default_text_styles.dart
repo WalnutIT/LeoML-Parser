@@ -95,6 +95,7 @@ TextStyle bodyTextStyle({
 /// The [fontStyle] parameter specifies the font style.
 /// The [fontWeight] parameter specifies the font weight.
 /// The [letterSpacing] parameter specifies the letter spacing.
+// ignore: long-parameter-list
 TextStyle smallTextStyle({
   Color color = defaultTextColor,
   FontStyle fontStyle = FontStyle.normal,

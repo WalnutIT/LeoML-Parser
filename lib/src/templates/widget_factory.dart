@@ -22,7 +22,10 @@ abstract class WidgetFactory {
 }
 
 class LeoMLParserWidgetFactory extends WidgetFactory {
+
+  // TODO(daniel): rework and make it OOP
   @override
+  // ignore: long-method
   Widget getWidget({required String key, required Map object}) {
     switch (key) {
       case 'headline':

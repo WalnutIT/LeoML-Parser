@@ -2,3 +2,133 @@ include: package:flutter_lints/flutter.yaml
 
 # Additional information about this file can be found at
 # https://dart.dev/guides/language/analysis-options
+analyzer:
+  plugins:
+    - dart_code_metrics
+  errors:
+    # treat missing required parameters as a warning (not a hint)
+    missing_required_param: warning
+    # treat missing returns as an error (not a hint)
+    missing_return: error
+    # allow having TODOs in the code
+    todo: ignore
+    # allow self-reference to deprecated members (we do this because otherwise we have
+    # to annotate every member in every test, assert, etc, when we deprecate something)
+    deprecated_member_use_from_same_package: ignore
+    # Ignore analyzer hints for updating pubspecs when using Future or
+    # Stream and not importing dart:async
+    # Please see https://github.com/flutter/flutter/pull/24528 for details.
+    sdk_version_async_exported_from_core: ignore
+    # Static classes are profered for global constants.
+    avoid_classes_with_only_static_members: ignore
+    # Prevents separating pinned transitive dependencies and sorting by topic.
+    sort_pub_dependencies: ignore
+    # Turned off for now, since it conflicts with async dialog requests and the usage of blocs.
+    use_build_context_synchronously: ignore
+    directives_ordering: ignore # Turned off for now, since it creates overhead of work when refactoring.
+    unawaited_futures: error #Added to avoid hard to find bugs.
+    avoid_void_async: error #Added to avoid hard to find bugs.
+    require_trailing_commas: error #Added to improve formatting.
+    invalid_annotation_target: ignore
+linter:
+  rules:
+    - require_trailing_commas
+    - avoid_void_async
+    - unawaited_futures
+
+dart_code_metrics:
+  anti-patterns:
+    - long-method
+    - long-parameter-list
+  metrics:
+    cyclomatic-complexity: 7
+    maximum-nesting-level: 3
+    number-of-parameters: 3
+    number-of-methods: 10
+    source-lines-of-code: 25
+    maintainability-index: 50
+    lines-of-code: 25
+    halstead-volume: 150
+    weight-of-class: 0.33
+    technical-debt:
+      threshold: 1
+      todo-cost: 140
+      ignore-cost: 70
+      ignore-for-file-cost: 210
+      as-dynamic-cost: 140
+      deprecated-annotations-cost: 35
+      file-nullsafety-migration-cost: 70
+      unit-type: "EUR"
+  metrics-exclude:
+    - test/**
+    - test/**/*.mocks.dart
+    - lib/open_weather_map/open_weather_map_language_mapping.dart
+    - lib/generated/intl/messages_all.dart
+    - lib/generated/intl/messages_en.dart
+    - lib/generated/I10n.dart
+  rules:
+    - newline-before-return
+    - no-boolean-literal-compare
+    - no-empty-block
+    - prefer-trailing-comma
+    - prefer-conditional-expressions
+    - no-equal-then-else
+    #- avoid-banned-imports:
+    #    entries:
+    #      - paths: [ "some/folder/.*\.dart", "another/folder/.*\.dart" ]
+    #        deny: [ "package:flutter/cupertino.dart" ]
+    - avoid-collection-methods-with-unrelated-types
+    - avoid-duplicate-exports
+    - avoid-dynamic
+    - avoid-global-state
+    - avoid-late-keyword:
+        severity: error
+    - avoid-missing-enum-constant-in-map
+    - avoid-nested-conditional-expressions:
+        acceptable-level: 2
+    - avoid-non-null-assertion
+    - avoid-throw-in-catch-block
+    - avoid-unnecessary-type-assertions
+    - avoid-unnecessary-type-casts
+    - avoid-unrelated-type-assertions
+    - avoid-unused-parameters
+    - binary-expression-operand-order
+    - double-literal-format
+    - member-ordering:
+        severity: error
+        order:
+          - named-constructors
+          - factory-constructors
+          - public-static-fields
+          - private-static-fields
+          - public-static-methods
+          - private-static-methods
+          - public-fields
+          - private-fields
+          - public-getters
+          - private-getters
+          - public-setters
+          - private-setters
+          - public-methods
+          - private-methods
+        widgets-order:
+          - named-constructors
+          - factory-constructors
+          - public-static-fields
+          - private-static-fields
+          - public-static-methods
+          - private-static-methods
+          - public-fields
+          - private-fields
+          - public-getters
+          - private-getters
+          - public-setters
+          - private-setters
+          - init-state-method
+          - did-change-dependencies-method
+          - build-method
+          - did-update-widget-method
+          - dispose-method
+          - public-methods
+          - private-methods
+

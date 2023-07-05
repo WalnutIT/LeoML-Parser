@@ -66,42 +66,19 @@ class Blog extends ContentTemplate {
     for (var index = 0; index < parsedLeoMLDocument.length; index++) {
       final object = parsedLeoMLDocument[index] as Map;
 
-      // 1. first object is headline
-      if (index == 0 && object.keys.first != 'headline') {
-        throw BlogFirstObjectIsNotHeadlineException();
-      }
+      _checkIfFirstObjectIsHeadline(index, object);
 
-      // 2. second object is opening
-      if (index == 1 && object.keys.toList().first != 'opening') {
-        throw BlogSecondObjectIsNotOpeningException();
-      }
+      _checkIfSecondObjectIsOpening(index, object);
 
-      // 3. if it is an opening, it contains the text
-      if (object.keys.toList().first == 'opening' &&
-          !((object['opening'] as Map).containsKey('text'))) {
-        throw BlogOpeningDoesNotContainsTextTagException();
-      }
+      _openingContainsTextTag(object);
 
-      // 4. contains at least one sub headline
-      if (!hasSubHeadline && object.keys.toList().first == 'subHeadline') {
-        hasSubHeadline = true;
-      }
+      hasSubHeadline = _containsAtLeastOneSubHeadline(hasSubHeadline, object);
 
-      // 5. contains at least one section
-      if (!hasSection && object.keys.toList().first == 'section') {
-        hasSection = true;
-      }
-      // 6. if it contains a list, it has at least 2 elements
-      if (object.keys.toList().first == 'list' &&
-          (object['list'] as List).length < 2) {
-        throw ListDoesNotContainsEnoughElementException();
-      }
+      hasSection = _containsAtLeastIOneSection(hasSection, object);
 
-      // 7. if it contains an image, an image url is set
-      if (object.keys.toList().first == 'image' &&
-          !((object['image'] as Map).containsKey('imageUrl'))) {
-        throw ImageURLIsMissingException();
-      }
+      _listContainsAtLeastTwoElements(object);
+
+      _imageHasImageURL(object);
     }
 
     if (!hasSubHeadline) {
@@ -113,5 +90,54 @@ class Blog extends ContentTemplate {
     }
 
     return true;
+  }
+
+  void _imageHasImageURL(Map<dynamic, dynamic> object) {
+    if (object.keys.toList().first == 'image' &&
+        !((object['image'] as Map).containsKey('imageUrl'))) {
+      throw ImageURLIsMissingException();
+    }
+  }
+
+  void _listContainsAtLeastTwoElements(Map<dynamic, dynamic> object) {
+    if (object.keys.toList().first == 'list' &&
+        (object['list'] as List).length < 2) {
+      throw ListDoesNotContainsEnoughElementException();
+    }
+  }
+
+  bool _containsAtLeastIOneSection(bool hasSection, Map<dynamic, dynamic> object) {
+    if (!hasSection && object.keys.toList().first == 'section') {
+      hasSection = true;
+    }
+
+    return hasSection;
+  }
+
+  bool _containsAtLeastOneSubHeadline(bool hasSubHeadline, Map<dynamic, dynamic> object) {
+     if (!hasSubHeadline && object.keys.toList().first == 'subHeadline') {
+      hasSubHeadline = true;
+    }
+
+    return hasSubHeadline;
+  }
+
+  void _openingContainsTextTag(Map<dynamic, dynamic> object) {
+     if (object.keys.toList().first == 'opening' &&
+        !((object['opening'] as Map).containsKey('text'))) {
+      throw BlogOpeningDoesNotContainsTextTagException();
+    }
+  }
+
+  void _checkIfSecondObjectIsOpening(int index, Map<dynamic, dynamic> object) {
+    if (index == 1 && object.keys.toList().first != 'opening') {
+      throw BlogSecondObjectIsNotOpeningException();
+    }
+  }
+
+  void _checkIfFirstObjectIsHeadline(int index, Map<dynamic, dynamic> object) {
+    if (index == 0 && object.keys.first != 'headline') {
+      throw BlogFirstObjectIsNotHeadlineException();
+    }
   }
 }

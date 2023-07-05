@@ -6,7 +6,6 @@
 // Copyright: Walnut IT 2023
 // ID: 20230704100402
 // 04.07.2023 10:04
-import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:leoml_parser/leoml_parser.dart';
 import 'package:leoml_parser/src/exception/first_object_is_not_type_exception.dart';
@@ -41,10 +40,16 @@ void main() {
       );
 
       // then
-      expect(result.children.isNotEmpty, isTrue,
-          reason: 'Expected result to be a non empty list');
-      expect(result.children.length == expectedLength, isTrue,
-          reason: 'Expected a list length of 23');
+      expect(
+        result.children.isNotEmpty,
+        isTrue,
+        reason: 'Expected result to be a non empty list',
+      );
+      expect(
+        result.children.length == expectedLength,
+        isTrue,
+        reason: 'Expected a list length of 23',
+      );
     });
 
     test('should return a set of widgets', () async {
@@ -65,8 +70,11 @@ void main() {
       );
 
       // then
-      expect(result is Set<Widget>, isTrue,
-          reason: 'Expected result to be a Set of widgets');
+      expect(
+        result.isNotEmpty,
+        isTrue,
+        reason: 'Expected result to be a Set of widgets',
+      );
     });
   });
 
@@ -80,13 +88,16 @@ void main() {
       final blog = Blog();
 
       // then
-      expect(() async {
-        await leoMLDocumentParser.parseToColumn(
-          leoMLDocument: leoMLDocument,
-          template: blog,
-        );
-      }, throwsA(const TypeMatcher<IsNotListException>()),
-          reason: 'Expected IsNotListException to be thrown');
+      expect(
+        () async {
+          await leoMLDocumentParser.parseToColumn(
+            leoMLDocument: leoMLDocument,
+            template: blog,
+          );
+        },
+        throwsA(const TypeMatcher<IsNotListException>()),
+        reason: 'Expected IsNotListException to be thrown',
+      );
     });
 
     test('should throw a FirstObjectIsNotTypeException', () {
@@ -98,13 +109,16 @@ void main() {
       final blog = Blog();
 
       // then
-      expect(() async {
-        await leoMLDocumentParser.parseToColumn(
-          leoMLDocument: leoMLDocument,
-          template: blog,
-        );
-      }, throwsA(const TypeMatcher<FirstObjectIsNotTypeException>()),
-          reason: 'Expected FirstObjectIsNotTypeException to be thrown');
+      expect(
+        () async {
+          await leoMLDocumentParser.parseToColumn(
+            leoMLDocument: leoMLDocument,
+            template: blog,
+          );
+        },
+        throwsA(const TypeMatcher<FirstObjectIsNotTypeException>()),
+        reason: 'Expected FirstObjectIsNotTypeException to be thrown',
+      );
     });
 
     test('should throw a TypeDoesNotMatchException', () {
@@ -116,13 +130,16 @@ void main() {
       final blog = Blog();
 
       // then
-      expect(() async {
-        await leoMLDocumentParser.parseToColumn(
-          leoMLDocument: leoMLDocument,
-          template: blog,
-        );
-      }, throwsA(const TypeMatcher<TypeDoesNotMatchException>()),
-          reason: 'Expected TypeDoesNotMatchException to be thrown');
+      expect(
+        () async {
+          await leoMLDocumentParser.parseToColumn(
+            leoMLDocument: leoMLDocument,
+            template: blog,
+          );
+        },
+        throwsA(const TypeMatcher<TypeDoesNotMatchException>()),
+        reason: 'Expected TypeDoesNotMatchException to be thrown',
+      );
     });
   });
 }

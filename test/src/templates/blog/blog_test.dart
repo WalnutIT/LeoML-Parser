@@ -26,7 +26,7 @@ import '../../../test_documents/image_url_is_missing_json.dart';
 import '../../../test_documents/list_does_not_contains_enough_elements_json.dart';
 
 void main() {
-  group('positive tests', () {});
+  //group('positive tests', () {});
 
   group('negative tests', () {
     test('first object is not a headline exception is thrown', () {
@@ -110,7 +110,7 @@ void main() {
             throwsA(const TypeMatcher<BlogDoesNotContainsSubHeadlineException>()),
             reason: 'Expected BlogDoesNotContainsSubHeadlineException to be thrown',
           );
-    });
+    },);
     test(
         'the blog template does not contains at leat one section exception is not thrown',
         () {
@@ -132,7 +132,7 @@ void main() {
             throwsA(const TypeMatcher<BlogDoesNotContainsSectionException>()),
             reason: 'Expected BlogDoesNotContainsSectionException to be thrown',
           );
-    });
+    },);
     test('List does not contains enough elements exception is thrown', () {
       // given
       const leoMLDocument = listDoesNotContainsEnoughElementsJSON;
