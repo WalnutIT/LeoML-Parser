@@ -80,7 +80,7 @@ An object can have following attributes:
 | Condition of sub tags | Indicates, if a sub tag is mandatory or optional.                                                                       |
 | Sub tag data type     | Data type of the nested object. Attributes of a nested object are always atomic. Therefore, its data type is "String".  |
 
-### Blog
+### Blog template
 
 #### Recommended blog layout
 
@@ -127,6 +127,10 @@ blog post.
 |----------|-----------|-------------|-----------|----------|-----------------------|-------------------|
 | headline | mandatory | 1           | String    | none     | none                  | none              |
 
+Attention:
+
+The headline always follows the type object.
+
 Example
 
 ```JSON
@@ -150,6 +154,10 @@ The goal of the opening is to attract the reader to read the entire post.
 
 It is recommended to use an image for the opening, but there may not always be a need for it.
 Therefore this attribute is optional.
+
+Attention:
+
+The opening object always follows the headline object.
 
 Example
 
@@ -252,6 +260,10 @@ Example
 
 ##### image
 
+Human are very visual creatures. We can process images very fast, that's why images grab our attention
+easily. The benefit of images is therefore, to transmit many information in a very short time in order 
+to attract the reader to read your entire article or to continue to read your article. 
+
 | Tag name | Condition   | Cardinality | Data type | Sub tags          | Condition of sub tags | Sub tag data type |
 |----------|-------------|-------------|-----------|-------------------|-----------------------|-------------------|
 | image    | optionality | 0-n         | complex   | image_url         | mandatory             | String            |
@@ -352,7 +364,7 @@ Example
 ]
 ```
 
-### Article
+### Article template
 
 #### Recommended article layout
 
@@ -575,7 +587,8 @@ TODO: List prerequisites and provide or point to information on how to start usi
 
 ### How to create a blog post using the blog template
 
-Hint: Default widgets will be used, if a object is mentioned in the LeoML document and no widget.
+Hint: Default widgets will be used, if a object is mentioned in the LeoML document and no
+corresponding widget was injected.
 
 #### Create a blog instance without widget injection
 
