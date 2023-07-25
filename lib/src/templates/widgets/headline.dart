@@ -7,25 +7,33 @@
 // ID: 20230704085106
 // 04.07.2023 08:51
 import 'package:flutter/widgets.dart';
+import 'package:leoml_parser/src/exception/atomic_object_is_not_string_exception.dart';
 import 'package:leoml_parser/src/templates/default_text_styles.dart';
+import 'package:leoml_parser/src/templates/stateless_widget_template.dart';
 
 /// A widget that represents a headline.
-class Headline extends StatelessWidget {
+class Headline extends StatelessWidgetTemplate {
   /// Creates a [Headline] widget.
   ///
   /// The [headline] parameter specifies the text of the headline.
   const Headline({
-    Key? key,
-    required this.headline,
-  }) : super(key: key);
-
-  /// The text of the headline.
-  final String headline;
+    super.key,
+    required super.object,
+  });
 
   @override
   Widget build(BuildContext context) => Text(
-    headline,
-    style: h2TextStyle(),
-  );
+        object['headline'],
+        style: h2TextStyle(),
+      );
+
+  @override
+  void validateObject() {
+    if (object['headline'] is! String) {
+      throw AtomicObjectIsNotStringException(
+        subTagName: 'headline',
+      );
+    }
+  }
 }
 

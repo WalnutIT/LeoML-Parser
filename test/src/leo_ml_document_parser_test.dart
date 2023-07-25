@@ -29,7 +29,7 @@ void main() {
       // when
       final leoMLDocumentParser = LeoMLDocumentParser();
       final widgetFactory = LeoMLParserWidgetFactory();
-      final blog = BlogMock(
+      final blog = MockBlog(
         type: 'blog',
         widgetFactory: widgetFactory,
       );
@@ -59,7 +59,7 @@ void main() {
       // when
       final leoMLDocumentParser = LeoMLDocumentParser();
       final widgetFactory = LeoMLParserWidgetFactory();
-      final blog = BlogMock(
+      final blog = MockBlog(
         type: 'blog',
         widgetFactory: widgetFactory,
       );
@@ -82,6 +82,13 @@ void main() {
     test('should throw an IsNotListException', () {
       // given
       const leoMLDocument = notAListJSON;
+      const expectedMessage = 'Your LeoML document is not well-formed.\n'
+          'It must be a list. Each LeoML document must have rectangular brackets at the root.\n\n'
+          'For example:\n\n'
+          '['
+          ' {"name":"value"},'
+          ' {"name":"value"}'
+          ']';
 
       // when
       final leoMLDocumentParser = LeoMLDocumentParser();
@@ -95,7 +102,12 @@ void main() {
             template: blog,
           );
         },
-        throwsA(const TypeMatcher<IsNotListException>()),
+        throwsA(
+          predicate(
+            (Exception e) =>
+                e is IsNotListException && e.toString() == expectedMessage,
+          ),
+        ),
         reason: 'Expected IsNotListException to be thrown',
       );
     });
@@ -103,6 +115,9 @@ void main() {
     test('should throw a FirstObjectIsNotTypeException', () {
       // given
       const leoMLDocument = firstObjectIsNotType;
+      const expectedMessage =
+          'The first object in your LeoML document is not the "type" object.\n\n'
+          'It is mandatory, that the first object of each LeoML document is the "type" object.';
 
       // when
       final leoMLDocumentParser = LeoMLDocumentParser();
@@ -116,7 +131,13 @@ void main() {
             template: blog,
           );
         },
-        throwsA(const TypeMatcher<FirstObjectIsNotTypeException>()),
+        throwsA(
+          predicate(
+            (Exception e) =>
+                e is FirstObjectIsNotTypeException &&
+                e.toString() == expectedMessage,
+          ),
+        ),
         reason: 'Expected FirstObjectIsNotTypeException to be thrown',
       );
     });
@@ -124,6 +145,11 @@ void main() {
     test('should throw a TypeDoesNotMatchException', () {
       // given
       const leoMLDocument = typeDoesNotMatchJSON;
+      const expectedMessage =
+          'The type of the LeoML document and the template type '
+          'don\'t match.\n\n'
+          'This can happen when your LeoML document is of type "blog" and your'
+          'template type is "article".';
 
       // when
       final leoMLDocumentParser = LeoMLDocumentParser();
@@ -137,7 +163,13 @@ void main() {
             template: blog,
           );
         },
-        throwsA(const TypeMatcher<TypeDoesNotMatchException>()),
+        throwsA(
+          predicate(
+            (Exception e) =>
+                e is TypeDoesNotMatchException &&
+                e.toString() == expectedMessage,
+          ),
+        ),
         reason: 'Expected TypeDoesNotMatchException to be thrown',
       );
     });

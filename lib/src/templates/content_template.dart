@@ -34,15 +34,24 @@ abstract class ContentTemplate {
     final columnContent = <Widget>[];
 
     for (Map map in parsedLeoMLDocument) {
-      final widget = widgetFactory.getWidget(
-        key: map.keys.first,
-        object: map,
-      );
+      Widget widget = Container();
 
-      columnContent.add(widget);
+      widget = hasCustomWidget(
+        key: map.keys.first,
+      )
+          ? createCustomWidget(key: map.keys.first, object: map)
+          : widgetFactory.createWidget(key: map.keys.first, object: map);
+
+      columnContent.add(
+        Padding(
+          padding: const EdgeInsets.only(top: 12.0),
+          child: widget,
+        ),
+      );
     }
 
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
       children: columnContent,
     );
   }
@@ -57,7 +66,7 @@ abstract class ContentTemplate {
     final widgetSet = <Widget>{};
 
     for (Map map in parsedLeoMLDocument) {
-      final widget = widgetFactory.getWidget(
+      final widget = widgetFactory.createWidget(
         key: map.keys.first,
         object: map,
       );
@@ -72,4 +81,10 @@ abstract class ContentTemplate {
   ///
   /// The [parsedLeoMLDocument] parameter is the parsed LeoML document as a list.
   bool assertLeoMLStructure(List parsedLeoMLDocument);
+
+  bool hasCustomWidget({
+    required String key,
+  });
+
+  Widget createCustomWidget({required String key, required Map object});
 }

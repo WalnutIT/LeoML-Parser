@@ -8,6 +8,16 @@
 // 04.07.2023 09:56
 import 'package:flutter/material.dart';
 
+// ignore_for_file: avoid-unused-parameters, long-parameter-list
+Widget getImageLoadingBuilder(
+  BuildContext context,
+  Widget widget,
+  int? value,
+  bool? boolValue,
+) {
+  return const ImageLoadingBuilder();
+}
+
 /// A widget that displays a loading indicator while an image is being loaded.
 class ImageLoadingBuilder extends StatelessWidget {
   /// Creates an [ImageLoadingBuilder] widget.
@@ -15,10 +25,10 @@ class ImageLoadingBuilder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => const SizedBox.square(
-    dimension: 48.0,
-    child: LinearProgressIndicator(
-      color: Color(0xFF000000),
-    ),
-  );
+        dimension: 48.0,
+        child: LinearProgressIndicator(
+          color: Color(0xFF000000),
+        ),
+      );
 }
 

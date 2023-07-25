@@ -7,27 +7,35 @@
 // ID: 20230704085635
 // 04.07.2023 08:56
 import 'package:flutter/widgets.dart';
+import 'package:leoml_parser/src/exception/atomic_object_is_not_string_exception.dart';
 import 'package:leoml_parser/src/templates/default_text_styles.dart';
+import 'package:leoml_parser/src/templates/stateless_widget_template.dart';
 
 /// A widget representing a sub headline.
-class SubHeadline extends StatelessWidget {
+class SubHeadline extends StatelessWidgetTemplate {
   /// Creates a `SubHeadline` widget.
   ///
   /// The [subHeadline] parameter is the text content of the sub headline.
   const SubHeadline({
-    Key? key,
-    required this.subHeadline,
-  }) : super(key: key);
-
-  /// The text content of the sub headline.
-  final String subHeadline;
+    super.key,
+    required super.object,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Text(
-      subHeadline,
+      object['subHeadline'],
       style: h3TextStyle(),
     );
+  }
+
+  @override
+  void validateObject() {
+    if (object['subHeadline'] is! String) {
+      throw AtomicObjectIsNotStringException(
+        subTagName: 'subHeadline',
+      );
+    }
   }
 }
 

@@ -7,25 +7,33 @@
 // ID: 20230704092004
 // 04.07.2023 09:20
 import 'package:flutter/widgets.dart';
+import 'package:leoml_parser/src/exception/atomic_object_is_not_string_exception.dart';
 import 'package:leoml_parser/src/templates/default_text_styles.dart';
+import 'package:leoml_parser/src/templates/stateless_widget_template.dart';
 
 /// A widget that displays the catch line of an article.
-class CatchLine extends StatelessWidget {
+class CatchLine extends StatelessWidgetTemplate {
   /// Creates a [CatchLine] widget.
   ///
   /// The [catchLine] parameter specifies the text to be displayed as the catch line.
   const CatchLine({
-    Key? key,
-    required this.catchLine,
-  }) : super(key: key);
-
-  /// The text to be displayed as the catch line.
-  final String catchLine;
+    super.key,
+    required super.object,
+  });
 
   @override
   Widget build(BuildContext context) => Text(
-    catchLine,
-    style: h1TextStyle(),
-  );
+        object['catchLine'],
+        style: h1TextStyle(),
+      );
+
+  @override
+  void validateObject() {
+    if (object['catchLine'] is! String) {
+      throw AtomicObjectIsNotStringException(
+        subTagName: 'catchLine',
+      );
+    }
+  }
 }
 

@@ -16,5 +16,5 @@ call dart run dart_code_metrics:metrics analyze --reporter=html --no-fatal-warni
 echo Starting code duplication detection
 call jscpd -o doc\jscpd --reporters html lib\
 echo Create documentation
-call dart doc -o doc\api .
+REM call dart doc -o doc\api .
 rmdir /s /q "coverage"

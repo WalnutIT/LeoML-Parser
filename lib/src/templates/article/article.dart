@@ -45,4 +45,16 @@ class Article extends ContentTemplate {
   bool assertLeoMLStructure(List parsedLeoMLDocument) {
     return true;
   }
+
+  @override
+  Widget createCustomWidget({required String key, required Map object}) {
+    // TODO: implement createCustomWidget
+    throw UnimplementedError();
+  }
+
+  @override
+  bool hasCustomWidget({required String key}) {
+    // TODO: implement hasCustomWidget
+    throw UnimplementedError();
+  }
 }

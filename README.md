@@ -150,7 +150,7 @@ The goal of the opening is to attract the reader to read the entire post.
 | Tag name | Condition | Cardinality | Data type | Sub tags  | Condition of sub tags | Sub tag data type |
 |----------|-----------|-------------|-----------|-----------|-----------------------|-------------------|
 | opening  | mandatory | 1           | complex   | text      | mandatory             | String            |
-|          |           |             |           | image_url | optional              | String            |
+|          |           |             |           | imageURL | optional              | String            |
 
 It is recommended to use an image for the opening, but there may not always be a need for it.
 Therefore this attribute is optional.
@@ -166,7 +166,7 @@ Example
   {
     "opening": {
       "text": "<your text>",
-      " image_url": "<your image url>"
+      " imageURL": "<your image url>"
     }
   }
 ]
@@ -266,8 +266,8 @@ to attract the reader to read your entire article or to continue to read your ar
 
 | Tag name | Condition   | Cardinality | Data type | Sub tags          | Condition of sub tags | Sub tag data type |
 |----------|-------------|-------------|-----------|-------------------|-----------------------|-------------------|
-| image    | optionality | 0-n         | complex   | image_url         | mandatory             | String            |
-|          |             |             |           | image_description | optional              | String            |
+| image    | optionality | 0-n         | complex   | imageURL         | mandatory             | String            |
+|          |             |             |           | imageDescription | optional              | String            |
 
 Example
 
@@ -275,8 +275,8 @@ Example
 [
   {
     "image": {
-      "image_url": "<your image url>",
-      "image_description": "<your image description>"
+      "imageURL": "<your image url>",
+      "imageDescription": "<your image description>"
     }
   }
 ]
@@ -295,7 +295,7 @@ Example
   {
     "opening": {
       "text": "We have known for a long time that plants are good for our well-being, but what exactly do they do? We have listed 10 reasons why you should have plants at home.",
-      "image_url": "<image-url>"
+      "imageURL": "<image-url>"
     }
   },
   {
@@ -555,8 +555,8 @@ Example
 
 | Tag name | Condition   | Cardinality | Data type | Sub tags          | Condition of sub tags | Sub tag data type |
 |----------|-------------|-------------|-----------|-------------------|-----------------------|-------------------|
-| image    | optionality | 0-n         | complex   | image_url         | mandatory             | String            |
-|          |             |             |           | image_description | optional              | String            |
+| image    | optionality | 0-n         | complex   | imageURL         | mandatory             | String            |
+|          |             |             |           | imageDescription | optional              | String            |
 
 Example
 
@@ -564,8 +564,8 @@ Example
 [
   {
     "image": {
-      "image_url": "<your image url>",
-      "image_description": "<your image description>"
+      "imageURL": "<your image url>",
+      "imageDescription": "<your image description>"
     }
   }
 ]
@@ -614,7 +614,7 @@ final blog = Blog(
 
 ```dart
 
-final leoMLParser = LeoMLParser();
+final leoMLDocumentParser = LeoMLDocumentParser();
 
 ```
 
@@ -625,10 +625,10 @@ final leoMLParser = LeoMLParser();
 final leoMLDocument = '[...]';
 
 // first option: parse the LeoML document to a Column, which includes the widgets
-final column = leoMLParser.parseToColumn(leoMLDocument: leoMLDocument, template: blog,);
+final column = leoMLDocumentParser.parseToColumn(leoMLDocument: leoMLDocument, template: blog,);
 
 // second option: parse the LeoML document to a Set<Widget>
-final set = leoMLParser.parseToSet(leoMLDocument: leoMLDocument, template: blog,);
+final set = leoMLDocumentParser.parseToSet(leoMLDocument: leoMLDocument, template: blog,);
 ```
 
 ## Additional information

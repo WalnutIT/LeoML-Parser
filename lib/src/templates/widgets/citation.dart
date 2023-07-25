@@ -7,25 +7,33 @@
 // ID: 20230704091720
 // 04.07.2023 09:17
 import 'package:flutter/widgets.dart';
+import 'package:leoml_parser/src/exception/atomic_object_is_not_string_exception.dart';
 import 'package:leoml_parser/src/templates/default_text_styles.dart';
+import 'package:leoml_parser/src/templates/stateless_widget_template.dart';
 
 /// A widget that represents a citation.
-class Citation extends StatelessWidget {
+class Citation extends StatelessWidgetTemplate {
   /// Creates a [Citation] widget.
   ///
   /// The [citation] parameter specifies the text of the citation.
   const Citation({
-    Key? key,
-    required this.citation,
-  }) : super(key: key);
-
-  /// The text of the citation.
-  final String citation;
+    super.key,
+    required super.object,
+  });
 
   @override
   Widget build(BuildContext context) => Text(
-    citation,
-    style: smallTextStyle(),
-  );
+        object['citation'],
+        style: smallTextStyle(),
+      );
+
+  @override
+  void validateObject() {
+    if (object['citation'] is! String) {
+      throw AtomicObjectIsNotStringException(
+        subTagName: 'citation',
+      );
+    }
+  }
 }
 

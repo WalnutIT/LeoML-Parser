@@ -1,4 +1,4 @@
-// Project: Weather Poser
+// Project: LeoML Parser
 // Author: Daniel Krentzlin
 // Project begin: 18.18.2022
 // Dev Environment: Android Studio
@@ -6,9 +6,8 @@
 // Copyright: Walnut IT 2023
 // ID: 20230705084330
 // 05.07.2023 08:43
-import 'package:leoml_parser/src/exception/i_exception.dart';
 
-class ListDoesNotContainsEnoughElementException implements IException {
+class ListDoesNotContainsEnoughElementsException implements Exception {
   @override
-  String get msg => 'A list must contain at least 2 elements.';
+  String toString() => 'A list must contain at least 2 elements.';
 }

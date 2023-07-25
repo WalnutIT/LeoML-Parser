@@ -1,4 +1,4 @@
-// Project: Weather Poser
+// Project: LeoML Parser
 // Author: Daniel Krentzlin
 // Project begin: 18.18.2022
 // Dev Environment: Android Studio
@@ -32,6 +32,37 @@ void main() {
     test('first object is not a headline exception is thrown', () {
       // given
       const leoMLDocument = blogFirstObjectIsNotHeadlineJSON;
+      const expectedMessage =
+          'The first object in your blog template is not the "headline" object.\n\n'
+          'It is mandatory, that the first object of each blog template is the "headline" object.';
+      // when
+      final leoMLDocumentParser = LeoMLDocumentParser();
+      final blog = Blog();
+
+      // then
+      expect(
+        () async {
+          await leoMLDocumentParser.parseToColumn(
+            leoMLDocument: leoMLDocument,
+            template: blog,
+          );
+        },
+        throwsA(
+          predicate(
+            (Exception e) =>
+                e is BlogFirstObjectIsNotHeadlineException &&
+                e.toString() == expectedMessage,
+          ),
+        ),
+        reason: 'Expected BlogFirstObjectIsNotHeadlineException to be thrown',
+      );
+    });
+    test('second object is not an opening exception is thrown', () {
+      // given
+      const leoMLDocument = blogSecondObjectIsNotOpeningJSON;
+      const expectedMessage =
+          'The second object in your blog template is not the "opening" object.\n\n'
+          'It is mandatory, that the second object of each blog template is the "opening" object.';
 
       // when
       final leoMLDocumentParser = LeoMLDocumentParser();
@@ -45,33 +76,20 @@ void main() {
             template: blog,
           );
         },
-        throwsA(const TypeMatcher<BlogFirstObjectIsNotHeadlineException>()),
-        reason: 'Expected BlogFirstObjectIsNotHeadlineException to be thrown',
-      );
-    });
-    test('second object is not an opening exception is thrown', () {
-      // given
-      const leoMLDocument = blogSecondObjectIsNotOpeningJSON;
-
-      // when
-      final leoMLDocumentParser = LeoMLDocumentParser();
-      final blog = Blog();
-
-      // then
-      expect(
-            () async {
-          await leoMLDocumentParser.parseToColumn(
-            leoMLDocument: leoMLDocument,
-            template: blog,
-          );
-        },
-        throwsA(const TypeMatcher<BlogSecondObjectIsNotOpeningException>()),
+        throwsA(
+          predicate(
+            (Exception e) =>
+                e is BlogSecondObjectIsNotOpeningException &&
+                e.toString() == expectedMessage,
+          ),
+        ),
         reason: 'Expected BlogSecondObjectIsNotOpeningException to be thrown',
       );
     });
     test('opening does not contains a text tag exception is thrown', () {
       // given
       const leoMLDocument = openingDoesNotContainsTextTagJSON;
+      const expectedMessage = 'The opening object must contain the "text" tag.';
 
       // when
       final leoMLDocumentParser = LeoMLDocumentParser();
@@ -79,63 +97,91 @@ void main() {
 
       // then
       expect(
-            () async {
+        () async {
           await leoMLDocumentParser.parseToColumn(
             leoMLDocument: leoMLDocument,
             template: blog,
           );
         },
-        throwsA(const TypeMatcher<BlogOpeningDoesNotContainsTextTagException>()),
-        reason: 'Expected BlogOpeningDoesNotContainsTextTagException to be thrown',
+        throwsA(
+          predicate(
+            (Exception e) =>
+                e is BlogOpeningDoesNotContainsTextTagException &&
+                e.toString() == expectedMessage,
+          ),
+        ),
+        reason:
+            'Expected BlogOpeningDoesNotContainsTextTagException to be thrown',
       );
     });
     test(
         'the blog template does not contains at least one sub headline exception is thrown',
         () {
-          // given
-          const leoMLDocument = blogTemplateDoesNotContainsAtLeastOneSubHeadlineJSON;
+        // given
+        const leoMLDocument =
+            blogTemplateDoesNotContainsAtLeastOneSubHeadlineJSON;
+        const expectedMessage =
+            'The blog template must contain at least one sub headline object.';
 
-          // when
-          final leoMLDocumentParser = LeoMLDocumentParser();
-          final blog = Blog();
+        // when
+        final leoMLDocumentParser = LeoMLDocumentParser();
+        final blog = Blog();
 
-          // then
-          expect(
-                () async {
-              await leoMLDocumentParser.parseToColumn(
-                leoMLDocument: leoMLDocument,
-                template: blog,
-              );
-            },
-            throwsA(const TypeMatcher<BlogDoesNotContainsSubHeadlineException>()),
-            reason: 'Expected BlogDoesNotContainsSubHeadlineException to be thrown',
-          );
-    },);
+        // then
+        expect(
+          () async {
+            await leoMLDocumentParser.parseToColumn(
+              leoMLDocument: leoMLDocument,
+              template: blog,
+            );
+          },
+          throwsA(
+            predicate(
+              (Exception e) =>
+                  e is BlogDoesNotContainsSubHeadlineException &&
+                  e.toString() == expectedMessage,
+            ),
+          ),
+          reason:
+              'Expected BlogDoesNotContainsSubHeadlineException to be thrown',
+        );
+      },
+    );
     test(
-        'the blog template does not contains at leat one section exception is not thrown',
-        () {
-          // given
-          const leoMLDocument = blogTemplateDoesNotContainsAtLeastOneSectionJSON;
+      'the blog template does not contains at leat one section exception is not thrown',
+      () {
+        // given
+        const leoMLDocument = blogTemplateDoesNotContainsAtLeastOneSectionJSON;
+        const expectedMessage =
+            'The opening object must contain the "text" tag.';
 
-          // when
-          final leoMLDocumentParser = LeoMLDocumentParser();
-          final blog = Blog();
+        // when
+        final leoMLDocumentParser = LeoMLDocumentParser();
+        final blog = Blog();
 
-          // then
-          expect(
-                () async {
-              await leoMLDocumentParser.parseToColumn(
-                leoMLDocument: leoMLDocument,
-                template: blog,
-              );
-            },
-            throwsA(const TypeMatcher<BlogDoesNotContainsSectionException>()),
-            reason: 'Expected BlogDoesNotContainsSectionException to be thrown',
-          );
-    },);
+        // then
+        expect(
+          () async {
+            await leoMLDocumentParser.parseToColumn(
+              leoMLDocument: leoMLDocument,
+              template: blog,
+            );
+          },
+          throwsA(
+            predicate(
+              (Exception e) =>
+                  e is BlogDoesNotContainsSectionException &&
+                  e.toString() == expectedMessage,
+            ),
+          ),
+          reason: 'Expected BlogDoesNotContainsSectionException to be thrown',
+        );
+      },
+    );
     test('List does not contains enough elements exception is thrown', () {
       // given
       const leoMLDocument = listDoesNotContainsEnoughElementsJSON;
+      const expectedMessage = 'A list must contain at least 2 elements.';
 
       // when
       final leoMLDocumentParser = LeoMLDocumentParser();
@@ -143,19 +189,29 @@ void main() {
 
       // then
       expect(
-            () async {
+        () async {
           await leoMLDocumentParser.parseToColumn(
             leoMLDocument: leoMLDocument,
             template: blog,
           );
         },
-        throwsA(const TypeMatcher<ListDoesNotContainsEnoughElementException>()),
-        reason: 'Expected ListDoesNotContainsEnoughElementException to be thrown',
+        throwsA(
+          predicate(
+            (Exception e) =>
+                e is ListDoesNotContainsEnoughElementsException &&
+                e.toString() == expectedMessage,
+          ),
+        ),
+        reason:
+            'Expected ListDoesNotContainsEnoughElementException to be thrown',
       );
     });
     test('Image url is missing exception is thrown', () {
       // given
       const leoMLDocument = imageURLIsMissingJSON;
+      const expectedMessage =
+          'Your image object does not provides an image url.\n'
+          'Please add an image url.';
 
       // when
       final leoMLDocumentParser = LeoMLDocumentParser();
@@ -163,13 +219,19 @@ void main() {
 
       // then
       expect(
-            () async {
+        () async {
           await leoMLDocumentParser.parseToColumn(
             leoMLDocument: leoMLDocument,
             template: blog,
           );
         },
-        throwsA(const TypeMatcher<ImageURLIsMissingException>()),
+        throwsA(
+          predicate(
+            (Exception e) =>
+                e is ImageURLIsMissingException &&
+                e.toString() == expectedMessage,
+          ),
+        ),
         reason: 'Expected ImageURLIsMissingException to be thrown',
       );
     });

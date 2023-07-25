@@ -7,73 +7,72 @@
 // ID: 20230704152328
 // 04.07.2023 15:23
 import 'package:flutter/widgets.dart';
-import 'package:leoml_parser/src/templates/article/widgets/catch_line.dart';
-import 'package:leoml_parser/src/templates/article/widgets/section_headline.dart';
-import 'package:leoml_parser/src/templates/blog/widgets/opening.dart';
-import 'package:leoml_parser/src/templates/widgets/citation.dart';
-import 'package:leoml_parser/src/templates/widgets/headline.dart';
-import 'package:leoml_parser/src/templates/widgets/image.dart';
-import 'package:leoml_parser/src/templates/widgets/list.dart';
-import 'package:leoml_parser/src/templates/widgets/section.dart';
-import 'package:leoml_parser/src/templates/widgets/sub_headline.dart';
+import 'package:leoml_parser/src/exception/widget_map_does_not_contains_requested_key_exception.dart';
+import 'package:leoml_parser/src/templates/default_widgets_creator.dart';
 
+/// A factory class for creating widgets based on a key-value mapping.
 abstract class WidgetFactory {
-  Widget getWidget({required String key, required Map object});
+  static final _widgetsMap = <String, LeoMLWidget>{
+    'headline': HeadlineWidget(),
+    'subHeadline': SubHeadlineWidget(),
+    'sectionHeadline': SectionHeadlineWidget(),
+    'section': SectionWidget(),
+    'citation': CitationWidget(),
+    'list': ListWidget(),
+    'image': ImageWidget(),
+    'opening': OpeningWidget(),
+    'catchLine': CatchLineWidget(),
+  };
+
+  /// Retrieves the widget associated with the given [key].
+  LeoMLWidget? getWidget(String key) {
+    return _widgetsMap[key];
+  }
+
+
+
+
+
+  /// Checks if the [key] is present in the widget map.
+  ///
+  /// Returns true if the [key] exists in the widget map, false otherwise.
+  bool widgetMapContainsKey({required String key}) =>
+      _widgetsMap.containsKey(key);
+
+  /// Creates a widget based on the provided [key] and [object].
+  ///
+  /// The [key] represents the type of widget to create.
+  /// The [object] contains the properties or data needed to configure the widget.
+  ///
+  /// Returns the created widget, or a [Container] if the key is not found.
+  Widget createWidget({
+    required String key,
+    required Map object,
+  });
 }
 
+/// A custom widget factory that extends the [WidgetFactory] class.
+///
+/// This factory overrides the [createWidget] method to create widgets
+/// using the associated widget mapping.
 class LeoMLParserWidgetFactory extends WidgetFactory {
-
-  // TODO(daniel): rework and make it OOP
   @override
-  // ignore: long-method
-  Widget getWidget({required String key, required Map object}) {
-    switch (key) {
-      case 'headline':
-        return Headline(
-          headline: object['headline'],
-        );
-      case 'subHeadline':
-        return SubHeadline(
-          subHeadline: object['subHeadline'],
-        );
+  Widget createWidget({
+    required String key,
+    required Map object,
+  }) {
+    _checkIifWidgetMapContainsRequestedKey(key);
 
-      case 'sectionHeadline':
-        return SectionHeadline(
-          sectionHeadline: object['sectionHeadline'],
-        );
-      case 'section':
-        return Section(
-          section: object['section'],
-        );
-      case 'opening':
-        return Opening(
-          text: object['opening']['text'],
-          imageUrl: object['opening'].containsKey('imageUrl') ? object['opening']['imageUrl'] : null,
-        );
-      case 'catchLine':
-        return CatchLine(
-          catchLine: object['catchLine'],
-        );
-      case 'image':
-        return LeoImage(
-          imageUrl: object['image']['imageUrl'],
-          imageDescription: object['image'].containsKey('imageDescription')
-              ? object['image']['imageDescription']
-              : null,
-        );
-      case 'citation':
-        return Citation(
-          citation: object['citation'],
-        );
+    final widget = getWidget(key);
 
-      case 'list':
-        return BulletList(
-          list: object['list'],
-        );
-      default:
-        return Section(
-          section: object[object.keys.first],
-        );
+    return widget?.create(object: object) ?? Container();
+  }
+
+  void _checkIifWidgetMapContainsRequestedKey(String key) {
+    if (!widgetMapContainsKey(key: key)) {
+      throw WidgetMapDoesNotContainsRequestedKeyException(
+        requestedTagName: key,
+      );
     }
   }
 }

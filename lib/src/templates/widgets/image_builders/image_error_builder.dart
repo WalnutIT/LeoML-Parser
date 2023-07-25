@@ -8,6 +8,15 @@
 // 04.07.2023 09:54
 import 'package:flutter/material.dart';
 
+// ignore_for_file: avoid-unused-parameters
+Widget getErrorLoadingBuilder(
+  BuildContext context,
+  Object object,
+  StackTrace? stackTrace,
+) {
+  return const ImageErrorBuilder();
+}
+
 class ImageErrorBuilder extends StatelessWidget {
   const ImageErrorBuilder({super.key});
 
