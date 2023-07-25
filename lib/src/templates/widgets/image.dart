@@ -30,7 +30,7 @@ class LeoImage extends StatelessWidgetTemplate {
           Image.network(
             object['image']['imageURL'],
             errorBuilder: getErrorLoadingBuilder,
-            frameBuilder: getImageLoadingBuilder,
+            loadingBuilder: getImageLoadingBuilder,
           ),
           if (object['image'].containsKey('imageDescription'))
             Column(

@@ -10,6 +10,8 @@ import 'package:flutter/material.dart';
 import 'package:leoml_parser/src/exception/atomic_object_is_not_string_exception.dart';
 import 'package:leoml_parser/src/templates/default_text_styles.dart';
 import 'package:leoml_parser/src/templates/stateless_widget_template.dart';
+import 'package:leoml_parser/src/templates/widgets/image_builders/image_error_builder.dart';
+import 'package:leoml_parser/src/templates/widgets/image_builders/image_loading_builder.dart';
 
 /// A widget that represents the opening of a blog post in the blog template.
 class Opening extends StatelessWidgetTemplate {
@@ -37,8 +39,8 @@ class Opening extends StatelessWidgetTemplate {
               object['opening']['imageURL'],
               height: 300.0,
               fit: BoxFit.cover,
-              // errorBuilder: getErrorLoadingBuilder,
-              // frameBuilder: getImageLoadingBuilder,
+              errorBuilder: getErrorLoadingBuilder,
+              loadingBuilder: getImageLoadingBuilder,
             ),
         ],
       );

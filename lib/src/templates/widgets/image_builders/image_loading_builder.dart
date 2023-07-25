@@ -8,26 +8,40 @@
 // 04.07.2023 09:56
 import 'package:flutter/material.dart';
 
-// ignore_for_file: avoid-unused-parameters, long-parameter-list
+// ignore_for_file: avoid-unused-parameters
 Widget getImageLoadingBuilder(
   BuildContext context,
   Widget widget,
-  int? value,
-  bool? boolValue,
+  ImageChunkEvent? imageChunkEvent,
 ) {
-  return const ImageLoadingBuilder();
+  if (imageChunkEvent == null) {
+    return widget;
+  }
+
+  return ImageLoadingBuilder(imageChunkEvent: imageChunkEvent);
 }
 
 /// A widget that displays a loading indicator while an image is being loaded.
 class ImageLoadingBuilder extends StatelessWidget {
   /// Creates an [ImageLoadingBuilder] widget.
-  const ImageLoadingBuilder({Key? key}) : super(key: key);
+  const ImageLoadingBuilder({
+    Key? key,
+    required this.imageChunkEvent,
+  }) : super(key: key);
+
+  final ImageChunkEvent imageChunkEvent;
 
   @override
-  Widget build(BuildContext context) => const SizedBox.square(
+  Widget build(BuildContext context) => SizedBox.square(
         dimension: 48.0,
-        child: LinearProgressIndicator(
-          color: Color(0xFF000000),
+        child: CircularProgressIndicator(
+          value: imageChunkEvent.expectedTotalBytes != null
+              ? imageChunkEvent.cumulativeBytesLoaded /
+                  (imageChunkEvent.expectedTotalBytes ??
+                      imageChunkEvent.cumulativeBytesLoaded)
+              : null,
+          color: const Color(0xFF000000),
+          strokeWidth: 1.0,
         ),
       );
 }
