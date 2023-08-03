@@ -407,6 +407,10 @@ The goal of the headline is to attract attention and encourage the reader to rea
 |----------|-----------|-------------|-----------|----------|-----------------------|-------------------|
 | headline | mandatory | 1           | String    | none     | none                  | none              |
 
+Attention:
+
+The headline always follows the type object.
+
 Example
 
 ```JSON

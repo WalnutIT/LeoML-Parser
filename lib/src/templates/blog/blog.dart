@@ -65,27 +65,27 @@ class Blog extends ContentTemplate {
       return headline?.create(object: object) ?? const Placeholder();
     }
 
-    if (key == 'opening' && headline != null) {
+    if (key == 'opening' && opening != null) {
       return opening?.create(object: object) ?? const Placeholder();
     }
 
-    if (key == 'subHeadline' && headline != null) {
+    if (key == 'subHeadline' && subHeadline != null) {
       return subHeadline?.create(object: object) ?? const Placeholder();
     }
 
-    if (key == 'section' && headline != null) {
+    if (key == 'section' && section != null) {
       return section?.create(object: object) ?? const Placeholder();
     }
 
-    if (key == 'list' && headline != null) {
+    if (key == 'list' && list != null) {
       return list?.create(object: object) ?? const Placeholder();
     }
 
-    if (key == 'citation' && headline != null) {
+    if (key == 'citation' && citation != null) {
       return citation?.create(object: object) ?? const Placeholder();
     }
 
-    if (key == 'image' && headline != null) {
+    if (key == 'image' && image != null) {
       return image?.create(object: object) ?? const Placeholder();
     }
 
@@ -143,7 +143,7 @@ class Blog extends ContentTemplate {
 
       hasSubHeadline = _containsAtLeastOneSubHeadline(hasSubHeadline, object);
 
-      hasSection = _containsAtLeastIOneSection(hasSection, object);
+      hasSection = _containsAtLeastOneSection(hasSection, object);
 
       _listContainsAtLeastTwoElements(object);
 
@@ -188,7 +188,7 @@ class Blog extends ContentTemplate {
   /// The [hasSection] parameter indicates whether a 'section' object has been found before.
   /// The [object] parameter is the map representing the current object.
   /// Returns true if the current object contains at least one 'section' object, otherwise returns [hasSection].
-  bool _containsAtLeastIOneSection(
+  bool _containsAtLeastOneSection(
     bool hasSection,
     Map<dynamic, dynamic> object,
   ) {

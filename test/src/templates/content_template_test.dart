@@ -44,7 +44,7 @@ void main() {
     });
     test('parse to column method returns a column', () {
       // given
-      const parsedLeoMLDocument = blog1AsList;
+      var parsedLeoMLDocument = blog1AsList;
       // when
       final widgetsFactory = MockWidgetFactory();
       final testContentTemplateImpl = TestContentTemplateImpl(

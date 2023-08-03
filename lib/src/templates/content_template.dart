@@ -8,12 +8,12 @@
 // 04.07.2023 08:35
 import 'package:flutter/widgets.dart';
 import 'package:leoml_parser/src/templates/widget_factory.dart';
-
 /// An abstract class representing a content template.
 abstract class ContentTemplate {
   /// Creates a `ContentTemplate` instance.
   ///
   /// The [type] parameter specifies the type of the content template.
+  /// The [widgetFactory] parameter is the factory used to create widgets based on a key-value mapping.
   ContentTemplate({
     required this.type,
     required this.widgetFactory,
@@ -22,6 +22,7 @@ abstract class ContentTemplate {
   /// The type of the content template.
   final String type;
 
+  /// The factory used to create widgets based on a key-value mapping.
   final WidgetFactory widgetFactory;
 
   /// Parses the LeoML document to a column of widgets.
@@ -34,7 +35,7 @@ abstract class ContentTemplate {
     final columnContent = <Widget>[];
 
     for (Map map in parsedLeoMLDocument) {
-      Widget widget = Container();
+      Widget widget = const Placeholder();
 
       widget = hasCustomWidget(
         key: map.keys.first,
@@ -82,9 +83,21 @@ abstract class ContentTemplate {
   /// The [parsedLeoMLDocument] parameter is the parsed LeoML document as a list.
   bool assertLeoMLStructure(List parsedLeoMLDocument);
 
+  /// Checks if the content template has a custom widget associated with the given [key].
+  ///
+  /// The [key] represents the type of custom widget to check.
+  ///
+  /// Returns `true` if the content template has a custom widget associated with the [key],
+  /// `false` otherwise.
   bool hasCustomWidget({
     required String key,
   });
 
+  /// Creates a custom widget based on the provided [key] and [object].
+  ///
+  /// The [key] represents the type of custom widget to create.
+  /// The [object] contains the properties or data needed to configure the custom widget.
+  ///
+  /// Returns the created custom widget, or a default fallback widget if the [key] is not found.
   Widget createCustomWidget({required String key, required Map object});
 }

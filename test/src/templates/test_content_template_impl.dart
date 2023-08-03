@@ -6,7 +6,7 @@
 // Copyright: Walnut IT 2023
 // ID: 20230707105910
 // 07.07.2023 10:59
-import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter/widgets.dart';
 import 'package:leoml_parser/src/templates/content_template.dart';
 
 class TestContentTemplateImpl extends ContentTemplate {
@@ -19,13 +19,16 @@ class TestContentTemplateImpl extends ContentTemplate {
 
   @override
   Widget createCustomWidget({required String key, required Map object}) {
-    // TODO: implement createCustomWidget
-    throw UnimplementedError();
+    return const Placeholder();
   }
 
   @override
   bool hasCustomWidget({required String key}) {
-    // TODO: implement hasCustomWidget
-    throw UnimplementedError();
+
+    if(key == 'headline'){
+      return true;
+    }
+
+    return false;
   }
 }
