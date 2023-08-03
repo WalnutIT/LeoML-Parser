@@ -583,10 +583,6 @@ Example
 - Parsing a LeoML document to a column of widgets.
 - Parsing a LeoML document to a map.
 
-## Getting started
-
-TODO: List prerequisites and provide or point to information on how to start using the package.
-
 ## Usage
 
 ### How to create a blog post using the blog template
@@ -626,7 +622,7 @@ final leoMLDocumentParser = LeoMLDocumentParser();
 
 ```dart
 
-final leoMLDocument = '[...]';
+const leoMLDocument = '[...]';
 
 // first option: parse the LeoML document to a Column, which includes the widgets
 final column = leoMLDocumentParser.parseToColumn(leoMLDocument: leoMLDocument, template: blog,);
@@ -637,5 +633,20 @@ final set = leoMLDocumentParser.parseToSet(leoMLDocument: leoMLDocument, templat
 
 ## Additional information
 
-TODO: Tell users more about the package: where to find more information, how to contribute to the
-package, how to file issues, what response they can expect from the package authors, and more.
+### Adding a new template
+
+If the available templates do not meet your requirements you are welcome to create your own template. To create your own template please contact me. You have two options:
+
+1. you can send me a complete documentation (see Blog Template) and I will implement the new template accordingly.
+2. you can implement the new template yourself and create a merge request and add me as a reviewer.
+
+If you want to implement your template yourself, the following things have to be fulfilled before it can be published:
+
+1. complete documentation (see Blog Template)
+2. the template inherits from ContentTemplate
+3. code documentation is complete
+4. unit tests have been written 
+
+### Creating an issue
+
+Create an issue in [github](https://github.com/WalnutIT/LeoML-Parser/issues).

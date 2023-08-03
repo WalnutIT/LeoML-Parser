@@ -6,6 +6,7 @@ Column column = const Column();
 Future<void> main() async {
   final blogTemplate = Blog(
     headline: MyCustomHeadlineWidget(),
+
   );
   final leoMLDocumentParser = LeoMLDocumentParser();
   column = await leoMLDocumentParser.parseToColumn(
@@ -28,6 +29,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       home: const LeoMLParserExampleApp(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
