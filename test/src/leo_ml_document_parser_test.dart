@@ -11,7 +11,7 @@ import 'package:leoml_parser/leoml_parser.dart';
 import 'package:leoml_parser/src/exception/first_object_is_not_type_exception.dart';
 import 'package:leoml_parser/src/exception/is_not_list_exception.dart';
 import 'package:leoml_parser/src/exception/type_does_not_match_exception.dart';
-import 'package:leoml_parser/src/templates/widget_factory.dart';
+import 'package:leoml_parser/src/widget_builder/widget_factory.dart';
 
 import '../test_documents/blog/blog_1.dart';
 import '../test_documents/first_object_is_not_type_json.dart';
@@ -28,10 +28,10 @@ void main() {
 
       // when
       final leoMLDocumentParser = LeoMLDocumentParser();
-      final widgetFactory = LeoMLParserWidgetFactory();
+      const defaultWidgetFactory = LeoMLParserDefaultWidgetFactory();
       final blog = MockBlog(
         type: 'blog',
-        widgetFactory: widgetFactory,
+        defaultWidgetFactory: defaultWidgetFactory,
       );
 
       final result = await leoMLDocumentParser.parseToColumn(
@@ -58,10 +58,10 @@ void main() {
 
       // when
       final leoMLDocumentParser = LeoMLDocumentParser();
-      final widgetFactory = LeoMLParserWidgetFactory();
+      const defaultWidgetFactory = LeoMLParserDefaultWidgetFactory();
       final blog = MockBlog(
         type: 'blog',
-        widgetFactory: widgetFactory,
+        defaultWidgetFactory: defaultWidgetFactory,
       );
 
       final result = await leoMLDocumentParser.parseToSet(

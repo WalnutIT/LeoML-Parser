@@ -22,7 +22,7 @@ void main() {
       final widgetsFactory = MockWidgetFactory();
       final testContentTemplateImpl = TestContentTemplateImpl(
         type: expected,
-        widgetFactory: widgetsFactory,
+        defaultWidgetFactory: widgetsFactory,
       );
       final result = testContentTemplateImpl.type;
       // then
@@ -35,10 +35,10 @@ void main() {
       final widgetsFactory = MockWidgetFactory();
       final testContentTemplateImpl = TestContentTemplateImpl(
         type: 'blog',
-        widgetFactory: widgetsFactory,
+        defaultWidgetFactory: widgetsFactory,
       );
 
-      final result = testContentTemplateImpl.widgetFactory;
+      final result = testContentTemplateImpl.defaultWidgetFactory;
       // then
       expect(result, isNotNull);
     });
@@ -49,7 +49,7 @@ void main() {
       final widgetsFactory = MockWidgetFactory();
       final testContentTemplateImpl = TestContentTemplateImpl(
         type: 'blog',
-        widgetFactory: widgetsFactory,
+        defaultWidgetFactory: widgetsFactory,
       );
       final result = testContentTemplateImpl.parseToColumn(
         parsedLeoMLDocument: parsedLeoMLDocument,
@@ -64,7 +64,7 @@ void main() {
       final widgetsFactory = MockWidgetFactory();
       final testContentTemplateImpl = TestContentTemplateImpl(
         type: 'blog',
-        widgetFactory: widgetsFactory,
+        defaultWidgetFactory: widgetsFactory,
       );
       final result = testContentTemplateImpl.parseToSet(
         parsedLeoMLDocument: parsedLeoMLDocument,

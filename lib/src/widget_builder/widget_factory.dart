@@ -8,13 +8,14 @@
 // 04.07.2023 15:23
 import 'package:flutter/widgets.dart';
 import 'package:leoml_parser/src/exception/widget_map_does_not_contains_requested_key_exception.dart';
-import 'package:leoml_parser/src/templates/default_widgets_builder.dart';
+import 'package:leoml_parser/src/widget_builder/default_widgets_builder.dart';
+import 'package:leoml_parser/src/widget_builder/leo_ml_widget_builder.dart';
 
 /// A factory class for creating widgets based on a key-value mapping.
 abstract class WidgetFactory {
   const WidgetFactory();
 
-  static final _widgetsMap = <String, LeoMLWidgetBuilder>{
+  static final _defaultWidgetsMap = <String, LeoMLWidgetBuilder>{
     'headline': HeadlineBuilder(),
     'subHeadline': SubHeadlineBuilder(),
     'sectionHeadline': SectionHeadlineBuilder(),
@@ -26,28 +27,24 @@ abstract class WidgetFactory {
     'catchLine': CatchLineBuilder(),
   };
 
-  /// Retrieves the widget associated with the given [key].
-  LeoMLWidgetBuilder? getWidget(String key) {
-    return _widgetsMap[key];
+  /// Retrieves the default widget associated with the given [key].
+  LeoMLWidgetBuilder? getDefaultWidget(String key) {
+    return _defaultWidgetsMap[key];
   }
 
-
-
-
-
-  /// Checks if the [key] is present in the widget map.
+  /// Checks if the [key] is present in the default widget map.
   ///
   /// Returns true if the [key] exists in the widget map, false otherwise.
-  bool widgetMapContainsKey({required String key}) =>
-      _widgetsMap.containsKey(key);
+  bool defaultWidgetMapContainsKey({required String key}) =>
+      _defaultWidgetsMap.containsKey(key);
 
-  /// Creates a widget based on the provided [key] and [object].
+  /// Builds a default widget based on the provided [key] and [object].
   ///
   /// The [key] represents the type of widget to create.
   /// The [object] contains the properties or data needed to configure the widget.
   ///
-  /// Returns the created widget, or a [Container] if the key is not found.
-  Widget createWidget({
+  /// Returns the created widget, or a [Placeholder] if the key is not found.
+  Widget buildDefaultWidget({
     required String key,
     required Map object,
   });
@@ -55,24 +52,24 @@ abstract class WidgetFactory {
 
 /// A custom widget factory that extends the [WidgetFactory] class.
 ///
-/// This factory overrides the [createWidget] method to create widgets
+/// This factory overrides the [buildDefaultWidget] method to create widgets
 /// using the associated widget mapping.
-class LeoMLParserWidgetFactory extends WidgetFactory {
-  const LeoMLParserWidgetFactory();
+class LeoMLParserDefaultWidgetFactory extends WidgetFactory {
+  const LeoMLParserDefaultWidgetFactory();
   @override
-  Widget createWidget({
+  Widget buildDefaultWidget({
     required String key,
     required Map object,
   }) {
     _checkIifWidgetMapContainsRequestedKey(key);
 
-    final widget = getWidget(key);
+    final defaultWidget = getDefaultWidget(key);
 
-    return widget?.build(object: object) ?? Container();
+    return defaultWidget?.build(object: object) ?? const Placeholder();
   }
 
   void _checkIifWidgetMapContainsRequestedKey(String key) {
-    if (!widgetMapContainsKey(key: key)) {
+    if (!defaultWidgetMapContainsKey(key: key)) {
       throw WidgetMapDoesNotContainsRequestedKeyException(
         requestedTagName: key,
       );

@@ -7,23 +7,23 @@
 // ID: 20230704083502
 // 04.07.2023 08:35
 import 'package:flutter/widgets.dart';
-import 'package:leoml_parser/src/templates/widget_factory.dart';
+import 'package:leoml_parser/src/widget_builder/widget_factory.dart';
 /// An abstract class representing a content template.
 abstract class ContentTemplate {
   /// Creates a `ContentTemplate` instance.
   ///
   /// The [type] parameter specifies the type of the content template.
-  /// The [widgetFactory] parameter is the factory used to create widgets based on a key-value mapping.
+  /// The [defaultWidgetFactory] parameter is the factory used to create widgets based on a key-value mapping.
   ContentTemplate({
     required this.type,
-    required this.widgetFactory,
+    required this.defaultWidgetFactory,
   });
 
   /// The type of the content template.
   final String type;
 
-  /// The factory used to create widgets based on a key-value mapping.
-  final WidgetFactory widgetFactory;
+  /// The factory used to build default widgets based on a key-value mapping.
+  final WidgetFactory defaultWidgetFactory;
 
   /// Parses the LeoML document to a column of widgets.
   ///
@@ -41,7 +41,7 @@ abstract class ContentTemplate {
         key: map.keys.first,
       )
           ? createCustomWidget(key: map.keys.first, object: map)
-          : widgetFactory.createWidget(key: map.keys.first, object: map);
+          : defaultWidgetFactory.buildDefaultWidget(key: map.keys.first, object: map);
 
       columnContent.add(
         Padding(
@@ -67,7 +67,7 @@ abstract class ContentTemplate {
     final widgetSet = <Widget>{};
 
     for (Map map in parsedLeoMLDocument) {
-      final widget = widgetFactory.createWidget(
+      final widget = defaultWidgetFactory.buildDefaultWidget(
         key: map.keys.first,
         object: map,
       );

@@ -8,7 +8,7 @@
 // 07.07.2023 07:48
 import 'package:flutter_test/flutter_test.dart';
 import 'package:leoml_parser/src/exception/widget_map_does_not_contains_requested_key_exception.dart';
-import 'package:leoml_parser/src/templates/widget_factory.dart';
+import 'package:leoml_parser/src/widget_builder/widget_factory.dart';
 import 'package:leoml_parser/src/templates/widgets/headline.dart';
 
 void main() {
@@ -19,8 +19,8 @@ void main() {
       const object = {'headline': 'My headline'};
 
       // when
-      final widgetFactory = LeoMLParserWidgetFactory();
-      final result = widgetFactory.createWidget(key: key, object: object);
+      const widgetFactory = LeoMLParserDefaultWidgetFactory();
+      final result = widgetFactory.buildDefaultWidget(key: key, object: object);
       // then
       expect(result is Headline, isTrue);
     });
@@ -33,12 +33,12 @@ void main() {
       const expectedMessage =
           'The widget map does not contains the key"$key". Please add the key or check, if the key is written correctly.';
       // when
-      final widgetFactory = LeoMLParserWidgetFactory();
+      const widgetFactory = LeoMLParserDefaultWidgetFactory();
 
       // then
       expect(
         () {
-          widgetFactory.createWidget(
+          widgetFactory.buildDefaultWidget(
             key: key,
             object: object,
           );

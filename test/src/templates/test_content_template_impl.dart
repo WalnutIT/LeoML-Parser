@@ -10,7 +10,7 @@ import 'package:flutter/widgets.dart';
 import 'package:leoml_parser/src/templates/content_template.dart';
 
 class TestContentTemplateImpl extends ContentTemplate {
-  TestContentTemplateImpl({required super.type, required super.widgetFactory});
+  TestContentTemplateImpl({required super.type, required super.defaultWidgetFactory});
 
   @override
   bool assertLeoMLStructure(List parsedLeoMLDocument) {

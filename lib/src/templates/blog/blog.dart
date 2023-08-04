@@ -15,8 +15,8 @@ import 'package:leoml_parser/src/exception/blog_second_object_is_not_opening_exc
 import 'package:leoml_parser/src/exception/image_url_is_missing_exception.dart';
 import 'package:leoml_parser/src/exception/list_does_not_contains_enough_elements_exception.dart';
 import 'package:leoml_parser/src/templates/content_template.dart';
-import 'package:leoml_parser/src/templates/default_widgets_builder.dart';
-import 'package:leoml_parser/src/templates/widget_factory.dart';
+import 'package:leoml_parser/src/widget_builder/leo_ml_widget_builder.dart';
+import 'package:leoml_parser/src/widget_builder/widget_factory.dart';
 
 /// Represents a blog content template.
 class Blog extends ContentTemplate {
@@ -26,7 +26,8 @@ class Blog extends ContentTemplate {
   /// [citationBuilder], and [imageBuilder] widgets can be provided to customize the
   /// appearance of the blog content.
   Blog({
-    WidgetFactory widgetFactory = const LeoMLParserWidgetFactory(),
+    WidgetFactory defaultWidgetFactory =
+        const LeoMLParserDefaultWidgetFactory(),
     this.headlineBuilder,
     this.openingBuilder,
     this.subHeadlineBuilder,
@@ -35,8 +36,8 @@ class Blog extends ContentTemplate {
     this.citationBuilder,
     this.imageBuilder,
   }) : super(
-          type: 'blog',
-          widgetFactory: widgetFactory,
+    type: 'blog',
+          defaultWidgetFactory: defaultWidgetFactory,
         );
 
   /// The headline widget builder for the blog template.

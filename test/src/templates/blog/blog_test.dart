@@ -21,8 +21,8 @@ import 'package:leoml_parser/src/exception/list_does_not_contains_enough_element
 import 'package:leoml_parser/src/leo_ml_document_parser.dart';
 import 'package:leoml_parser/src/templates/blog/blog.dart';
 import 'package:leoml_parser/src/templates/default_text_styles.dart';
-import 'package:leoml_parser/src/templates/default_widgets_builder.dart';
 import 'package:leoml_parser/src/templates/stateless_widget_template.dart';
+import 'package:leoml_parser/src/widget_builder/leo_ml_widget_builder.dart';
 
 import '../../../test_documents/blog/blog_1.dart';
 import '../../../test_documents/blog/blog_first_object_is_not_headline_json.dart';

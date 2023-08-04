@@ -7,11 +7,11 @@
 // ID: 20230707105448
 // 07.07.2023 10:54
 import 'package:flutter/widgets.dart';
-import 'package:leoml_parser/src/templates/widget_factory.dart';
+import 'package:leoml_parser/src/widget_builder/widget_factory.dart';
 
 class MockWidgetFactory extends WidgetFactory{
   @override
-  Widget createWidget({required String key, required Map object}) {
+  Widget buildDefaultWidget({required String key, required Map object}) {
     return  Container();
   }
 

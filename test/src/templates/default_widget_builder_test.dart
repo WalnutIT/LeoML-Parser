@@ -10,7 +10,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:leoml_parser/src/templates/article/widgets/catch_line.dart';
 import 'package:leoml_parser/src/templates/article/widgets/section_headline.dart';
 import 'package:leoml_parser/src/templates/blog/widgets/opening.dart';
-import 'package:leoml_parser/src/templates/default_widgets_builder.dart';
+import 'package:leoml_parser/src/widget_builder/default_widgets_builder.dart';
 import 'package:leoml_parser/src/templates/widgets/citation.dart';
 import 'package:leoml_parser/src/templates/widgets/headline.dart';
 import 'package:leoml_parser/src/templates/widgets/image.dart';
