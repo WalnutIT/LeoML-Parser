@@ -9,7 +9,7 @@ Future<void> main() async {
   );
   final leoMLDocumentParser = LeoMLDocumentParser();
   column = await leoMLDocumentParser.parseToColumn(
-    leoMLDocument: leoMLDocumentBlogEntry,
+    leoMLDocument: leoMLDocument,
     template: blogTemplate,
   );
 
@@ -23,10 +23,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'LeoML Parser example',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
       home: const LeoMLParserExampleApp(),
       debugShowCheckedModeBanner: false,
     );
@@ -51,7 +47,35 @@ class LeoMLParserExampleApp extends StatelessWidget {
   }
 }
 
-const leoMLDocumentBlogEntry = '['
+class MyCustomHeadlineBuilder extends LeoMLWidgetBuilder {
+  @override
+  Widget build({required Map object}) => MyCustomHeadline(object: object);
+}
+
+class MyCustomHeadline extends StatelessWidgetTemplate {
+  const MyCustomHeadline({super.key, required super.object});
+
+  @override
+  Widget build(BuildContext context) => Text(
+    object['headline'],
+    style: const TextStyle(
+      color: Colors.green,
+      fontSize: 44.0,
+      fontWeight: FontWeight.bold,
+    ),
+  );
+
+  @override
+  void validateObject() {
+    if (object['headline'] is! String) {
+      throw AtomicObjectIsNotStringException(
+        subTagName: 'headline',
+      );
+    }
+  }
+}
+
+const leoMLDocument = '['
     '{'
     ' "type": "blog"'
     '},'
@@ -132,30 +156,4 @@ const leoMLDocumentBlogEntry = '['
     '}'
     ']';
 
-class MyCustomHeadlineBuilder extends LeoMLWidgetBuilder {
-  @override
-  Widget build({required Map object}) => MyCustomHeadline(object: object);
-}
 
-class MyCustomHeadline extends StatelessWidgetTemplate {
-  const MyCustomHeadline({super.key, required super.object});
-
-  @override
-  Widget build(BuildContext context) => Text(
-        object['headline'],
-        style: const TextStyle(
-          color: Colors.green,
-          fontSize: 44.0,
-          fontWeight: FontWeight.bold,
-        ),
-      );
-
-  @override
-  void validateObject() {
-    if (object['headline'] is! String) {
-      throw AtomicObjectIsNotStringException(
-        subTagName: 'headline',
-      );
-    }
-  }
-}
