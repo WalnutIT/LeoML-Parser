@@ -42,7 +42,7 @@ void main() {
       const key = 'headline';
 
       // when
-      final blog = Blog(headline: MyCustomTestWidget());
+      final blog = Blog(headlineBuilder: MyCustomTestWidget());
       final actual = blog.hasCustomWidget(key: key);
 
       // then
@@ -53,7 +53,7 @@ void main() {
       const key = 'opening';
 
       // when
-      final blog = Blog(opening: MyCustomTestWidget());
+      final blog = Blog(openingBuilder: MyCustomTestWidget());
       final actual = blog.hasCustomWidget(key: key);
 
       // then
@@ -64,7 +64,7 @@ void main() {
       const key = 'subHeadline';
 
       // when
-      final blog = Blog(subHeadline: MyCustomTestWidget());
+      final blog = Blog(subHeadlineBuilder: MyCustomTestWidget());
       final actual = blog.hasCustomWidget(key: key);
 
       // then
@@ -75,7 +75,7 @@ void main() {
       const key = 'section';
 
       // when
-      final blog = Blog(section: MyCustomTestWidget());
+      final blog = Blog(sectionBuilder: MyCustomTestWidget());
       final actual = blog.hasCustomWidget(key: key);
 
       // then
@@ -86,7 +86,7 @@ void main() {
       const key = 'list';
 
       // when
-      final blog = Blog(list: MyCustomTestWidget());
+      final blog = Blog(listBuilder: MyCustomTestWidget());
       final actual = blog.hasCustomWidget(key: key);
 
       // then
@@ -97,7 +97,7 @@ void main() {
       const key = 'citation';
 
       // when
-      final blog = Blog(citation: MyCustomTestWidget());
+      final blog = Blog(citationBuilder: MyCustomTestWidget());
       final actual = blog.hasCustomWidget(key: key);
 
       // then
@@ -108,7 +108,7 @@ void main() {
       const key = 'image';
 
       // when
-      final blog = Blog(image: MyCustomTestWidget());
+      final blog = Blog(imageBuilder: MyCustomTestWidget());
       final actual = blog.hasCustomWidget(key: key);
 
       // then
@@ -129,7 +129,7 @@ void main() {
       });
 
       // when
-      final blog = Blog(headline: MyCustomHeadlineWidget());
+      final blog = Blog(headlineBuilder: MyCustomHeadlineWidget());
       final actual = blog.createCustomWidget(key: key, object: object);
 
       // then
@@ -150,7 +150,7 @@ void main() {
       });
 
       // when
-      final blog = Blog(opening: MyCustomOpeningWidget());
+      final blog = Blog(openingBuilder: MyCustomOpeningWidget());
       final actual = blog.createCustomWidget(key: key, object: object);
 
       // then
@@ -171,7 +171,7 @@ void main() {
       });
 
       // when
-      final blog = Blog(subHeadline: MyCustomSubHeadlineWidget());
+      final blog = Blog(subHeadlineBuilder: MyCustomSubHeadlineWidget());
       final actual = blog.createCustomWidget(key: key, object: object);
 
       // then
@@ -192,7 +192,7 @@ void main() {
       });
 
       // when
-      final blog = Blog(section: MyCustomSectionWidget());
+      final blog = Blog(sectionBuilder: MyCustomSectionWidget());
       final actual = blog.createCustomWidget(key: key, object: object);
 
       // then
@@ -213,7 +213,7 @@ void main() {
       });
 
       // when
-      final blog = Blog(list: MyCustomListWidget());
+      final blog = Blog(listBuilder: MyCustomListWidget());
       final actual = blog.createCustomWidget(key: key, object: object);
 
       // then
@@ -234,7 +234,7 @@ void main() {
       });
 
       // when
-      final blog = Blog(citation: MyCustomCitationWidget());
+      final blog = Blog(citationBuilder: MyCustomCitationWidget());
       final actual = blog.createCustomWidget(key: key, object: object);
 
       // then
@@ -255,7 +255,7 @@ void main() {
       });
 
       // when
-      final blog = Blog(image: MyCustomImageWidget());
+      final blog = Blog(imageBuilder: MyCustomImageWidget());
       final actual = blog.createCustomWidget(key: key, object: object);
 
       // then

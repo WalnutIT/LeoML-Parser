@@ -15,7 +15,7 @@ import 'package:leoml_parser/src/templates/stateless_widget_template.dart';
 class Citation extends StatelessWidgetTemplate {
   /// Creates a [Citation] widget.
   ///
-  /// The [citation] parameter specifies the text of the citation.
+  /// The [citationBuilder] parameter specifies the text of the citation.
   const Citation({
     super.key,
     required super.object,

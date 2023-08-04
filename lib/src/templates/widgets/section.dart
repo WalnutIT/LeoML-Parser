@@ -15,7 +15,7 @@ import 'package:leoml_parser/src/templates/stateless_widget_template.dart';
 class Section extends StatelessWidgetTemplate {
   /// Creates a `Section` widget.
   ///
-  /// The [section] parameter is the text content of the section.
+  /// The [sectionBuilder] parameter is the text content of the section.
   const Section({
     super.key,
     required super.object,

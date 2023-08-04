@@ -15,7 +15,7 @@ import 'package:leoml_parser/src/templates/stateless_widget_template.dart';
 class SubHeadline extends StatelessWidgetTemplate {
   /// Creates a `SubHeadline` widget.
   ///
-  /// The [subHeadline] parameter is the text content of the sub headline.
+  /// The [subHeadlineBuilder] parameter is the text content of the sub headline.
   const SubHeadline({
     super.key,
     required super.object,

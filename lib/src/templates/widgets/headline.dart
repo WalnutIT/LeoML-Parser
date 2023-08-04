@@ -15,7 +15,7 @@ import 'package:leoml_parser/src/templates/stateless_widget_template.dart';
 class Headline extends StatelessWidgetTemplate {
   /// Creates a [Headline] widget.
   ///
-  /// The [headline] parameter specifies the text of the headline.
+  /// The [headlineBuilder] parameter specifies the text of the headline.
   const Headline({
     super.key,
     required super.object,

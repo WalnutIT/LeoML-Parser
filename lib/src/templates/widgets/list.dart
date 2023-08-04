@@ -15,7 +15,7 @@ import 'package:leoml_parser/src/templates/stateless_widget_template.dart';
 class BulletList extends StatelessWidgetTemplate {
   /// Creates a `BulletList` widget.
   ///
-  /// The [list] parameter represents the list of strings to be displayed as bullet points.
+  /// The [listBuilder] parameter represents the list of strings to be displayed as bullet points.
   const BulletList({
     super.key,
     required super.object,

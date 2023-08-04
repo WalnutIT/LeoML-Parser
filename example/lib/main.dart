@@ -5,7 +5,7 @@ Column column = const Column();
 
 Future<void> main() async {
   final blogTemplate = Blog(
-    headline: MyCustomHeadlineBuilder(),
+    headlineBuilder: MyCustomHeadlineBuilder(),
 
   );
   final leoMLDocumentParser = LeoMLDocumentParser();

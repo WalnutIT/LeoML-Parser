@@ -22,72 +22,72 @@ import 'package:leoml_parser/src/templates/widget_factory.dart';
 class Blog extends ContentTemplate {
   /// Creates a new instance of the Blog content template.
   ///
-  /// The [headline], [opening], [subHeadline], [section], [list],
-  /// [citation], and [image] widgets can be provided to customize the
+  /// The [headlineBuilder], [openingBuilder], [subHeadlineBuilder], [sectionBuilder], [listBuilder],
+  /// [citationBuilder], and [imageBuilder] widgets can be provided to customize the
   /// appearance of the blog content.
   Blog({
     WidgetFactory widgetFactory = const LeoMLParserWidgetFactory(),
-    this.headline,
-    this.opening,
-    this.subHeadline,
-    this.section,
-    this.list,
-    this.citation,
-    this.image,
+    this.headlineBuilder,
+    this.openingBuilder,
+    this.subHeadlineBuilder,
+    this.sectionBuilder,
+    this.listBuilder,
+    this.citationBuilder,
+    this.imageBuilder,
   }) : super(
           type: 'blog',
           widgetFactory: widgetFactory,
         );
 
-  /// The headline widget for the blog.
-  final LeoMLWidgetBuilder? headline;
+  /// The headline widget builder for the blog template.
+  final LeoMLWidgetBuilder? headlineBuilder;
 
-  /// The opening widget for the blog.
-  final LeoMLWidgetBuilder? opening;
+  /// The opening widget builder for the blog template.
+  final LeoMLWidgetBuilder? openingBuilder;
 
-  /// The subHeadline widget for the blog.
-  final LeoMLWidgetBuilder? subHeadline;
+  /// The subHeadline widget builder for the blog template.
+  final LeoMLWidgetBuilder? subHeadlineBuilder;
 
-  /// The section widget for the blog.
-  final LeoMLWidgetBuilder? section;
+  /// The section widget builder for the blog template.
+  final LeoMLWidgetBuilder? sectionBuilder;
 
-  /// The list widget for the blog.
-  final LeoMLWidgetBuilder? list;
+  /// The list widget builder for the blog template.
+  final LeoMLWidgetBuilder? listBuilder;
 
-  /// The citation widget for the blog.
-  final LeoMLWidgetBuilder? citation;
+  /// The citation widget builder for the blog template.
+  final LeoMLWidgetBuilder? citationBuilder;
 
-  /// The image widget for the blog.
-  final LeoMLWidgetBuilder? image;
+  /// The image widget builder for the blog template.
+  final LeoMLWidgetBuilder? imageBuilder;
 
   @override
   Widget createCustomWidget({required key, required Map object}) {
-    if (key == 'headline' && headline != null) {
-      return headline?.build(object: object) ?? const Placeholder();
+    if (key == 'headline' && headlineBuilder != null) {
+      return headlineBuilder?.build(object: object) ?? const Placeholder();
     }
 
-    if (key == 'opening' && opening != null) {
-      return opening?.build(object: object) ?? const Placeholder();
+    if (key == 'opening' && openingBuilder != null) {
+      return openingBuilder?.build(object: object) ?? const Placeholder();
     }
 
-    if (key == 'subHeadline' && subHeadline != null) {
-      return subHeadline?.build(object: object) ?? const Placeholder();
+    if (key == 'subHeadline' && subHeadlineBuilder != null) {
+      return subHeadlineBuilder?.build(object: object) ?? const Placeholder();
     }
 
-    if (key == 'section' && section != null) {
-      return section?.build(object: object) ?? const Placeholder();
+    if (key == 'section' && sectionBuilder != null) {
+      return sectionBuilder?.build(object: object) ?? const Placeholder();
     }
 
-    if (key == 'list' && list != null) {
-      return list?.build(object: object) ?? const Placeholder();
+    if (key == 'list' && listBuilder != null) {
+      return listBuilder?.build(object: object) ?? const Placeholder();
     }
 
-    if (key == 'citation' && citation != null) {
-      return citation?.build(object: object) ?? const Placeholder();
+    if (key == 'citation' && citationBuilder != null) {
+      return citationBuilder?.build(object: object) ?? const Placeholder();
     }
 
-    if (key == 'image' && image != null) {
-      return image?.build(object: object) ?? const Placeholder();
+    if (key == 'image' && imageBuilder != null) {
+      return imageBuilder?.build(object: object) ?? const Placeholder();
     }
 
     return const Placeholder();
@@ -99,19 +99,19 @@ class Blog extends ContentTemplate {
   }) {
     switch (key) {
       case 'headline':
-        return headline != null;
+        return headlineBuilder != null;
       case 'subHeadline':
-        return subHeadline != null;
+        return subHeadlineBuilder != null;
       case 'opening':
-        return opening != null;
+        return openingBuilder != null;
       case 'section':
-        return section != null;
+        return sectionBuilder != null;
       case 'list':
-        return list != null;
+        return listBuilder != null;
       case 'citation':
-        return citation != null;
+        return citationBuilder != null;
       case 'image':
-        return image != null;
+        return imageBuilder != null;
       default:
         return false;
     }
