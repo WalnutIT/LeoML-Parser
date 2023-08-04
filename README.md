@@ -166,7 +166,7 @@ Example
   {
     "opening": {
       "text": "<your text>",
-      " imageURL": "<your image url>"
+      "imageURL": "<your image url>"
     }
   }
 ]
