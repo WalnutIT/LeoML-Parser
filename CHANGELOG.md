@@ -1,6 +1,6 @@
 ## 1.0.0
 
-* LeoML is a machine-readable language for outlining and formatting text and other data, which is 
-  using the JSON format for structuring the content. Version 1.0.0 of LeoML knows the template types
-  blog and article.
+* LeoML parser is a software package that provides interface for client applications to work with
+  LeoML documents. It checks for proper format and validate the LeoML documents. Version 1.0.0 of 
+  LeoML knows the template types blog and article.
 

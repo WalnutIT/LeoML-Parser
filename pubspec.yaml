@@ -1,5 +1,5 @@
 name: leoml_parser
-description: A new Flutter package project.
+description: LeoML parser is a software package that provides interface for client applications to work with LeoML documents. It checks for proper format and validate the LeoML documents.
 version: 1.0.0
 homepage: https://github.com/WalnutIT/LeoML-Parser/tree/master
 
