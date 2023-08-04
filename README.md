@@ -147,10 +147,10 @@ Short abstract of your article, which does not contains more than 3 or 4 sentenc
 
 The goal of the opening is to attract the reader to read the entire post.
 
-| Tag name | Condition | Cardinality | Data type | Sub tags  | Condition of sub tags | Sub tag data type |
-|----------|-----------|-------------|-----------|-----------|-----------------------|-------------------|
-| opening  | mandatory | 1           | complex   | text      | mandatory             | String            |
-|          |           |             |           | imageURL | optional              | String            |
+| Tag name | Condition | Cardinality | Data type | Sub tags   | Condition of sub tags | Sub tag data type |
+|----------|-----------|-------------|-----------|------------|-----------------------|-------------------|
+| opening  | mandatory | 1           | complex   | text       | mandatory             | String            |
+|          |           |             |           | imageURL   | optional              | String            |
 
 It is recommended to use an image for the opening, but there may not always be a need for it.
 Therefore this attribute is optional.
@@ -264,10 +264,10 @@ Human are very visual creatures. We can process images very fast, that's why ima
 easily. The benefit of images is therefore, to transmit many information in a very short time in order 
 to attract the reader to read your entire article or to continue to read your article. 
 
-| Tag name | Condition   | Cardinality | Data type | Sub tags          | Condition of sub tags | Sub tag data type |
-|----------|-------------|-------------|-----------|-------------------|-----------------------|-------------------|
-| image    | optionality | 0-n         | complex   | imageURL         | mandatory             | String            |
-|          |             |             |           | imageDescription | optional              | String            |
+| Tag name | Condition   | Cardinality | Data type | Sub tags           | Condition of sub tags | Sub tag data type  |
+|----------|-------------|-------------|-----------|--------------------|-----------------------|--------------------|
+| image    | optionality | 0-n         | complex   | imageURL           | mandatory             | String             |
+|          |             |             |           | imageDescription   | optional              | String             |
 
 Example
 
@@ -557,10 +557,10 @@ Example
 
 ##### image
 
-| Tag name | Condition   | Cardinality | Data type | Sub tags          | Condition of sub tags | Sub tag data type |
-|----------|-------------|-------------|-----------|-------------------|-----------------------|-------------------|
-| image    | optionality | 0-n         | complex   | imageURL         | mandatory             | String            |
-|          |             |             |           | imageDescription | optional              | String            |
+| Tag name | Condition   | Cardinality | Data type | Sub tags           | Condition of sub tags | Sub tag data type |
+|----------|-------------|-------------|-----------|--------------------|-----------------------|-------------------|
+| image    | optionality | 0-n         | complex   | imageURL           | mandatory             | String            |
+|          |             |             |           | imageDescription   | optional              | String            |
 
 Example
 
