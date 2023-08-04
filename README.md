@@ -581,7 +581,7 @@ Example
 
 - Define individual widgets or use default widgets for each object.
 - Parsing a LeoML document to a column of widgets.
-- Parsing a LeoML document to a map.
+- Parsing a LeoML document to a set of widgets.
 
 ## Usage
 

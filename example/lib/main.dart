@@ -5,7 +5,7 @@ Column column = const Column();
 
 Future<void> main() async {
   final blogTemplate = Blog(
-    headline: MyCustomHeadlineWidget(),
+    headline: MyCustomHeadlineBuilder(),
 
   );
   final leoMLDocumentParser = LeoMLDocumentParser();
@@ -133,9 +133,9 @@ const leoMLDocumentBlogEntry = '['
     '}'
     ']';
 
-class MyCustomHeadlineWidget extends LeoMLWidget {
+class MyCustomHeadlineBuilder extends LeoMLWidgetBuilder {
   @override
-  Widget create({required Map object}) => MyCustomHeadline(object: object);
+  Widget build({required Map object}) => MyCustomHeadline(object: object);
 }
 
 class MyCustomHeadline extends StatelessWidgetTemplate {

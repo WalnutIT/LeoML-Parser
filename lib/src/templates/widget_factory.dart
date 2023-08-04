@@ -8,24 +8,26 @@
 // 04.07.2023 15:23
 import 'package:flutter/widgets.dart';
 import 'package:leoml_parser/src/exception/widget_map_does_not_contains_requested_key_exception.dart';
-import 'package:leoml_parser/src/templates/default_widgets_creator.dart';
+import 'package:leoml_parser/src/templates/default_widgets_builder.dart';
 
 /// A factory class for creating widgets based on a key-value mapping.
 abstract class WidgetFactory {
-  static final _widgetsMap = <String, LeoMLWidget>{
-    'headline': HeadlineWidget(),
-    'subHeadline': SubHeadlineWidget(),
-    'sectionHeadline': SectionHeadlineWidget(),
-    'section': SectionWidget(),
-    'citation': CitationWidget(),
-    'list': ListWidget(),
-    'image': ImageWidget(),
-    'opening': OpeningWidget(),
-    'catchLine': CatchLineWidget(),
+  const WidgetFactory();
+
+  static final _widgetsMap = <String, LeoMLWidgetBuilder>{
+    'headline': HeadlineBuilder(),
+    'subHeadline': SubHeadlineBuilder(),
+    'sectionHeadline': SectionHeadlineBuilder(),
+    'section': SectionBuilder(),
+    'citation': CitationBuilder(),
+    'list': ListBuilder(),
+    'image': ImageBuilder(),
+    'opening': OpeningBuilder(),
+    'catchLine': CatchLineBuilder(),
   };
 
   /// Retrieves the widget associated with the given [key].
-  LeoMLWidget? getWidget(String key) {
+  LeoMLWidgetBuilder? getWidget(String key) {
     return _widgetsMap[key];
   }
 
@@ -56,6 +58,7 @@ abstract class WidgetFactory {
 /// This factory overrides the [createWidget] method to create widgets
 /// using the associated widget mapping.
 class LeoMLParserWidgetFactory extends WidgetFactory {
+  const LeoMLParserWidgetFactory();
   @override
   Widget createWidget({
     required String key,
@@ -65,7 +68,7 @@ class LeoMLParserWidgetFactory extends WidgetFactory {
 
     final widget = getWidget(key);
 
-    return widget?.create(object: object) ?? Container();
+    return widget?.build(object: object) ?? Container();
   }
 
   void _checkIifWidgetMapContainsRequestedKey(String key) {

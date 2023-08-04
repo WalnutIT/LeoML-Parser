@@ -21,7 +21,7 @@ import 'package:leoml_parser/src/exception/list_does_not_contains_enough_element
 import 'package:leoml_parser/src/leo_ml_document_parser.dart';
 import 'package:leoml_parser/src/templates/blog/blog.dart';
 import 'package:leoml_parser/src/templates/default_text_styles.dart';
-import 'package:leoml_parser/src/templates/default_widgets_creator.dart';
+import 'package:leoml_parser/src/templates/default_widgets_builder.dart';
 import 'package:leoml_parser/src/templates/stateless_widget_template.dart';
 
 import '../../../test_documents/blog/blog_1.dart';
@@ -473,9 +473,9 @@ void main() {
   });
 }
 
-class MyCustomTestWidget extends LeoMLWidget {
+class MyCustomTestWidget extends LeoMLWidgetBuilder {
   @override
-  Widget create({required Map object}) =>
+  Widget build({required Map object}) =>
       MyCustomTestWidgetTemplate(object: object);
 }
 
@@ -498,9 +498,9 @@ class MyCustomTestWidgetTemplate extends StatelessWidgetTemplate {
   }
 }
 
-class MyCustomHeadlineWidget extends LeoMLWidget {
+class MyCustomHeadlineWidget extends LeoMLWidgetBuilder {
   @override
-  Widget create({required Map object}) => MyCustomHeadline(object: object);
+  Widget build({required Map object}) => MyCustomHeadline(object: object);
 }
 
 class MyCustomHeadline extends StatelessWidgetTemplate {
@@ -526,9 +526,9 @@ class MyCustomHeadline extends StatelessWidgetTemplate {
   }
 }
 
-class MyCustomOpeningWidget extends LeoMLWidget {
+class MyCustomOpeningWidget extends LeoMLWidgetBuilder {
   @override
-  Widget create({required Map object}) => MyCustomOpening(object: object);
+  Widget build({required Map object}) => MyCustomOpening(object: object);
 }
 
 class MyCustomOpening extends StatelessWidgetTemplate {
@@ -549,9 +549,9 @@ class MyCustomOpening extends StatelessWidgetTemplate {
   }
 }
 
-class MyCustomSubHeadlineWidget extends LeoMLWidget {
+class MyCustomSubHeadlineWidget extends LeoMLWidgetBuilder {
   @override
-  Widget create({required Map object}) => MyCustomSubHeadline(object: object);
+  Widget build({required Map object}) => MyCustomSubHeadline(object: object);
 }
 
 class MyCustomSubHeadline extends StatelessWidgetTemplate {
@@ -577,9 +577,9 @@ class MyCustomSubHeadline extends StatelessWidgetTemplate {
   }
 }
 
-class MyCustomSectionWidget extends LeoMLWidget {
+class MyCustomSectionWidget extends LeoMLWidgetBuilder {
   @override
-  Widget create({required Map object}) => MyCustomSection(object: object);
+  Widget build({required Map object}) => MyCustomSection(object: object);
 }
 
 class MyCustomSection extends StatelessWidgetTemplate {
@@ -605,9 +605,9 @@ class MyCustomSection extends StatelessWidgetTemplate {
   }
 }
 
-class MyCustomListWidget extends LeoMLWidget {
+class MyCustomListWidget extends LeoMLWidgetBuilder {
   @override
-  Widget create({required Map object}) => MyCustomList(object: object);
+  Widget build({required Map object}) => MyCustomList(object: object);
 }
 
 class MyCustomList extends StatelessWidgetTemplate {
@@ -643,9 +643,9 @@ class MyCustomList extends StatelessWidgetTemplate {
           .cast<Widget>();
 }
 
-class MyCustomCitationWidget extends LeoMLWidget {
+class MyCustomCitationWidget extends LeoMLWidgetBuilder {
   @override
-  Widget create({required Map object}) => MyCustomCitation(object: object);
+  Widget build({required Map object}) => MyCustomCitation(object: object);
 }
 
 class MyCustomCitation extends StatelessWidgetTemplate {
@@ -671,9 +671,9 @@ class MyCustomCitation extends StatelessWidgetTemplate {
   }
 }
 
-class MyCustomImageWidget extends LeoMLWidget {
+class MyCustomImageWidget extends LeoMLWidgetBuilder {
   @override
-  Widget create({required Map object}) => MyCustomImage(object: object);
+  Widget build({required Map object}) => MyCustomImage(object: object);
 }
 
 class MyCustomImage extends StatelessWidgetTemplate {

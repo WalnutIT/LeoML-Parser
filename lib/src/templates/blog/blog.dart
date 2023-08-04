@@ -15,7 +15,7 @@ import 'package:leoml_parser/src/exception/blog_second_object_is_not_opening_exc
 import 'package:leoml_parser/src/exception/image_url_is_missing_exception.dart';
 import 'package:leoml_parser/src/exception/list_does_not_contains_enough_elements_exception.dart';
 import 'package:leoml_parser/src/templates/content_template.dart';
-import 'package:leoml_parser/src/templates/default_widgets_creator.dart';
+import 'package:leoml_parser/src/templates/default_widgets_builder.dart';
 import 'package:leoml_parser/src/templates/widget_factory.dart';
 
 /// Represents a blog content template.
@@ -26,6 +26,7 @@ class Blog extends ContentTemplate {
   /// [citation], and [image] widgets can be provided to customize the
   /// appearance of the blog content.
   Blog({
+    WidgetFactory widgetFactory = const LeoMLParserWidgetFactory(),
     this.headline,
     this.opening,
     this.subHeadline,
@@ -35,58 +36,58 @@ class Blog extends ContentTemplate {
     this.image,
   }) : super(
           type: 'blog',
-          widgetFactory: LeoMLParserWidgetFactory(),
+          widgetFactory: widgetFactory,
         );
 
   /// The headline widget for the blog.
-  final LeoMLWidget? headline;
+  final LeoMLWidgetBuilder? headline;
 
   /// The opening widget for the blog.
-  final LeoMLWidget? opening;
+  final LeoMLWidgetBuilder? opening;
 
-  /// The subheadline widget for the blog.
-  final LeoMLWidget? subHeadline;
+  /// The subHeadline widget for the blog.
+  final LeoMLWidgetBuilder? subHeadline;
 
   /// The section widget for the blog.
-  final LeoMLWidget? section;
+  final LeoMLWidgetBuilder? section;
 
   /// The list widget for the blog.
-  final LeoMLWidget? list;
+  final LeoMLWidgetBuilder? list;
 
   /// The citation widget for the blog.
-  final LeoMLWidget? citation;
+  final LeoMLWidgetBuilder? citation;
 
   /// The image widget for the blog.
-  final LeoMLWidget? image;
+  final LeoMLWidgetBuilder? image;
 
   @override
   Widget createCustomWidget({required key, required Map object}) {
     if (key == 'headline' && headline != null) {
-      return headline?.create(object: object) ?? const Placeholder();
+      return headline?.build(object: object) ?? const Placeholder();
     }
 
     if (key == 'opening' && opening != null) {
-      return opening?.create(object: object) ?? const Placeholder();
+      return opening?.build(object: object) ?? const Placeholder();
     }
 
     if (key == 'subHeadline' && subHeadline != null) {
-      return subHeadline?.create(object: object) ?? const Placeholder();
+      return subHeadline?.build(object: object) ?? const Placeholder();
     }
 
     if (key == 'section' && section != null) {
-      return section?.create(object: object) ?? const Placeholder();
+      return section?.build(object: object) ?? const Placeholder();
     }
 
     if (key == 'list' && list != null) {
-      return list?.create(object: object) ?? const Placeholder();
+      return list?.build(object: object) ?? const Placeholder();
     }
 
     if (key == 'citation' && citation != null) {
-      return citation?.create(object: object) ?? const Placeholder();
+      return citation?.build(object: object) ?? const Placeholder();
     }
 
     if (key == 'image' && image != null) {
-      return image?.create(object: object) ?? const Placeholder();
+      return image?.build(object: object) ?? const Placeholder();
     }
 
     return const Placeholder();
@@ -96,35 +97,24 @@ class Blog extends ContentTemplate {
   bool hasCustomWidget({
     required String key,
   }) {
-    if (key == 'headline') {
-      return headline != null;
+    switch (key) {
+      case 'headline':
+        return headline != null;
+      case 'subHeadline':
+        return subHeadline != null;
+      case 'opening':
+        return opening != null;
+      case 'section':
+        return section != null;
+      case 'list':
+        return list != null;
+      case 'citation':
+        return citation != null;
+      case 'image':
+        return image != null;
+      default:
+        return false;
     }
-
-    if (key == 'opening') {
-      return opening != null;
-    }
-
-    if (key == 'subHeadline') {
-      return subHeadline != null;
-    }
-
-    if (key == 'section') {
-      return section != null;
-    }
-
-    if (key == 'list') {
-      return list != null;
-    }
-
-    if (key == 'citation') {
-      return citation != null;
-    }
-
-    if (key == 'image') {
-      return image != null;
-    }
-
-    return false;
   }
 
   @override

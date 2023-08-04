@@ -10,7 +10,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:leoml_parser/src/templates/article/widgets/catch_line.dart';
 import 'package:leoml_parser/src/templates/article/widgets/section_headline.dart';
 import 'package:leoml_parser/src/templates/blog/widgets/opening.dart';
-import 'package:leoml_parser/src/templates/default_widgets_creator.dart';
+import 'package:leoml_parser/src/templates/default_widgets_builder.dart';
 import 'package:leoml_parser/src/templates/widgets/citation.dart';
 import 'package:leoml_parser/src/templates/widgets/headline.dart';
 import 'package:leoml_parser/src/templates/widgets/image.dart';
@@ -24,7 +24,7 @@ void main() {
       // given
 
       // when
-      final result = HeadlineWidget().create(
+      final result = HeadlineBuilder().build(
         object: {"headline": "<your headline>"},
       );
       // then
@@ -34,7 +34,7 @@ void main() {
       // given
 
       // when
-      final result = SubHeadlineWidget().create(
+      final result = SubHeadlineBuilder().build(
         object: {"subHeadline": "<your sub headline>"},
       );
       // then
@@ -44,7 +44,7 @@ void main() {
       // given
 
       // when
-      final result = SectionHeadlineWidget().create(
+      final result = SectionHeadlineBuilder().build(
         object: {"sectionHeadline": "<your sub headline>"},
       );
       // then
@@ -54,7 +54,7 @@ void main() {
       // given
 
       // when
-      final result = SectionWidget().create(
+      final result = SectionBuilder().build(
         object: {"section": "<your section content>"},
       );
       // then
@@ -64,7 +64,7 @@ void main() {
       // given
 
       // when
-      final result = CitationWidget().create(
+      final result = CitationBuilder().build(
         object: {
           "citation": "<citation>",
         },
@@ -76,7 +76,7 @@ void main() {
       // given
 
       // when
-      final result = ImageWidget().create(
+      final result = ImageBuilder().build(
         object: {
           "image": {
             "imageURL": "<your image url>",
@@ -91,7 +91,7 @@ void main() {
       // given
 
       // when
-      final result = ListWidget().create(
+      final result = ListBuilder().build(
         object: {
           "list": [
             "<element 1>",
@@ -108,7 +108,7 @@ void main() {
       // given
 
       // when
-      final result = CatchLineWidget().create(
+      final result = CatchLineBuilder().build(
         object: {"catchLine": "<your catch line>"},
       );
       // then
@@ -118,7 +118,7 @@ void main() {
       // given
 
       // when
-      final result = OpeningWidget().create(
+      final result = OpeningBuilder().build(
         object: {
           "opening": {
             "text": "<your text>",
