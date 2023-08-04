@@ -40,29 +40,29 @@ class Blog extends ContentTemplate {
           defaultWidgetFactory: defaultWidgetFactory,
         );
 
-  /// The headline widget builder for the blog template.
+  /// The custom headline widget builder for the blog template.
   final LeoMLWidgetBuilder? headlineBuilder;
 
-  /// The opening widget builder for the blog template.
+  /// The custom opening widget builder for the blog template.
   final LeoMLWidgetBuilder? openingBuilder;
 
-  /// The subHeadline widget builder for the blog template.
+  /// The custom subHeadline widget builder for the blog template.
   final LeoMLWidgetBuilder? subHeadlineBuilder;
 
-  /// The section widget builder for the blog template.
+  /// The custom section widget builder for the blog template.
   final LeoMLWidgetBuilder? sectionBuilder;
 
-  /// The list widget builder for the blog template.
+  /// The custom list widget builder for the blog template.
   final LeoMLWidgetBuilder? listBuilder;
 
-  /// The citation widget builder for the blog template.
+  /// The custom citation widget builder for the blog template.
   final LeoMLWidgetBuilder? citationBuilder;
 
-  /// The image widget builder for the blog template.
+  /// The custom image widget builder for the blog template.
   final LeoMLWidgetBuilder? imageBuilder;
 
   @override
-  Widget createCustomWidget({required key, required Map object}) {
+  Widget buildCustomWidget({required key, required Map object}) {
     if (key == 'headline' && headlineBuilder != null) {
       return headlineBuilder?.build(object: object) ?? const Placeholder();
     }

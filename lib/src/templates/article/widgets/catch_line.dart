@@ -15,7 +15,7 @@ import 'package:leoml_parser/src/templates/stateless_widget_template.dart';
 class CatchLine extends StatelessWidgetTemplate {
   /// Creates a [CatchLine] widget.
   ///
-  /// The [catchLine] parameter specifies the text to be displayed as the catch line.
+  /// The [catchLineBuilder] parameter specifies the text to be displayed as the catch line.
   const CatchLine({
     super.key,
     required super.object,

@@ -434,8 +434,7 @@ read the entire article.
 
 Attention:
 
-1. The subHeadline must follow the headline.
-2. The subHeadline should have a more little font size than the headline.
+The subHeadline must follow the headline.
 
 Example
 

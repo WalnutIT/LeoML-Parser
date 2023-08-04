@@ -18,7 +18,7 @@ class MockBlog extends ContentTemplate {
   }
 
   @override
-  Widget createCustomWidget({required String key, required Map object}) {
+  Widget buildCustomWidget({required String key, required Map object}) {
     return const Placeholder();
   }
 

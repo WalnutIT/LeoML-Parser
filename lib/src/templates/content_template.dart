@@ -40,7 +40,7 @@ abstract class ContentTemplate {
       widget = hasCustomWidget(
         key: map.keys.first,
       )
-          ? createCustomWidget(key: map.keys.first, object: map)
+          ? buildCustomWidget(key: map.keys.first, object: map)
           : defaultWidgetFactory.buildDefaultWidget(key: map.keys.first, object: map);
 
       columnContent.add(
@@ -93,11 +93,11 @@ abstract class ContentTemplate {
     required String key,
   });
 
-  /// Creates a custom widget based on the provided [key] and [object].
+  /// Builds a custom widget based on the provided [key] and [object].
   ///
   /// The [key] represents the type of custom widget to create.
   /// The [object] contains the properties or data needed to configure the custom widget.
   ///
   /// Returns the created custom widget, or a default fallback widget if the [key] is not found.
-  Widget createCustomWidget({required String key, required Map object});
+  Widget buildCustomWidget({required String key, required Map object});
 }

@@ -15,7 +15,7 @@ import 'package:leoml_parser/src/templates/stateless_widget_template.dart';
 class SectionHeadline extends StatelessWidgetTemplate {
   /// Creates a [SectionHeadline] widget.
   ///
-  /// The [sectionHeadline] parameter specifies the text to be displayed as the section headline.
+  /// The [sectionHeadlineBuilder] parameter specifies the text to be displayed as the section headline.
   const SectionHeadline({
     required super.object,
     super.key,

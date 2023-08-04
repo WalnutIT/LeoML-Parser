@@ -20,10 +20,10 @@ import 'package:leoml_parser/src/exception/image_url_is_missing_exception.dart';
 import 'package:leoml_parser/src/exception/list_does_not_contains_enough_elements_exception.dart';
 import 'package:leoml_parser/src/leo_ml_document_parser.dart';
 import 'package:leoml_parser/src/templates/blog/blog.dart';
-import 'package:leoml_parser/src/templates/default_text_styles.dart';
 import 'package:leoml_parser/src/templates/stateless_widget_template.dart';
 import 'package:leoml_parser/src/widget_builder/leo_ml_widget_builder.dart';
 
+import '../../../custom_widgets.dart';
 import '../../../test_documents/blog/blog_1.dart';
 import '../../../test_documents/blog/blog_first_object_is_not_headline_json.dart';
 import '../../../test_documents/blog/blog_image.dart';
@@ -129,8 +129,8 @@ void main() {
       });
 
       // when
-      final blog = Blog(headlineBuilder: MyCustomHeadlineWidget());
-      final actual = blog.createCustomWidget(key: key, object: object);
+      final blog = Blog(headlineBuilder: MyCustomHeadlineBuilder());
+      final actual = blog.buildCustomWidget(key: key, object: object);
 
       // then
       expect(actual is MyCustomHeadline, isTrue);
@@ -151,7 +151,7 @@ void main() {
 
       // when
       final blog = Blog(openingBuilder: MyCustomOpeningWidget());
-      final actual = blog.createCustomWidget(key: key, object: object);
+      final actual = blog.buildCustomWidget(key: key, object: object);
 
       // then
       expect(actual is MyCustomOpening, isTrue);
@@ -171,8 +171,8 @@ void main() {
       });
 
       // when
-      final blog = Blog(subHeadlineBuilder: MyCustomSubHeadlineWidget());
-      final actual = blog.createCustomWidget(key: key, object: object);
+      final blog = Blog(subHeadlineBuilder: MyCustomSubHeadlineBuilder());
+      final actual = blog.buildCustomWidget(key: key, object: object);
 
       // then
       expect(actual is MyCustomSubHeadline, isTrue);
@@ -192,8 +192,8 @@ void main() {
       });
 
       // when
-      final blog = Blog(sectionBuilder: MyCustomSectionWidget());
-      final actual = blog.createCustomWidget(key: key, object: object);
+      final blog = Blog(sectionBuilder: MyCustomSectionBuilder());
+      final actual = blog.buildCustomWidget(key: key, object: object);
 
       // then
       expect(actual is MyCustomSection, isTrue);
@@ -213,8 +213,8 @@ void main() {
       });
 
       // when
-      final blog = Blog(listBuilder: MyCustomListWidget());
-      final actual = blog.createCustomWidget(key: key, object: object);
+      final blog = Blog(listBuilder: MyCustomListBuilder());
+      final actual = blog.buildCustomWidget(key: key, object: object);
 
       // then
       expect(actual is MyCustomList, isTrue);
@@ -234,8 +234,8 @@ void main() {
       });
 
       // when
-      final blog = Blog(citationBuilder: MyCustomCitationWidget());
-      final actual = blog.createCustomWidget(key: key, object: object);
+      final blog = Blog(citationBuilder: MyCustomCitationBuilder());
+      final actual = blog.buildCustomWidget(key: key, object: object);
 
       // then
       expect(actual is MyCustomCitation, isTrue);
@@ -256,7 +256,7 @@ void main() {
 
       // when
       final blog = Blog(imageBuilder: MyCustomImageWidget());
-      final actual = blog.createCustomWidget(key: key, object: object);
+      final actual = blog.buildCustomWidget(key: key, object: object);
 
       // then
       expect(actual is MyCustomImage, isTrue);
@@ -498,7 +498,7 @@ class MyCustomTestWidgetTemplate extends StatelessWidgetTemplate {
   }
 }
 
-class MyCustomHeadlineWidget extends LeoMLWidgetBuilder {
+class MyCustomHeadlineBuilder extends LeoMLWidgetBuilder {
   @override
   Widget build({required Map object}) => MyCustomHeadline(object: object);
 }
@@ -549,154 +549,3 @@ class MyCustomOpening extends StatelessWidgetTemplate {
   }
 }
 
-class MyCustomSubHeadlineWidget extends LeoMLWidgetBuilder {
-  @override
-  Widget build({required Map object}) => MyCustomSubHeadline(object: object);
-}
-
-class MyCustomSubHeadline extends StatelessWidgetTemplate {
-  const MyCustomSubHeadline({super.key, required super.object});
-
-  @override
-  Widget build(BuildContext context) => Text(
-        object['subHeadline'],
-        style: const TextStyle(
-          color: Colors.black,
-          fontSize: 36.0,
-          fontWeight: FontWeight.bold,
-        ),
-      );
-
-  @override
-  void validateObject() {
-    if (object['subHeadline'] is! String) {
-      throw AtomicObjectIsNotStringException(
-        subTagName: 'subHeadline',
-      );
-    }
-  }
-}
-
-class MyCustomSectionWidget extends LeoMLWidgetBuilder {
-  @override
-  Widget build({required Map object}) => MyCustomSection(object: object);
-}
-
-class MyCustomSection extends StatelessWidgetTemplate {
-  const MyCustomSection({super.key, required super.object});
-
-  @override
-  Widget build(BuildContext context) => Text(
-        object['section'],
-        style: const TextStyle(
-          color: Colors.black,
-          fontSize: 36.0,
-          fontWeight: FontWeight.bold,
-        ),
-      );
-
-  @override
-  void validateObject() {
-    if (object['section'] is! String) {
-      throw AtomicObjectIsNotStringException(
-        subTagName: 'section',
-      );
-    }
-  }
-}
-
-class MyCustomListWidget extends LeoMLWidgetBuilder {
-  @override
-  Widget build({required Map object}) => MyCustomList(object: object);
-}
-
-class MyCustomList extends StatelessWidgetTemplate {
-  const MyCustomList({super.key, required super.object});
-
-  @override
-  Widget build(BuildContext context) => Column(
-        children: _getTextWidgets(),
-      );
-
-  @override
-  void validateObject() {
-    if (object['list'] is! String) {
-      throw AtomicObjectIsNotStringException(
-        subTagName: 'list',
-      );
-    }
-  }
-
-  /// Converts the list of strings into a list of text widgets with bullet points.
-  List<Widget> _getTextWidgets() => (object['list'].map((String text) {
-        return Padding(
-          padding: const EdgeInsets.only(
-            left: 12.0,
-            top: 3.0,
-          ),
-          child: Text(
-            '\u2022 $text',
-            style: bodyTextStyle(),
-          ),
-        );
-      }).toList() as List)
-          .cast<Widget>();
-}
-
-class MyCustomCitationWidget extends LeoMLWidgetBuilder {
-  @override
-  Widget build({required Map object}) => MyCustomCitation(object: object);
-}
-
-class MyCustomCitation extends StatelessWidgetTemplate {
-  const MyCustomCitation({super.key, required super.object});
-
-  @override
-  Widget build(BuildContext context) => Text(
-    object['citation'],
-    style: const TextStyle(
-      color: Colors.black,
-      fontSize: 36.0,
-      fontWeight: FontWeight.bold,
-    ),
-  );
-
-  @override
-  void validateObject() {
-    if (object['citation'] is! String) {
-      throw AtomicObjectIsNotStringException(
-        subTagName: 'citation',
-      );
-    }
-  }
-}
-
-class MyCustomImageWidget extends LeoMLWidgetBuilder {
-  @override
-  Widget build({required Map object}) => MyCustomImage(object: object);
-}
-
-class MyCustomImage extends StatelessWidgetTemplate {
-  const MyCustomImage({super.key, required super.object});
-
-  @override
-  Widget build(BuildContext context) => Image.network(
-    object['image']['imageURL'],
-  );
-
-  @override
-  void validateObject() {
-    if (object['image']['imageURL'] is! String) {
-      throw AtomicObjectIsNotStringException(
-        subTagName: 'imageURL',
-      );
-    }
-
-    if (object['image'].containsKey('imageDescription') &&
-        object['image']['imageDescription'] is! String) {
-      throw AtomicObjectIsNotStringException(
-        subTagName: 'imageDescription',
-      );
-    }
-  }
-}

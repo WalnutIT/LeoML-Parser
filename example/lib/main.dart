@@ -21,9 +21,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       title: 'LeoML Parser example',
-      home: const LeoMLParserExampleApp(),
+      home: LeoMLParserExampleApp(),
       debugShowCheckedModeBanner: false,
     );
   }
