@@ -462,7 +462,7 @@ Example
 ```JSON
 [
   {
-    "subHeadline": "<your sub headline>"
+    "sectionHeadline": "<your sub headline>"
   }
 ]
 ```
@@ -576,6 +576,71 @@ Example
 ```
 
 #### Example of LeoML article document
+
+```JSON
+[
+  {
+    "type": "article"
+  },
+  {
+    "headline": "The Rise of Artificial Intelligence"
+  },
+  {
+    "subHeadline": "Pioneering the Future of Technology"
+  },
+  {
+    "section": "Artificial Intelligence (AI) has been a buzzword for several decades, and its applications have seen remarkable progress over the years. From self-driving cars to virtual personal assistants, AI is transforming the way we live and work. In this article, we will explore the fascinating world of artificial intelligence, its history, current advancements, ethical implications, and the potential it holds for the future."
+  },
+  {
+    "sectionHeadline": "The Evolution of Artificial Intelligence"
+  },
+  {
+    "section": "The concept of artificial intelligence dates back to ancient mythology and science fiction tales, where machines or human-like beings possessed intelligence and consciousness. However, it wasn't until the 20th century that the term \"artificial intelligence\" was coined. Early AI research focused on symbolic AI and rule-based systems, but progress was slow due to limitations in computing power."
+  },
+  {
+    "sectionHeadline": "Machine Learning and Neural Networks"
+  },
+  {
+    "section": "A significant breakthrough came with the advent of machine learning and neural networks. Machine learning algorithms enable computers to learn from data and improve their performance over time without explicit programming. Neural networks, inspired by the human brain's structure, revolutionized AI by enabling deep learning, a subfield of machine learning capable of processing vast amounts of complex data."
+  },
+  {
+    "sectionHeadline": "Real-World Applications"
+  },
+  {
+    "section": "AI has already permeated various industries, driving innovations and efficiency. In healthcare, AI is being used for medical image analysis, disease diagnosis, and drug discovery. In finance, AI algorithms optimize trading strategies and risk management. AI-powered chatbots enhance customer support in e-commerce and other sectors. Additionally, AI plays a crucial role in autonomous vehicles, natural language processing, and personalized marketing."
+  },
+  {
+    "sectionHeadline": "Ethical Considerations"
+  },
+  {
+    "section": "As AI becomes more integrated into our lives, ethical concerns have emerged. Issues related to privacy, data security, and bias in AI algorithms have sparked debates about responsible AI development. Ensuring that AI systems are fair, transparent, and accountable is vital to prevent unintended consequences and potential harm."
+  },
+  {
+    "sectionHeadline": "Challenges and Limitations"
+  },
+  {
+    "section": "Despite the rapid progress, AI faces several challenges. One key limitation is \"narrow AI,\" where systems excel at specific tasks but lack general intelligence. Achieving artificial general intelligence (AGI) that mimics human-like intelligence remains an ambitious goal, and researchers must overcome several technical hurdles. Additionally, the rapid growth of AI raises questions about its impact on the job market and the need for reskilling the workforce."
+  },
+  {
+    "sectionHeadline": "The Future of AI"
+  },
+  {
+    "section": "The future of AI holds immense potential. Advancements in quantum computing, robotics, and natural language processing will pave the way for more sophisticated AI applications. As AI becomes an integral part of society, policymakers, researchers, and stakeholders must work together to create robust regulations and frameworks that harness AI's benefits while mitigating risks."
+  },
+  {
+    "sectionHeadline": "Conclusion"
+  },
+  {
+    "section": "Artificial intelligence is an ever-evolving field that continues to shape our world. From streamlining business processes to revolutionizing healthcare and transportation, AI's impact is profound and far-reaching. As we embrace this technology, it is essential to prioritize ethical considerations and ensure that AI aligns with human values. By leveraging the power of AI responsibly, we can navigate the challenges and unlock its full potential for a brighter and more innovative future."
+  },
+  {
+    "sectionHeadline": "Sources"
+  },
+  {
+    "citation": "This text was created automatically by ChatGPT."
+  }
+]
+```
 
 ## Features
 
