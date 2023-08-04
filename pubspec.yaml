@@ -1,7 +1,7 @@
 name: leoml_parser
 description: A new Flutter package project.
 version: 0.0.1
-homepage:
+homepage: https://github.com/WalnutIT/LeoML-Parser/tree/master
 
 environment:
   sdk: '>=3.0.2 <4.0.0'
