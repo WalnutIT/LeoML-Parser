@@ -1,4 +1,4 @@
-# LeoML 
+# LeoML (version 1.0.0)
 
 LeoML is a machine-readable markup language for outlining and formatting text and other data, which is
 using the JSON format for structuring the content. LeoML is using templates in order to structure 
@@ -43,7 +43,7 @@ An object can have following attributes:
 
 We recommend following layout for your blog post:
 
-![Default blog layout](../draw_io/blog_default_layout.png)
+![Default blog layout](../../draw_io/blog_default_layout.png)
 
 A citation can be added after each section or at the end of the text. A section can be also followed
 by another section, but we advice to keep your sections to a minimum.
@@ -309,7 +309,7 @@ Example
 
 We recommend following layout for your article:
 
-![Default blog layout](../draw_io/article_default_layout.png)
+![Default blog layout](../../draw_io/article_default_layout.png)
 
 ### Article objects
 
