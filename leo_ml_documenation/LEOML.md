@@ -12,8 +12,8 @@ Version 1.0.0 of LeoML knows two types of templates:
 ## Table of contents
 1. [General](#general)
 2. [Objects](#objects)
-3. [Blog template](#blog template)
-4. [Article template](#article template)
+3. [Blog template](#blog-template)
+4. [Article template](#article-template)
 
 ## General
 
