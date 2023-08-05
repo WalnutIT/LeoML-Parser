@@ -1,9 +1,10 @@
 # LeoML 
 
 LeoML is a machine-readable markup language for outlining and formatting text and other data, which is
-using the JSON format for structuring the content.
+using the JSON format for structuring the content. LeoML is using templates in order to structure 
+the text.
 
-Version 1.0.0 of LeoML knows two types of texts:
+Version 1.0.0 of LeoML knows two types of templates:
 
 1. Blog
 2. Article
@@ -19,7 +20,7 @@ Version 1.0.0 of LeoML knows two types of texts:
 1. A LeoML document is always an array of objects.
 2. The first object of an LeoML document is the type object, which defines the template.
 3. Only one level of nested objects is possible.
-4. In general, objects are flexible usable, except the template defines restrictions. E. g.: The first object must be always a 'headline' object.
+4. In general, objects are flexible usable within a template, except the template defines restrictions. E. g.: The first object must be always a 'headline' object.
 
 ## Objects
 
