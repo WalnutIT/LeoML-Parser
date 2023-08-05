@@ -4,11 +4,11 @@ LeoML parser is a software package that provides interface for client applicatio
 LeoML documents. It checks for proper format and validate the LeoML documents.
 
 ## Table of contents
-1. [Problem description and objectives](#problem description and objectives)
+1. [Problem description and objectives](#problem-description-and-objectives)
 2. [LeoML](#leoML)
 3. [Features](#features)
 4. [Usage](#usage)
-5. [Additional information](#additional information)
+5. [Additional information](#additional-information)
 
 ## Problem description and objectives
 
