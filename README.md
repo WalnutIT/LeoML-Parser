@@ -54,7 +54,7 @@ Version 1.0.0 of LeoML knows two types of templates:
 1. Blog
 2. Article
 
-If you don't know how LeoML is structured, you can find the detailed documentation of LeoML [here](https://github.com/WalnutIT/LeoML-Parser/blob/master/leo_ml_documenation/leo_ml.md).
+If you don't know how LeoML is structured, you can find the detailed documentation of LeoML [here](https://github.com/WalnutIT/LeoML-Parser/blob/master/leo_ml_documenation/LEOML.md).
 
 ## Features
 
