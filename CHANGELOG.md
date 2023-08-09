@@ -8,3 +8,7 @@
 
 * excluded LeoML documentation from README.md to an separated file.
 
+## 1.0.2
+
+* The bulleted list is now built correctly.
+
