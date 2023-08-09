@@ -23,6 +23,7 @@ class BulletList extends StatelessWidgetTemplate {
 
   @override
   Widget build(BuildContext context) => Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
         children: _getTextWidgets(),
       );
 
@@ -38,17 +39,26 @@ class BulletList extends StatelessWidgetTemplate {
   }
 
   /// Converts the list of strings into a list of text widgets with bullet points.
-  List<Widget> _getTextWidgets() => (object['list'].map((String text) {
-        return Padding(
-          padding: const EdgeInsets.only(
-            left: 12.0,
-            top: 3.0,
-          ),
-          child: Text(
-            '\u2022 $text',
-            style: bodyTextStyle(),
-          ),
-        );
-      }).toList() as List)
-          .cast<Widget>();
+  List<Widget> _getTextWidgets() {
+    final output = <Widget>[];
+
+    final list = object['list'];
+
+    for (String text in list) {
+      final widget = Padding(
+        padding: const EdgeInsets.only(
+          left: 12.0,
+          top: 3.0,
+        ),
+        child: Text(
+          '\u2022 $text',
+          style: bodyTextStyle(),
+        ),
+      );
+
+      output.add(widget);
+    }
+
+    return output;
+  }
 }
