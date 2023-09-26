@@ -17,4 +17,3 @@ class IsNotObjectException implements Exception {
       ' {"type":"blog"},'
       ']';
 }
-

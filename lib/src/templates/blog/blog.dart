@@ -12,8 +12,6 @@ import 'package:leoml_parser/src/exception/blog_does_not_contains_sub_headline_e
 import 'package:leoml_parser/src/exception/blog_first_object_is_not_headline_exception.dart';
 import 'package:leoml_parser/src/exception/blog_opening_does_not_contains_text_tag_exception.dart';
 import 'package:leoml_parser/src/exception/blog_second_object_is_not_opening_exception.dart';
-import 'package:leoml_parser/src/exception/image_url_is_missing_exception.dart';
-import 'package:leoml_parser/src/exception/list_does_not_contains_enough_elements_exception.dart';
 import 'package:leoml_parser/src/templates/content_template.dart';
 import 'package:leoml_parser/src/widget_builder/leo_ml_widget_builder.dart';
 import 'package:leoml_parser/src/widget_builder/widget_factory.dart';
@@ -28,70 +26,28 @@ class Blog extends ContentTemplate {
   Blog({
     WidgetFactory defaultWidgetFactory =
         const LeoMLParserDefaultWidgetFactory(),
-    this.headlineBuilder,
     this.openingBuilder,
-    this.subHeadlineBuilder,
-    this.sectionBuilder,
-    this.listBuilder,
-    this.citationBuilder,
-    this.imageBuilder,
+    super.headlineBuilder,
+    super.subHeadlineBuilder,
+    super.sectionBuilder,
+    super.listBuilder,
+    super.citationBuilder,
+    super.imageBuilder,
   }) : super(
-    type: 'blog',
+          type: 'blog',
           defaultWidgetFactory: defaultWidgetFactory,
         );
-
-  /// The custom headline widget builder for the blog template.
-  final LeoMLWidgetBuilder? headlineBuilder;
 
   /// The custom opening widget builder for the blog template.
   final LeoMLWidgetBuilder? openingBuilder;
 
-  /// The custom subHeadline widget builder for the blog template.
-  final LeoMLWidgetBuilder? subHeadlineBuilder;
-
-  /// The custom section widget builder for the blog template.
-  final LeoMLWidgetBuilder? sectionBuilder;
-
-  /// The custom list widget builder for the blog template.
-  final LeoMLWidgetBuilder? listBuilder;
-
-  /// The custom citation widget builder for the blog template.
-  final LeoMLWidgetBuilder? citationBuilder;
-
-  /// The custom image widget builder for the blog template.
-  final LeoMLWidgetBuilder? imageBuilder;
-
   @override
   Widget buildCustomWidget({required key, required Map object}) {
-    if (key == 'headline' && headlineBuilder != null) {
-      return headlineBuilder?.build(object: object) ?? const Placeholder();
-    }
-
     if (key == 'opening' && openingBuilder != null) {
       return openingBuilder?.build(object: object) ?? const Placeholder();
     }
 
-    if (key == 'subHeadline' && subHeadlineBuilder != null) {
-      return subHeadlineBuilder?.build(object: object) ?? const Placeholder();
-    }
-
-    if (key == 'section' && sectionBuilder != null) {
-      return sectionBuilder?.build(object: object) ?? const Placeholder();
-    }
-
-    if (key == 'list' && listBuilder != null) {
-      return listBuilder?.build(object: object) ?? const Placeholder();
-    }
-
-    if (key == 'citation' && citationBuilder != null) {
-      return citationBuilder?.build(object: object) ?? const Placeholder();
-    }
-
-    if (key == 'image' && imageBuilder != null) {
-      return imageBuilder?.build(object: object) ?? const Placeholder();
-    }
-
-    return const Placeholder();
+    return buildGeneralCustomWidget(key: key, object: object);
   }
 
   @override
@@ -118,6 +74,7 @@ class Blog extends ContentTemplate {
     }
   }
 
+  //jscpd:ignore-start
   @override
   bool assertLeoMLStructure(List parsedLeoMLDocument) {
     bool hasSubHeadline = false;
@@ -136,9 +93,9 @@ class Blog extends ContentTemplate {
 
       hasSection = _containsAtLeastOneSection(hasSection, object);
 
-      _listContainsAtLeastTwoElements(object);
+      listContainsAtLeastTwoElements(object);
 
-      _imageHasImageURL(object);
+      imageHasImageURL(object);
     }
 
     if (!hasSubHeadline) {
@@ -152,27 +109,7 @@ class Blog extends ContentTemplate {
     return true;
   }
 
-  /// Checks if the image object has the required 'imageURL' key.
-  ///
-  /// The [object] parameter is the map representing the current object.
-  /// Throws an [ImageURLIsMissingException] if the 'imageURL' key is missing.
-  void _imageHasImageURL(Map<dynamic, dynamic> object) {
-    if (object.keys.toList().first == 'image' &&
-        !((object['image'] as Map).containsKey('imageURL'))) {
-      throw ImageURLIsMissingException();
-    }
-  }
-
-  /// Checks if the list object contains at least two elements.
-  ///
-  /// The [object] parameter is the map representing the current object.
-  /// Throws a [ListDoesNotContainsEnoughElementsException] if the list has less than two elements.
-  void _listContainsAtLeastTwoElements(Map<dynamic, dynamic> object) {
-    if (object.keys.toList().first == 'list' &&
-        (object['list'] as List).length < 2) {
-      throw ListDoesNotContainsEnoughElementsException();
-    }
-  }
+  // jscpd:ignore-end
 
   /// Checks if the current object contains at least one 'section' object.
   ///

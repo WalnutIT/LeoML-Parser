@@ -125,4 +125,3 @@ class OpeningBuilder extends LeoMLWidgetBuilder {
   Widget build({required Map object}) =>
       Opening(object: object)..validateObject();
 }
-

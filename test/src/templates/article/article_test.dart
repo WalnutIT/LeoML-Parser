@@ -310,7 +310,7 @@ void main() {
 
       // then
       expect(
-            () async {
+        () async {
           await leoMLDocumentParser.parseToColumn(
             leoMLDocument: leoMLDocument,
             template: article,
@@ -318,12 +318,13 @@ void main() {
         },
         throwsA(
           predicate(
-                (Exception e) =>
-            e is ArticleFirstObjectIsNotHeadlineException &&
+            (Exception e) =>
+                e is ArticleFirstObjectIsNotHeadlineException &&
                 e.toString() == expectedMessage,
           ),
         ),
-        reason: 'Expected ArticleFirstObjectIsNotHeadlineException to be thrown',
+        reason:
+            'Expected ArticleFirstObjectIsNotHeadlineException to be thrown',
       );
     });
     test('article does not contains section exception is thrown', () {
@@ -337,7 +338,7 @@ void main() {
 
       // then
       expect(
-            () async {
+        () async {
           await leoMLDocumentParser.parseToColumn(
             leoMLDocument: leoMLDocument,
             template: article,
@@ -345,8 +346,8 @@ void main() {
         },
         throwsA(
           predicate(
-                (Exception e) =>
-            e is ArticleDoesNotContainsSectionException &&
+            (Exception e) =>
+                e is ArticleDoesNotContainsSectionException &&
                 e.toString() == expectedMessage,
           ),
         ),
@@ -365,7 +366,7 @@ void main() {
 
       // then
       expect(
-            () async {
+        () async {
           await leoMLDocumentParser.parseToColumn(
             leoMLDocument: leoMLDocument,
             template: article,
@@ -373,12 +374,13 @@ void main() {
         },
         throwsA(
           predicate(
-                (Exception e) =>
-            e is ArticleSecondObjectIsNotSubHeadlineException &&
+            (Exception e) =>
+                e is ArticleSecondObjectIsNotSubHeadlineException &&
                 e.toString() == expectedMessage,
           ),
         ),
-        reason: 'Expected ArticleSecondObjectIsNotSubHeadlineException to be thrown',
+        reason:
+            'Expected ArticleSecondObjectIsNotSubHeadlineException to be thrown',
       );
     });
   });

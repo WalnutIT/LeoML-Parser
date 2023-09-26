@@ -34,12 +34,14 @@ class LeoMLParserExampleApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 12.0),
-            child: column,
+    return SafeArea(
+      child: Scaffold(
+        body: Center(
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12.0),
+              child: column,
+            ),
           ),
         ),
       ),
@@ -57,13 +59,13 @@ class MyCustomHeadline extends StatelessWidgetTemplate {
 
   @override
   Widget build(BuildContext context) => Text(
-    object['headline'],
-    style: const TextStyle(
-      color: Colors.green,
-      fontSize: 44.0,
-      fontWeight: FontWeight.bold,
-    ),
-  );
+        object['headline'],
+        style: const TextStyle(
+          color: Colors.green,
+          fontSize: 44.0,
+          fontWeight: FontWeight.bold,
+        ),
+      );
 
   @override
   void validateObject() {
@@ -155,5 +157,3 @@ const leoMLDocument = '['
     ' "citation": "https://mobilane.com/de/nachrichten/10-vorteile-von-zimmerpflanzen/#:~:text=Pflanzen%20sorgen%20für%20saubere%20Luft,verbessert%20das%20Raumklima%20im%20Haus. - opened on 07-02-2023 at 20:19 CET"'
     '}'
     ']';
-
-

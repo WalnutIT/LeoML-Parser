@@ -350,8 +350,8 @@ void main() {
       );
     });
     test(
-        'the blog template does not contains at least one sub headline exception is thrown',
-        () {
+      'the blog template does not contains at least one sub headline exception is thrown',
+      () {
         // given
         const leoMLDocument =
             blogTemplateDoesNotContainsAtLeastOneSubHeadlineJSON;
@@ -548,4 +548,3 @@ class MyCustomOpening extends StatelessWidgetTemplate {
     }
   }
 }
-

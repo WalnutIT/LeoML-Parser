@@ -23,7 +23,7 @@ class BulletList extends StatelessWidgetTemplate {
 
   @override
   Widget build(BuildContext context) => Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: _getTextWidgets(),
       );
 

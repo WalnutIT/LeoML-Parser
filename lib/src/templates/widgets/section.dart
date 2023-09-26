@@ -38,4 +38,3 @@ class Section extends StatelessWidgetTemplate {
     }
   }
 }
-

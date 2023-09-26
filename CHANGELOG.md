@@ -12,3 +12,10 @@
 
 * The bulleted list is now built correctly.
 
+## 1.0.3
+
+* The method parseToSet is able to use custom widgets.
+* Removed redundant code. 
+* "dart format" was executed once.
+* updated pubspec.yaml
+
