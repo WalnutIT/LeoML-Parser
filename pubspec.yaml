@@ -1,7 +1,8 @@
 name: leoml_parser
 description: LeoML parser is a software package that provides interface for client applications to work with LeoML documents. It checks for proper format and validate the LeoML documents.
-version: 1.0.2
-homepage: https://github.com/WalnutIT/LeoML-Parser/tree/master
+version: 1.0.3
+repository: https://github.com/WalnutIT/LeoML-Parser/tree/master
+homepage: https://walnut-it.com
 
 environment:
   sdk: '>=3.0.2 <4.0.0'
@@ -12,10 +13,10 @@ dependencies:
     sdk: flutter
 
 dev_dependencies:
-  dart_code_metrics: ^5.7.4
+  dart_code_metrics: ^5.7.6
   flutter_test:
     sdk: flutter
-  flutter_lints: ^2.0.2
+  flutter_lints: ^2.0.3
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

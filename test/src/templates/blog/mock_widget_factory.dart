@@ -9,10 +9,9 @@
 import 'package:flutter/widgets.dart';
 import 'package:leoml_parser/src/widget_builder/widget_factory.dart';
 
-class MockWidgetFactory extends WidgetFactory{
+class MockWidgetFactory extends WidgetFactory {
   @override
   Widget buildDefaultWidget({required String key, required Map object}) {
-    return  Container();
+    return Container();
   }
-
 }

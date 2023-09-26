@@ -20,4 +20,3 @@ class AtomicObjectIsNotStringException implements Exception {
   String toString() =>
       '\'$subTagName\' is not from type String. Atomic objects must have the data type \'String\'';
 }
-

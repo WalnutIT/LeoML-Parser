@@ -45,4 +45,3 @@ class ImageLoadingBuilder extends StatelessWidget {
         ),
       );
 }
-

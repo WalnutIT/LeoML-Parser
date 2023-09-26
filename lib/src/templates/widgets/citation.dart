@@ -36,4 +36,3 @@ class Citation extends StatelessWidgetTemplate {
     }
   }
 }
-

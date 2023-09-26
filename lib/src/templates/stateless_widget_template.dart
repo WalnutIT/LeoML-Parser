@@ -29,4 +29,3 @@ abstract class StatelessWidgetTemplate extends StatelessWidget {
   /// Subclasses should implement this method to perform custom validation logic on the object data.
   void validateObject();
 }
-

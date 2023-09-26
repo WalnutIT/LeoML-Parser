@@ -12,6 +12,5 @@ class FirstObjectIsNotTypeException implements Exception {
   @override
   String toString() =>
       'The first object in your LeoML document is not the "type" object.\n\n'
-          'It is mandatory, that the first object of each LeoML document is the "type" object.';
+      'It is mandatory, that the first object of each LeoML document is the "type" object.';
 }
-

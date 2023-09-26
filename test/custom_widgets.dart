@@ -22,13 +22,13 @@ class MyCustomSubHeadline extends StatelessWidgetTemplate {
 
   @override
   Widget build(BuildContext context) => Text(
-    object['subHeadline'],
-    style: const TextStyle(
-      color: Colors.black,
-      fontSize: 36.0,
-      fontWeight: FontWeight.bold,
-    ),
-  );
+        object['subHeadline'],
+        style: const TextStyle(
+          color: Colors.black,
+          fontSize: 36.0,
+          fontWeight: FontWeight.bold,
+        ),
+      );
 
   @override
   void validateObject() {
@@ -50,13 +50,13 @@ class MyCustomSection extends StatelessWidgetTemplate {
 
   @override
   Widget build(BuildContext context) => Text(
-    object['section'],
-    style: const TextStyle(
-      color: Colors.black,
-      fontSize: 36.0,
-      fontWeight: FontWeight.bold,
-    ),
-  );
+        object['section'],
+        style: const TextStyle(
+          color: Colors.black,
+          fontSize: 36.0,
+          fontWeight: FontWeight.bold,
+        ),
+      );
 
   @override
   void validateObject() {
@@ -70,7 +70,8 @@ class MyCustomSection extends StatelessWidgetTemplate {
 
 class MyCustomSectionHeadlineBuilder extends LeoMLWidgetBuilder {
   @override
-  Widget build({required Map object}) => MyCustomSectionHeadline(object: object);
+  Widget build({required Map object}) =>
+      MyCustomSectionHeadline(object: object);
 }
 
 class MyCustomSectionHeadline extends StatelessWidgetTemplate {
@@ -78,13 +79,13 @@ class MyCustomSectionHeadline extends StatelessWidgetTemplate {
 
   @override
   Widget build(BuildContext context) => Text(
-    object['sectionHeadline'],
-    style: const TextStyle(
-      color: Colors.black,
-      fontSize: 40.0,
-      fontWeight: FontWeight.bold,
-    ),
-  );
+        object['sectionHeadline'],
+        style: const TextStyle(
+          color: Colors.black,
+          fontSize: 40.0,
+          fontWeight: FontWeight.bold,
+        ),
+      );
 
   @override
   void validateObject() {
@@ -106,8 +107,8 @@ class MyCustomList extends StatelessWidgetTemplate {
 
   @override
   Widget build(BuildContext context) => Column(
-    children: _getTextWidgets(),
-  );
+        children: _getTextWidgets(),
+      );
 
   @override
   void validateObject() {
@@ -120,18 +121,18 @@ class MyCustomList extends StatelessWidgetTemplate {
 
   /// Converts the list of strings into a list of text widgets with bullet points.
   List<Widget> _getTextWidgets() => (object['list'].map((String text) {
-    return Padding(
-      padding: const EdgeInsets.only(
-        left: 12.0,
-        top: 3.0,
-      ),
-      child: Text(
-        '\u2022 $text',
-        style: bodyTextStyle(),
-      ),
-    );
-  }).toList() as List)
-      .cast<Widget>();
+        return Padding(
+          padding: const EdgeInsets.only(
+            left: 12.0,
+            top: 3.0,
+          ),
+          child: Text(
+            '\u2022 $text',
+            style: bodyTextStyle(),
+          ),
+        );
+      }).toList() as List)
+          .cast<Widget>();
 }
 
 class MyCustomCitationBuilder extends LeoMLWidgetBuilder {
@@ -144,13 +145,13 @@ class MyCustomCitation extends StatelessWidgetTemplate {
 
   @override
   Widget build(BuildContext context) => Text(
-    object['citation'],
-    style: const TextStyle(
-      color: Colors.black,
-      fontSize: 36.0,
-      fontWeight: FontWeight.bold,
-    ),
-  );
+        object['citation'],
+        style: const TextStyle(
+          color: Colors.black,
+          fontSize: 36.0,
+          fontWeight: FontWeight.bold,
+        ),
+      );
 
   @override
   void validateObject() {
@@ -172,13 +173,13 @@ class MyCustomCatchLine extends StatelessWidgetTemplate {
 
   @override
   Widget build(BuildContext context) => Text(
-    object['catchLine'],
-    style: const TextStyle(
-      color: Colors.black,
-      fontSize: 36.0,
-      fontWeight: FontWeight.bold,
-    ),
-  );
+        object['catchLine'],
+        style: const TextStyle(
+          color: Colors.black,
+          fontSize: 36.0,
+          fontWeight: FontWeight.bold,
+        ),
+      );
 
   @override
   void validateObject() {
@@ -200,8 +201,8 @@ class MyCustomImage extends StatelessWidgetTemplate {
 
   @override
   Widget build(BuildContext context) => Image.network(
-    object['image']['imageURL'],
-  );
+        object['image']['imageURL'],
+      );
 
   @override
   void validateObject() {

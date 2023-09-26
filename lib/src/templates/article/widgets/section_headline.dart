@@ -36,4 +36,3 @@ class SectionHeadline extends StatelessWidgetTemplate {
     }
   }
 }
-

@@ -38,4 +38,3 @@ class SubHeadline extends StatelessWidgetTemplate {
     }
   }
 }
-

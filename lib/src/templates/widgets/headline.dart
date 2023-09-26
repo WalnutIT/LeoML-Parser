@@ -36,4 +36,3 @@ class Headline extends StatelessWidgetTemplate {
     }
   }
 }
-

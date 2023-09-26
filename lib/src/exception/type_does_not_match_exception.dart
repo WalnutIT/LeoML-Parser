@@ -9,7 +9,6 @@
 
 /// Exception thrown when the type of a LeoML document does not match the template type.
 class TypeDoesNotMatchException implements Exception {
-
   TypeDoesNotMatchException();
 
   @override

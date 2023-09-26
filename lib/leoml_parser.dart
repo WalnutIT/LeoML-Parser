@@ -8,4 +8,3 @@ export 'src/templates/article/article.dart' show Article;
 export 'src/templates/blog/blog.dart' show Blog;
 export 'src/templates/stateless_widget_template.dart'
     show StatelessWidgetTemplate;
-
