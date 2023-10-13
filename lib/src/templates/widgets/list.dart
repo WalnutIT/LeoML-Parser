@@ -39,9 +39,7 @@ class BulletList extends StatelessWidgetTemplate with ListTextWidget {
   Widget build(BuildContext context) => Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: getTextWidgets(
-          object is Map<String, dynamic>
-              ? object as Map<String, dynamic>
-              : <String, dynamic>{},
+          object,
           'list',
         ),
       );

@@ -38,7 +38,7 @@ class Article extends ContentTemplate {
   final LeoMLWidgetBuilder? catchLineBuilder;
 
   @override
-  Widget buildCustomWidget({required String key, required Map object}) {
+  Widget buildCustomWidget({required String key, required Map<String, dynamic> object}) {
     if (key == 'sectionHeadline' && sectionHeadlineBuilder != null) {
       return sectionHeadlineBuilder?.build(object: object) ??
           const Placeholder();

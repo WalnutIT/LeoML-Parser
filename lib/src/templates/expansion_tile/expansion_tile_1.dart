@@ -81,7 +81,7 @@ class ExpansionTile1 extends ContentTemplate {
   @override
   bool assertLeoMLStructure(List parsedLeoMLDocument) {
     for (var index = 0; index < parsedLeoMLDocument.length; index++) {
-      final object = parsedLeoMLDocument[index] as Map;
+      final object = parsedLeoMLDocument[index] as Map<String, dynamic>;
       _listIsNotEmpty(object);
     }
 
@@ -89,7 +89,7 @@ class ExpansionTile1 extends ContentTemplate {
   }
 
   @override
-  Widget buildCustomWidget({required String key, required Map object}) {
+  Widget buildCustomWidget({required String key, required Map<String, dynamic> object}) {
     // Implement logic to build custom widgets based on the provided key.
     // You can use the specified builders for customization.
     // If no custom builder is provided for a key, return a Placeholder widget.

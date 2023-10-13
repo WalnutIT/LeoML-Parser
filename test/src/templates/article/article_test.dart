@@ -119,7 +119,7 @@ void main() {
       // given
       const key = 'headline';
       final listOfObjects = jsonDecode(articleAI) as List;
-      var object = {};
+      var object = <String, dynamic>{};
 
       object = listOfObjects.firstWhere((element) {
         if ((element as Map).containsKey(key)) {
@@ -140,7 +140,7 @@ void main() {
       // given
       const key = 'subHeadline';
       final listOfObjects = jsonDecode(articleAI) as List;
-      var object = {};
+      var object = <String, dynamic>{};
 
       object = listOfObjects.firstWhere((element) {
         if ((element as Map).containsKey(key)) {
@@ -161,7 +161,7 @@ void main() {
       // given
       const key = 'section';
       final listOfObjects = jsonDecode(articleAI) as List;
-      var object = {};
+      var object = <String, dynamic>{};
 
       object = listOfObjects.firstWhere((element) {
         if ((element as Map).containsKey(key)) {
@@ -182,7 +182,7 @@ void main() {
       // given
       const key = 'sectionHeadline';
       final listOfObjects = jsonDecode(articleAI) as List;
-      var object = {};
+      var object = <String, dynamic>{};
 
       object = listOfObjects.firstWhere((element) {
         if ((element as Map).containsKey(key)) {
@@ -204,7 +204,7 @@ void main() {
       // given
       const key = 'citation';
       final listOfObjects = jsonDecode(articleAI) as List;
-      var object = {};
+      var object = <String, dynamic>{};
 
       object = listOfObjects.firstWhere((element) {
         if ((element as Map).containsKey(key)) {
@@ -225,7 +225,7 @@ void main() {
       // given
       const key = 'list';
       final listOfObjects = jsonDecode(articleList) as List;
-      var object = {};
+      var object = <String, dynamic>{};
 
       object = listOfObjects.firstWhere((element) {
         if ((element as Map).containsKey(key)) {
@@ -246,7 +246,7 @@ void main() {
       // given
       const key = 'image';
       final listOfObjects = jsonDecode(articleImage) as List;
-      var object = {};
+      var object = <String, dynamic>{};
 
       object = listOfObjects.firstWhere((element) {
         if ((element as Map).containsKey(key)) {
@@ -267,7 +267,7 @@ void main() {
       // given
       const key = 'catchLine';
       final listOfObjects = jsonDecode(articleCatchLine) as List;
-      var object = {};
+      var object = <String, dynamic>{};
 
       object = listOfObjects.firstWhere((element) {
         if ((element as Map).containsKey(key)) {

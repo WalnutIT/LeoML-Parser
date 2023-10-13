@@ -44,5 +44,5 @@ import 'package:flutter/widgets.dart';
 ///
 /// Returns the built widget.
 abstract class LeoMLWidgetBuilder {
-  Widget build({required Map object});
+  Widget build({required Map<String, dynamic> object});
 }

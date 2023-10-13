@@ -118,7 +118,7 @@ void main() {
       // given
       const key = 'headline';
       final listOfObjects = jsonDecode(blog1) as List;
-      var object = {};
+      var object = <String, dynamic>{};
 
       object = listOfObjects.firstWhere((element) {
         if ((element as Map).containsKey(key)) {
@@ -139,7 +139,7 @@ void main() {
       // given
       const key = 'opening';
       final listOfObjects = jsonDecode(blog1) as List;
-      var object = {};
+      var object = <String, dynamic>{};
 
       object = listOfObjects.firstWhere((element) {
         if ((element as Map).containsKey(key)) {
@@ -160,7 +160,7 @@ void main() {
       // given
       const key = 'subHeadline';
       final listOfObjects = jsonDecode(blog1) as List;
-      var object = {};
+      var object = <String, dynamic>{};
 
       object = listOfObjects.firstWhere((element) {
         if ((element as Map).containsKey(key)) {
@@ -181,7 +181,7 @@ void main() {
       // given
       const key = 'section';
       final listOfObjects = jsonDecode(blog1) as List;
-      var object = {};
+      var object = <String, dynamic>{};
 
       object = listOfObjects.firstWhere((element) {
         if ((element as Map).containsKey(key)) {
@@ -202,7 +202,7 @@ void main() {
       // given
       const key = 'list';
       final listOfObjects = jsonDecode(blogList) as List;
-      var object = {};
+      var object = <String, dynamic>{};
 
       object = listOfObjects.firstWhere((element) {
         if ((element as Map).containsKey(key)) {
@@ -223,7 +223,7 @@ void main() {
       // given
       const key = 'citation';
       final listOfObjects = jsonDecode(blog1) as List;
-      var object = {};
+      var object = <String, dynamic>{};
 
       object = listOfObjects.firstWhere((element) {
         if ((element as Map).containsKey(key)) {
@@ -244,7 +244,7 @@ void main() {
       // given
       const key = 'image';
       final listOfObjects = jsonDecode(blogImage) as List;
-      var object = {};
+      var object = <String, dynamic>{};
 
       object = listOfObjects.firstWhere((element) {
         if ((element as Map).containsKey(key)) {
@@ -475,7 +475,7 @@ void main() {
 
 class MyCustomTestWidget extends LeoMLWidgetBuilder {
   @override
-  Widget build({required Map object}) =>
+  Widget build({required Map<String, dynamic> object}) =>
       MyCustomTestWidgetTemplate(object: object);
 }
 
@@ -500,7 +500,8 @@ class MyCustomTestWidgetTemplate extends StatelessWidgetTemplate {
 
 class MyCustomHeadlineBuilder extends LeoMLWidgetBuilder {
   @override
-  Widget build({required Map object}) => MyCustomHeadline(object: object);
+  Widget build({required Map<String, dynamic> object}) =>
+      MyCustomHeadline(object: object);
 }
 
 class MyCustomHeadline extends StatelessWidgetTemplate {
@@ -528,7 +529,8 @@ class MyCustomHeadline extends StatelessWidgetTemplate {
 
 class MyCustomOpeningWidget extends LeoMLWidgetBuilder {
   @override
-  Widget build({required Map object}) => MyCustomOpening(object: object);
+  Widget build({required Map<String, dynamic> object}) =>
+      MyCustomOpening(object: object);
 }
 
 class MyCustomOpening extends StatelessWidgetTemplate {

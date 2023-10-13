@@ -65,7 +65,7 @@ abstract class ContentTemplate {
 
     final columnContent = <Widget>[];
 
-    for (Map<dynamic, dynamic> map in parsedLeoMLDocument) {
+    for (Map<String, dynamic> map in parsedLeoMLDocument) {
       Widget widget = const Placeholder();
 
       // Check if a custom widget builder is available for the current key.
@@ -100,7 +100,7 @@ abstract class ContentTemplate {
 
     final widgetSet = <Widget>{};
 
-    for (Map<dynamic, dynamic> map in parsedLeoMLDocument) {
+    for (Map<String, dynamic> map in parsedLeoMLDocument) {
       Widget widget = const Placeholder();
 
       // Check if a custom widget builder is available for the current key.
@@ -141,7 +141,7 @@ abstract class ContentTemplate {
   /// The [object] parameter contains the properties or data needed to configure the widget.
   ///
   /// Returns the created custom widget or a [Placeholder] if no matching conditions are met.
-  Widget buildGeneralCustomWidget({required key, required Map object}) {
+  Widget buildGeneralCustomWidget({required key, required Map<String, dynamic> object}) {
     if (key == 'headline' && headlineBuilder != null) {
       return headlineBuilder?.build(object: object) ?? const Placeholder();
     }
@@ -211,9 +211,9 @@ abstract class ContentTemplate {
   /// The [object] contains the properties or data needed to configure the custom widget.
   ///
   /// Returns the created custom widget, or a default fallback widget if the [key] is not found.
-  Widget buildCustomWidget({required String key, required Map object});
+  Widget buildCustomWidget({required String key, required Map<String, dynamic> object});
 
-  Widget _createWidget(Widget widget, Map<dynamic, dynamic> map) {
+  Widget _createWidget(Widget widget, Map<String, dynamic> map) {
     // Check if a custom widget builder is available for the current key.
     // If available, use it to build the widget; otherwise, use the default widget factory.
     widget = hasCustomWidget(

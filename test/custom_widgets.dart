@@ -14,7 +14,8 @@ import 'package:leoml_parser/src/widget_builder/leo_ml_widget_builder.dart';
 
 class MyCustomSubHeadlineBuilder extends LeoMLWidgetBuilder {
   @override
-  Widget build({required Map object}) => MyCustomSubHeadline(object: object);
+  Widget build({required Map<String, dynamic> object}) =>
+      MyCustomSubHeadline(object: object);
 }
 
 class MyCustomSubHeadline extends StatelessWidgetTemplate {
@@ -42,7 +43,8 @@ class MyCustomSubHeadline extends StatelessWidgetTemplate {
 
 class MyCustomSectionBuilder extends LeoMLWidgetBuilder {
   @override
-  Widget build({required Map object}) => MyCustomSection(object: object);
+  Widget build({required Map<String, dynamic> object}) =>
+      MyCustomSection(object: object);
 }
 
 class MyCustomSection extends StatelessWidgetTemplate {
@@ -70,7 +72,7 @@ class MyCustomSection extends StatelessWidgetTemplate {
 
 class MyCustomSectionHeadlineBuilder extends LeoMLWidgetBuilder {
   @override
-  Widget build({required Map object}) =>
+  Widget build({required Map<String, dynamic> object}) =>
       MyCustomSectionHeadline(object: object);
 }
 
@@ -99,7 +101,8 @@ class MyCustomSectionHeadline extends StatelessWidgetTemplate {
 
 class MyCustomListBuilder extends LeoMLWidgetBuilder {
   @override
-  Widget build({required Map object}) => MyCustomList(object: object);
+  Widget build({required Map<String, dynamic> object}) =>
+      MyCustomList(object: object);
 }
 
 class MyCustomList extends StatelessWidgetTemplate {
@@ -137,7 +140,8 @@ class MyCustomList extends StatelessWidgetTemplate {
 
 class MyCustomCitationBuilder extends LeoMLWidgetBuilder {
   @override
-  Widget build({required Map object}) => MyCustomCitation(object: object);
+  Widget build({required Map<String, dynamic> object}) =>
+      MyCustomCitation(object: object);
 }
 
 class MyCustomCitation extends StatelessWidgetTemplate {
@@ -165,7 +169,8 @@ class MyCustomCitation extends StatelessWidgetTemplate {
 
 class MyCustomCatchLineBuilder extends LeoMLWidgetBuilder {
   @override
-  Widget build({required Map object}) => MyCustomCatchLine(object: object);
+  Widget build({required Map<String, dynamic> object}) =>
+      MyCustomCatchLine(object: object);
 }
 
 class MyCustomCatchLine extends StatelessWidgetTemplate {
@@ -193,7 +198,8 @@ class MyCustomCatchLine extends StatelessWidgetTemplate {
 
 class MyCustomImageWidget extends LeoMLWidgetBuilder {
   @override
-  Widget build({required Map object}) => MyCustomImage(object: object);
+  Widget build({required Map<String, dynamic> object}) =>
+      MyCustomImage(object: object);
 }
 
 class MyCustomImage extends StatelessWidgetTemplate {

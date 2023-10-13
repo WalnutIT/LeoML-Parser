@@ -51,7 +51,7 @@ class LeoMLParserExampleApp extends StatelessWidget {
 
 class MyCustomHeadlineBuilder extends LeoMLWidgetBuilder {
   @override
-  Widget build({required Map object}) => MyCustomHeadline(object: object);
+  Widget build({required Map<String, dynamic> object}) => MyCustomHeadline(object: object);
 }
 
 class MyCustomHeadline extends StatelessWidgetTemplate {

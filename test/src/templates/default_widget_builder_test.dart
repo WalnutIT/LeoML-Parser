@@ -10,6 +10,13 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:leoml_parser/src/templates/article/widgets/catch_line.dart';
 import 'package:leoml_parser/src/templates/article/widgets/section_headline.dart';
 import 'package:leoml_parser/src/templates/blog/widgets/opening.dart';
+import 'package:leoml_parser/src/templates/constants.dart';
+import 'package:leoml_parser/src/templates/widgets/h1.dart';
+import 'package:leoml_parser/src/templates/widgets/h2.dart';
+import 'package:leoml_parser/src/templates/widgets/h3.dart';
+import 'package:leoml_parser/src/templates/widgets/h4.dart';
+import 'package:leoml_parser/src/templates/widgets/li.dart';
+import 'package:leoml_parser/src/templates/widgets/tx.dart';
 import 'package:leoml_parser/src/widget_builder/default_widgets_builder.dart';
 import 'package:leoml_parser/src/templates/widgets/citation.dart';
 import 'package:leoml_parser/src/templates/widgets/headline.dart';
@@ -128,6 +135,81 @@ void main() {
       );
       // then
       expect(result is Opening, isTrue);
+    });
+    test('H1 widget is returned', () {
+      // given
+
+      // when
+      final result = H1Builder().build(
+        object: {
+          h1: "<your h1 headline>",
+        },
+      );
+      // then
+      expect(result is H1, isTrue);
+    });
+    test('H2 widget is returned', () {
+      // given
+
+      // when
+      final result = H2Builder().build(
+        object: {
+          h2: "<your h2 headline>",
+        },
+      );
+      // then
+      expect(result is H2, isTrue);
+    });
+    test('H3 widget is returned', () {
+      // given
+
+      // when
+      final result = H3Builder().build(
+        object: {
+          h3: "your h3 headline",
+        },
+      );
+      // then
+      expect(result is H3, isTrue);
+    });
+    test('H4 widget is returned', () {
+      // given
+
+      // when
+      final result = H4Builder().build(
+        object: {
+          h4: "your h4 headline",
+        },
+      );
+      // then
+      expect(result is H4, isTrue);
+    });
+    test('Li widget is returned', () {
+      // given
+
+      // when
+      final result = LiBuilder().build(
+        object: {
+          li: [
+            "item 1",
+            "item 2",
+          ],
+        },
+      );
+      // then
+      expect(result is Li, isTrue);
+    });
+    test('Tx widget is returned', () {
+      // given
+
+      // when
+      final result = TxBuilder().build(
+        object: {
+          tx: "<your text>",
+        },
+      );
+      // then
+      expect(result is Tx, isTrue);
     });
   });
 }

@@ -327,7 +327,7 @@ void main() {
 
 class MyCustomTestWidget extends LeoMLWidgetBuilder {
   @override
-  Widget build({required Map object}) =>
+  Widget build({required Map<String, dynamic> object}) =>
       MyCustomTestWidgetTemplate(object: object);
 }
 
@@ -352,7 +352,7 @@ class MyCustomTestWidgetTemplate extends StatelessWidgetTemplate {
 
 class MyCustomH1Builder extends LeoMLWidgetBuilder {
   @override
-  Widget build({required Map object}) => MyCustomH1(object: object);
+  Widget build({required Map<String, dynamic> object}) => MyCustomH1(object: object);
 }
 
 class MyCustomH1 extends StatelessWidgetTemplate {
@@ -380,7 +380,7 @@ class MyCustomH1 extends StatelessWidgetTemplate {
 
 class MyCustomH2Builder extends LeoMLWidgetBuilder {
   @override
-  Widget build({required Map object}) => MyCustomH2(object: object);
+  Widget build({required Map<String, dynamic> object}) => MyCustomH2(object: object);
 }
 
 class MyCustomH2 extends StatelessWidgetTemplate {
@@ -408,7 +408,7 @@ class MyCustomH2 extends StatelessWidgetTemplate {
 
 class MyCustomH3Builder extends LeoMLWidgetBuilder {
   @override
-  Widget build({required Map object}) => MyCustomH3(object: object);
+  Widget build({required Map<String, dynamic> object}) => MyCustomH3(object: object);
 }
 
 class MyCustomH3 extends StatelessWidgetTemplate {
@@ -436,7 +436,7 @@ class MyCustomH3 extends StatelessWidgetTemplate {
 
 class MyCustomH4Builder extends LeoMLWidgetBuilder {
   @override
-  Widget build({required Map object}) => MyCustomH4(object: object);
+  Widget build({required Map<String, dynamic> object}) => MyCustomH4(object: object);
 }
 
 class MyCustomH4 extends StatelessWidgetTemplate {
@@ -464,7 +464,7 @@ class MyCustomH4 extends StatelessWidgetTemplate {
 
 class MyCustomTxBuilder extends LeoMLWidgetBuilder {
   @override
-  Widget build({required Map object}) => MyCustomTx(object: object);
+  Widget build({required Map<String, dynamic> object}) => MyCustomTx(object: object);
 }
 
 class MyCustomTx extends StatelessWidgetTemplate {
@@ -492,7 +492,7 @@ class MyCustomTx extends StatelessWidgetTemplate {
 
 class MyCustomLiBuilder extends LeoMLWidgetBuilder {
   @override
-  Widget build({required Map object}) => MyCustomList(object: object);
+  Widget build({required Map<String, dynamic> object}) => MyCustomList(object: object);
 }
 
 class MyCustomList extends StatelessWidgetTemplate {

@@ -46,7 +46,7 @@ abstract class WidgetFactory {
   /// Returns the created widget, or a [Placeholder] if the key is not found.
   Widget buildDefaultWidget({
     required String key,
-    required Map object,
+    required Map<String, dynamic> object,
   });
 }
 
@@ -59,7 +59,7 @@ class LeoMLParserDefaultWidgetFactory extends WidgetFactory {
   @override
   Widget buildDefaultWidget({
     required String key,
-    required Map object,
+    required Map<String, dynamic> object,
   }) {
     _checkIifWidgetMapContainsRequestedKey(key);
 

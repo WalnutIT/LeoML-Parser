@@ -22,7 +22,7 @@ abstract class StatelessWidgetTemplate extends StatelessWidget {
   }) : super(key: key);
 
   /// The object data used by the template.
-  final Map object;
+  final Map<String, dynamic> object;
 
   /// Validates the object data.
   ///

@@ -37,7 +37,7 @@ void main() {
           '\'tx\' is not from type String. Atomic objects must have the data type \'String\'';
 
       // when
-      const widget = Tx(object: {Tx: textToDisplay});
+      const widget = Tx(object: {tx: textToDisplay});
 
       // then
       expect(

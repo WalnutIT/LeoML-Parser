@@ -42,7 +42,7 @@ class Blog extends ContentTemplate {
   final LeoMLWidgetBuilder? openingBuilder;
 
   @override
-  Widget buildCustomWidget({required key, required Map object}) {
+  Widget buildCustomWidget({required key, required Map<String, dynamic> object}) {
     if (key == 'opening' && openingBuilder != null) {
       return openingBuilder?.build(object: object) ?? const Placeholder();
     }
