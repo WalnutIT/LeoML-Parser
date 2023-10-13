@@ -3,8 +3,6 @@ include: package:flutter_lints/flutter.yaml
 # Additional information about this file can be found at
 # https://dart.dev/guides/language/analysis-options
 analyzer:
-  plugins:
-    - dart_code_metrics
   errors:
     # treat missing required parameters as a warning (not a hint)
     missing_required_param: warning

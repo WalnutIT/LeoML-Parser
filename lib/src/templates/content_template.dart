@@ -168,7 +168,6 @@ abstract class ContentTemplate {
     return const Placeholder();
   }
 
-
   /// Checks if the list object contains at least two elements.
   ///
   /// The [object] parameter is the map representing the current object.

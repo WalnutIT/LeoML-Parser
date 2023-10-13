@@ -19,3 +19,8 @@
 * "dart format" was executed once.
 * updated pubspec.yaml
 
+## 1.1.0
+
+* Introduced the Expansion Tile 1 template
+* Updated LeoML documentation to version 1.1.0
+

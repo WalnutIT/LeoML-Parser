@@ -6,5 +6,6 @@ export 'src/leo_ml_document_parser.dart' show LeoMLDocumentParser;
 export 'src/widget_builder/leo_ml_widget_builder.dart' show LeoMLWidgetBuilder;
 export 'src/templates/article/article.dart' show Article;
 export 'src/templates/blog/blog.dart' show Blog;
+export 'src/templates/expansion_tile/expansion_tile_1.dart' show ExpansionTile1;
 export 'src/templates/stateless_widget_template.dart'
     show StatelessWidgetTemplate;

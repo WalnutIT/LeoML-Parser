@@ -1,6 +1,6 @@
 name: leoml_parser
 description: LeoML parser is a software package that provides interface for client applications to work with LeoML documents. It checks for proper format and validate the LeoML documents.
-version: 1.0.3
+version: 1.1.0
 repository: https://github.com/WalnutIT/LeoML-Parser/tree/master
 homepage: https://walnut-it.com
 

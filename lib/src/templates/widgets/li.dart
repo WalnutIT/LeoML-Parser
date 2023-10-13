@@ -1,36 +1,37 @@
-// Project: LeoML Parser
+// Project: Medical Device Classifier
 // Author: Daniel Krentzlin
-// Project begin: 04.07.2023
+// Project begin: 05.10.2023
 // Dev Environment: Android Studio
 // Platform: Windows 11
-// Copyright: Walnut IT 2023
-// ID: 20230704091122
-// 04.07.2023 09:11
+// Copyright: Strasbourg Flutter Meetup Group 2023
+// ID: 20231013100654
+// 13.10.2023 10:06
 import 'package:flutter/widgets.dart';
 import 'package:leoml_parser/src/exception/atomic_object_is_not_string_exception.dart';
 import 'package:leoml_parser/src/mixins/list_text_widget.dart';
+import 'package:leoml_parser/src/templates/constants.dart';
 import 'package:leoml_parser/src/templates/stateless_widget_template.dart';
 
-/// A widget that displays a bullet list of strings.
+/// A template for rendering lists in a LeoML document.
 ///
-/// The `BulletList` widget is used to render a list of strings as bullet points
-/// in a LeoML document. It takes a `listBuilder` parameter, which represents the
-/// list of strings to be displayed as bullet points.
+/// This template represents a list in a LeoML document. It can render both ordered and
+/// unordered lists. It takes the parsed LeoML object and displays the list items in a
+/// column layout.
 ///
 /// Usage:
 ///
 /// ```dart
-/// const leoMLObject = {'list': ['Item 1', 'Item 2', 'Item 3']};
-/// return BulletList(
+/// const leoMLObject = {'li': ['Item 1', 'Item 2', 'Item 3']};
+/// return Li(
 ///   object: leoMLObject,
 /// );
 /// ```
-class BulletList extends StatelessWidgetTemplate with ListTextWidget {
-  /// Creates a `BulletList` widget.
+class Li extends StatelessWidgetTemplate with ListTextWidget {
+  /// Creates a List template with the specified [key] and [object].
   ///
-  /// The [key] is an optional identifier, and the [object] must contain a 'list'
+  /// The [key] is an optional identifier, and the [object] must contain an 'li'
   /// key with a corresponding List<String> value representing the list items.
-  const BulletList({
+  const Li({
     super.key,
     required super.object,
   });
@@ -42,16 +43,16 @@ class BulletList extends StatelessWidgetTemplate with ListTextWidget {
           object is Map<String, dynamic>
               ? object as Map<String, dynamic>
               : <String, dynamic>{},
-          'list',
+          li,
         ),
       );
 
   @override
   void validateObject() {
-    for (var value in object['list']) {
+    for (var value in object[li]) {
       if (value is! String) {
         throw AtomicObjectIsNotStringException(
-          subTagName: 'list',
+          subTagName: li,
         );
       }
     }
