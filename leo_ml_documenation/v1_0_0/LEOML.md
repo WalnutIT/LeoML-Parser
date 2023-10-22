@@ -5,12 +5,10 @@ is
 using the JSON format for structuring the content. LeoML is using templates in order to structure
 the text.
 
-
-
 ## Table of contents
 
 1. [General](#general)
-2. [Histor of templates](#history-of-templates)
+2. [History of templates](#history-of-templates)
 3. [Objects](#objects)
 4. [Blog template](#blog-template)
 5. [Article template](#article-template)
@@ -614,77 +612,121 @@ Example
 ]
 ```
 
-#### headline_1
+#### header
+
+| Tag name | Condition | Cardinality | Data type | Sub tags    | Condition of sub tags | Sub tag data type |
+|----------|-----------|-------------|-----------|-------------|-----------------------|-------------------|
+| header   | mandatory | 1           | complex   | headline    | mandatory             | String            |
+|          |           |             |           | subHeadline | optional              | String            |
+
+##### headline
 
 Primary headline of the expansion tile 1 template.
 
 | Tag name | Condition | Cardinality | Data type | Sub tags | Condition of sub tags | Sub tag data type |
 |----------|-----------|-------------|-----------|----------|-----------------------|-------------------|
-| h1       | mandatory | 0-n         | String    | none     | none                  | none              |
+| headline | mandatory | 1           | String    | none     | none                  | none              |
 
-Example
-
-```JSON
-[
-  {
-    "h1": "<your headline>"
-  }
-]
-```
-
-#### headline_2
+##### sub headline
 
 Secondary headline of the expansion tile 1 template.
 
-| Tag name | Condition | Cardinality | Data type | Sub tags | Condition of sub tags | Sub tag data type |
-|----------|-----------|-------------|-----------|----------|-----------------------|-------------------|
-| h2       | optional  | 0-n         | String    | none     | none                  | none              |
+| Tag name    | Condition | Cardinality | Data type | Sub tags | Condition of sub tags | Sub tag data type |
+|-------------|-----------|-------------|-----------|----------|-----------------------|-------------------|
+| subHeadline | optional  | 0-1         | String    | none     | none                  | none              |
 
 Example
 
 ```JSON
 [
-  {
-    "h2": "<your headline 2>"
-  }
+  [
+    {
+      "header": {
+        "headline": "<your headline>",
+        "subHeadline": "<your sub headline>"
+      }
+    },
+     {
+        "content": {}  
+     }
+  ]
 ]
 ```
 
-#### headline_3
+#### content
 
-Tertiary headline of the expansion tile 1 template.
-
-| Tag name | Condition | Cardinality | Data type | Sub tags | Condition of sub tags | Sub tag data type |
-|----------|-----------|-------------|-----------|----------|-----------------------|-------------------|
-| h3       | optional  | 0-n         | String    | none     | none                  | none              |
-
-Example
+| Tag name | Condition | Cardinality | Data type | Sub tags          | Condition of sub tags | Sub tag data type |
+|----------|-----------|-------------|-----------|-------------------|-----------------------|-------------------|
+| content  | mandatory | 1           | complex   | section           | mandatory             | String            |
+|          |           |             |           | sectionHeadline   | optional              | String            |
+|          |           |             |           | paragraphHeadline | optional              | String            |
+|          |           |             |           | list              | optional              | String            |
+|          |           |             |           | citation          | optional              | String            |
+|          |           |             |           | image             | optional              | String            |
 
 ```JSON
 [
-  {
-    "h3": "<your headline 3>"
-  }
+   [
+      {
+         "header": {}
+      },
+      {
+         "content": [
+            {
+               "sectionHeadline": "<your section headline>"
+            },
+            {
+               "section": "<your section>"
+            },
+            {
+               "paragraphHeadline": "<your paragraphHeadline"
+            },
+            {
+               "list": [
+                  "<element 1>",
+                  "<element 2>",
+                  "...",
+                  "<element n>"
+               ]
+            },
+            {
+               "image": {
+                  "imageURL": "<your image url>",
+                  "imageDescription": "<your image description>"
+               }
+            },
+            {
+               "citation": "<your citation>"
+            }
+         ]
+      }
+   ]
 ]
 ```
 
-#### headline_4
+##### section
 
-Tertiary headline of the expansion tile 1 template.
+Contains simple text.
 
 | Tag name | Condition | Cardinality | Data type | Sub tags | Condition of sub tags | Sub tag data type |
 |----------|-----------|-------------|-----------|----------|-----------------------|-------------------|
-| h4       | optional  | 0-n         | String    | none     | none                  | none              |
+| section  | mandatory | 1-n         | String    | none     | none                  | none              |
 
-Example
+##### section headline
 
-```JSON
-[
-  {
-    "h4": "<your headline 4>"
-  }
-]
-```
+Tertiary section headline of the expansion tile 1 template.
+
+| Tag name        | Condition | Cardinality | Data type | Sub tags | Condition of sub tags | Sub tag data type |
+|-----------------|-----------|-------------|-----------|----------|-----------------------|-------------------|
+| sectionHeadline | optional  | 0-n         | String    | none     | none                  | none              |
+
+#### paragraphHeadline
+
+Quaternary paragraph headline of the expansion tile 1 template.
+
+| Tag name          | Condition | Cardinality | Data type | Sub tags | Condition of sub tags | Sub tag data type |
+|-------------------|-----------|-------------|-----------|----------|-----------------------|-------------------|
+| paragraphHeadline | optional  | 0-n         | String    | none     | none                  | none              |
 
 #### list
 
@@ -692,40 +734,22 @@ Contains a list of at least one elements.
 
 | Tag name | Condition | Cardinality | Data type | Condition of list elements | Cardinality of list elements | List element data type |
 |----------|-----------|-------------|-----------|----------------------------|------------------------------|------------------------|
-| li       | optional  | 0-n         | list      | mandatory                  | 1-n                          | String                 |
+| list     | optional  | 0-n         | list      | mandatory                  | 1-n                          | String                 |
 
-Example
+#### citation
 
-```JSON
-[
-  {
-    "li": [
-      "<element 1>",
-      "<element 2>",
-      "...",
-      "<element n>"
-    ]
-  }
-]
-```
-
-#### text
-
-Contains simple text.
+Contains a single citation.
 
 | Tag name | Condition | Cardinality | Data type | Sub tags | Condition of sub tags | Sub tag data type |
 |----------|-----------|-------------|-----------|----------|-----------------------|-------------------|
-| tx       | mandatory | 0-n         | String    | none     | none                  | none              |
+| citation | optional  | 0-n         | String    | none     | none                  | none              |
 
-Example
+#### image
 
-```JSON
-[
-  {
-    "tx": "<your text>"
-  }
-]
-```
+| Tag name | Condition   | Cardinality | Data type | Sub tags         | Condition of sub tags | Sub tag data type |
+|----------|-------------|-------------|-----------|------------------|-----------------------|-------------------|
+| image    | optionality | 0-n         | complex   | imageURL         | mandatory             | String            |
+|          |             |             |           | imageDescription | optional              | String            |
 
 ### Example of LeoML Science 1 document
 
@@ -736,160 +760,168 @@ Example
    },
    [
       {
-         "h1": "Rule 1"
+         "header": {
+            "headline": "Rule 1",
+            "subHeadline": "Devices that eiter do not come in direct contact with the patient or contact intact skin only"
+         }
       },
       {
-         "h2": "Devices that eiter do not come in direct contact with the patient or contact intact skin only"
-      },
-      {
-         "h3": "General explanation of the rule"
-      },
-      {
-         "tx": "This is a fall-back rule applying to all devices that are not covered by a more specific rule. This is a rule that applies in general to devices that come into contact only with intact skin or that do not come in direct contact with the patient."
-      },
-      {
-         "h4": "Class"
-      },
-      {
-         "tx": "I"
-      },
-      {
-         "tx": "All non-invasive devices are classified as class I, unless one of the rules set out hereinafter applies"
-      },
-      {
-         "h4": "Examples"
-      },
-      {
-         "li": [
-            "Devices intended in general for external patient support (e.g. hospital beds, patient hoists, walking aids, wheelchairs, stretchers, dental patient chairs)",
-            "Body liquid collection devices intended to be used in such a way that a return flow is unlikely (e.g. to collect body wastes such as urine collection bottles, incontinence pads or collectors used with wound drainage devices). They may be connected to the patient by means of catheters and tubing",
-            "Devices used to immobilise body parts and/or to apply force or compression on them (e.g. non-sterile dressings used to aid the healing of a sprain, plaster of Paris, cervical collars, gravity traction devices, compression hosiery)",
-            "Corrective spectacle frames (i.e. glasses) and lenses in frames",
-            "Stethoscopes",
-            "Eye occlusion plasters",
-            "Incision drapes ",
-            "Non-invasive conductive gels i.e. ultrasound gels",
-            "Non-invasive electrodes (electrodes for EEG or ECG)",
-            "Permanent magnets for removal of ocular debris",
-            "Wheelchairs pushed by hand"
+         "content": [
+            {
+               "sectionHeadline": "General explanation of the rule"
+            },
+            {
+               "section": "This is a fall-back rule applying to all devices that are not covered by a more specific rule. This is a rule that applies in general to devices that come into contact only with intact skin or that do not come in direct contact with the patient."
+            },
+            {
+               "paragraphHeadline": "Class"
+            },
+            {
+               "section": "I"
+            },
+            {
+               "section": "All non-invasive devices are classified as class I, unless one of the rules set out hereinafter applies"
+            },
+            {
+               "paragraphHeadline": "Examples"
+            },
+            {
+               "list": [
+                  "Devices intended in general for external patient support (e.g. hospital beds, patient hoists, walking aids, wheelchairs, stretchers, dental patient chairs)",
+                  "Body liquid collection devices intended to be used in such a way that a return flow is unlikely (e.g. to collect body wastes such as urine collection bottles, incontinence pads or collectors used with wound drainage devices). They may be connected to the patient by means of catheters and tubing",
+                  "Devices used to immobilise body parts and/or to apply force or compression on them (e.g. non-sterile dressings used to aid the healing of a sprain, plaster of Paris, cervical collars, gravity traction devices, compression hosiery)",
+                  "Corrective spectacle frames (i.e. glasses) and lenses in frames",
+                  "Stethoscopes",
+                  "Eye occlusion plasters",
+                  "Incision drapes ",
+                  "Non-invasive conductive gels i.e. ultrasound gels",
+                  "Non-invasive electrodes (electrodes for EEG or ECG)",
+                  "Permanent magnets for removal of ocular debris",
+                  "Wheelchairs pushed by hand"
+               ]
+            },
+            {
+               "sectionHeadline": "Practical issues of classification"
+            },
+            {
+               "section": "Some non-invasive devices are indirectly in contact with the body and can influence internal physiological processes by storing, channelling or treating blood, other body liquids or liquids which are returned or infused into the body or by generating energy that is delivered to the body. These are handled by other rules because of the hazards inherent in such indirect influence on the body."
+            },
+            {
+               "paragraphHeadline": "Note 1"
+            },
+            {
+               "paragraph": "Intact skin includes the skin around an established stoma unless the skin is breached. Signs of breached skin include, but not limited to, tears, erythema, oedema, weeping and infection. The definition of intact skin must apply for the continuous use of the device."
+            },
+            {
+               "paragraphHeadline": "Note 2"
+            },
+            {
+               "paragraph": "Ultrasound gels are not to be absorbed or locally dispersed within the body at the site of action in order to achieve their intended purpose."
+            }
          ]
-      },
-      {
-         "h3": "Practical issues of classification"
-      },
-      {
-         "tx": "Some non-invasive devices are indirectly in contact with the body and can influence internal physiological processes by storing, channelling or treating blood, other body liquids or liquids which are returned or infused into the body or by generating energy that is delivered to the body. These are handled by other rules because of the hazards inherent in such indirect influence on the body."
-      },
-      {
-         "h3": "Note 1"
-      },
-      {
-         "tx": "Intact skin includes the skin around an established stoma unless the skin is breached. Signs of breached skin include, but not limited to, tears, erythema, oedema, weeping and infection. The definition of intact skin must apply for the continuous use of the device."
-      },
-      {
-         "h3": "Note 2"
-      },
-      {
-         "tx": "Ultrasound gels are not to be absorbed or locally dispersed within the body at the site of action in order to achieve their intended purpose."
       }
    ],
    [
       {
-         "h1": "Rule 2"
+         "header": {
+            "headline": "Rule 2",
+            "subHeadline": "Channelling or storing for eventual administration"
+         }
       },
       {
-         "h2": "Channelling or storing for eventual administration"
-      },
-      {
-         "h3": "General explanation of the rule"
-      },
-      {
-         "tx": "This rule applies to non-invasive devices intended for channeling or storing blood, body liquids, cells or tissues, liquids or gases for specific purposes. Invasive devices, other than surgically invasive devices which are intended to administer medicinal products by inhalation, fall under the Rule 20"
-      },
-      {
-         "tx": "These types of devices should be considered separately from the non-contact devices of Rule 1 because they may be indirectly invasive. They channel or store substances that will eventually be administered to the body. Typically these devices are used in transfusion, infusion, extracorporeal circulation and delivery of anaesthetic gases and oxygen."
-      },
-      {
-         "tx": "In some cases devices covered under this rule are very simple delivery devices that rely on gravity."
-      },
-      {
-         "h4": "Class"
-      },
-      {
-         "tx": "IIa"
-      },
-      {
-         "tx": "All non-invasive devices intended for channeling or storing blood, body liquids, cells or tissues, liquids or gases for the purpose of eventual infusion, administration or introduction into the body are classified as class IIa: "
-      },
-      {
-         "tx": "- if they may be connected to a class IIa, class IIb or class III active device; or if they are intended for use for channeling or storing blood or other body liquids or for storing organs, parts of organs or body cells and tissues, "
-      },
-      {
-         "h4": "Examples"
-      },
-      {
-         "li": [
-            "Devices intended to be used as channels in active drug delivery systems, e.g. tubing intended for use with an infusion pump",
-            "Devices used for channelling gases, e.g. antistatic tubing for anaesthesia, anaesthesia breathing circuits",
-            "Syringes for infusion pumps",
-            "Devices intended to channel blood (e.g. in transfusion, extracorporeal circulation)",
-            "Devices intended for temporary storage and transport of organs for transplantation (i.e. containers, bags)",
-            "Devices intended for long term storage of biological substances and tissues such as corneas, sperm, human embryos, etc. (i.e. containers, bags)",
-            "Fridges/freezers specifically intended for storing blood, tissues etc.",
-            "Tubings/blood lines for extracorporeal treatment (dialysis and apheresis therapies)"
+         "content": [
+            {
+               "sectionHeadline": "General explanation of the rule"
+            },
+            {
+               "section": "This rule applies to non-invasive devices intended for channeling or storing blood, body liquids, cells or tissues, liquids or gases for specific purposes. Invasive devices, other than surgically invasive devices which are intended to administer medicinal products by inhalation, fall under the Rule 20"
+            },
+            {
+               "section": "These types of devices should be considered separately from the non-contact devices of Rule 1 because they may be indirectly invasive. They channel or store substances that will eventually be administered to the body. Typically these devices are used in transfusion, infusion, extracorporeal circulation and delivery of anaesthetic gases and oxygen."
+            },
+            {
+               "section": "In some cases devices covered under this rule are very simple delivery devices that rely on gravity."
+            },
+            {
+               "paragraphHeadline": "Class"
+            },
+            {
+               "section": "IIa"
+            },
+            {
+               "section": "All non-invasive devices intended for channeling or storing blood, body liquids, cells or tissues, liquids or gases for the purpose of eventual infusion, administration or introduction into the body are classified as class IIa: "
+            },
+            {
+               "section": "- if they may be connected to a class IIa, class IIb or class III active device; or if they are intended for use for channeling or storing blood or other body liquids or for storing organs, parts of organs or body cells and tissues, "
+            },
+            {
+               "paragraphHeadline": "Examples"
+            },
+            {
+               "list": [
+                  "Devices intended to be used as channels in active drug delivery systems, e.g. tubing intended for use with an infusion pump",
+                  "Devices used for channelling gases, e.g. antistatic tubing for anaesthesia, anaesthesia breathing circuits",
+                  "Syringes for infusion pumps",
+                  "Devices intended to channel blood (e.g. in transfusion, extracorporeal circulation)",
+                  "Devices intended for temporary storage and transport of organs for transplantation (i.e. containers, bags)",
+                  "Devices intended for long term storage of biological substances and tissues such as corneas, sperm, human embryos, etc. (i.e. containers, bags)",
+                  "Fridges/freezers specifically intended for storing blood, tissues etc.",
+                  "Tubings/blood lines for extracorporeal treatment (dialysis and apheresis therapies)"
+               ]
+            },
+            {
+               "paragraphHeadline": "Class"
+            },
+            {
+               "section": "IIb"
+            },
+            {
+               "section": "- except for blood bags; blood bags are classified as class IIb."
+            },
+            {
+               "paragraphHeadline": "Examples"
+            },
+            {
+               "list": [
+                  "Blood bags without a substance which, if used separately, can be considered to be a medicinal product"
+               ]
+            },
+            {
+               "paragraphHeadline": "Class"
+            },
+            {
+               "section": "I"
+            },
+            {
+               "section": "- except for blood bags; blood bags are classified as class IIb."
+            },
+            {
+               "paragraphHeadline": "Examples"
+            },
+            {
+               "list": [
+                  "Non-invasive devices that provide a simple channelling function, with gravity providing the force to transport the liquid, e.g. administration sets for infusion"
+               ]
+            },
+            {
+               "sectionHeadline": "Practical issues of classification"
+            },
+            {
+               "section": "If a device, e.g. tubing, intended to be used for a purpose that would require it to be connected to an active device, such a device will be automatically in class IIa, unless the manufacturer clearly states that it should not be connected to an active device of class IIa or higher. "
+            },
+            {
+               "paragraphHeadline": "Note 1"
+            },
+            {
+               "paragraph": " ‘May be connected to an active device’ - such a connection is deemed to exist between a non-active device and an active device where the non-active device forms a link in the transfer of the substance between the patient and the active device and the safety and performance of one of the devices is influenced by the other device. For instance, this applies to tubing in an extracorporeal circulation system which is downstream from a blood pump and in the same blood flow circuit, but not directly connected to the pump. "
+            },
+            {
+               "paragraphHeadline": "Note 2"
+            },
+            {
+               "paragraph": "See MDCG 2021-24 chapter 3.1.6 'Devices with a measuring function' regarding the possible measuring function."
+            }
          ]
-      },
-      {
-         "h4": "Class"
-      },
-      {
-         "tx": "IIb"
-      },
-      {
-         "tx": "- except for blood bags; blood bags are classified as class IIb."
-      },
-      {
-         "h4": "Examples"
-      },
-      {
-         "li": [
-            "Blood bags without a substance which, if used separately, can be considered to be a medicinal product"
-         ]
-      },
-      {
-         "h4": "Class"
-      },
-      {
-         "tx": "I"
-      },
-      {
-         "tx": "- except for blood bags; blood bags are classified as class IIb."
-      },
-      {
-         "h4": "Examples"
-      },
-      {
-         "li": [
-            "Non-invasive devices that provide a simple channelling function, with gravity providing the force to transport the liquid, e.g. administration sets for infusion"
-         ]
-      },
-      {
-         "h3": "Practical issues of classification"
-      },
-      {
-         "tx": "If a device, e.g. tubing, intended to be used for a purpose that would require it to be connected to an active device, such a device will be automatically in class IIa, unless the manufacturer clearly states that it should not be connected to an active device of class IIa or higher. "
-      },
-      {
-         "h3": "Note 1"
-      },
-      {
-         "tx": " ‘May be connected to an active device’ - such a connection is deemed to exist between a non-active device and an active device where the non-active device forms a link in the transfer of the substance between the patient and the active device and the safety and performance of one of the devices is influenced by the other device. For instance, this applies to tubing in an extracorporeal circulation system which is downstream from a blood pump and in the same blood flow circuit, but not directly connected to the pump. "
-      },
-      {
-         "h3": "Note 2"
-      },
-      {
-         "tx": "See MDCG 2021-24 chapter 3.1.6 'Devices with a measuring function' regarding the possible measuring function."
       }
    ]
 ]

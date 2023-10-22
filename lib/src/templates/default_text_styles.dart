@@ -54,6 +54,14 @@ TextStyle h4TextStyle() => const TextStyle(
       height: 1.273,
     );
 
+/// Returns a text style for heading level 4 (h4).
+TextStyle h5TextStyle() => const TextStyle(
+      fontSize: 20.0,
+      color: defaultTextColor,
+      fontWeight: FontWeight.bold,
+      height: 1.273,
+    );
+
 /// Returns a text style for body text.
 TextStyle bodyTextStyle() => const TextStyle(
       fontSize: 18.0,

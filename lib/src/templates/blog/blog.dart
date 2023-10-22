@@ -12,6 +12,7 @@ import 'package:leoml_parser/src/exception/blog_does_not_contains_sub_headline_e
 import 'package:leoml_parser/src/exception/blog_first_object_is_not_headline_exception.dart';
 import 'package:leoml_parser/src/exception/blog_opening_does_not_contains_text_tag_exception.dart';
 import 'package:leoml_parser/src/exception/blog_second_object_is_not_opening_exception.dart';
+import 'package:leoml_parser/src/templates/constants.dart';
 import 'package:leoml_parser/src/templates/content_template.dart';
 import 'package:leoml_parser/src/widget_builder/leo_ml_widget_builder.dart';
 import 'package:leoml_parser/src/widget_builder/widget_factory.dart';
@@ -43,7 +44,7 @@ class Blog extends ContentTemplate {
 
   @override
   Widget buildCustomWidget({required key, required Map<String, dynamic> object}) {
-    if (key == 'opening' && openingBuilder != null) {
+    if (key == opening && openingBuilder != null) {
       return openingBuilder?.build(object: object) ?? const Placeholder();
     }
 
@@ -55,19 +56,19 @@ class Blog extends ContentTemplate {
     required String key,
   }) {
     switch (key) {
-      case 'headline':
+      case headline:
         return headlineBuilder != null;
-      case 'subHeadline':
+      case subHeadline:
         return subHeadlineBuilder != null;
-      case 'opening':
+      case catchLine:
         return openingBuilder != null;
-      case 'section':
+      case section:
         return sectionBuilder != null;
-      case 'list':
+      case list:
         return listBuilder != null;
-      case 'citation':
+      case citation:
         return citationBuilder != null;
-      case 'image':
+      case image:
         return imageBuilder != null;
       default:
         return false;
@@ -120,7 +121,7 @@ class Blog extends ContentTemplate {
     bool hasSection,
     Map<dynamic, dynamic> object,
   ) {
-    if (!hasSection && object.keys.toList().first == 'section') {
+    if (!hasSection && object.keys.toList().first == section) {
       hasSection = true;
     }
 
@@ -136,7 +137,7 @@ class Blog extends ContentTemplate {
     bool hasSubHeadline,
     Map<dynamic, dynamic> object,
   ) {
-    if (!hasSubHeadline && object.keys.toList().first == 'subHeadline') {
+    if (!hasSubHeadline && object.keys.toList().first == subHeadline) {
       hasSubHeadline = true;
     }
 
@@ -148,8 +149,8 @@ class Blog extends ContentTemplate {
   /// The [object] parameter is the map representing the current object.
   /// Throws a [BlogOpeningDoesNotContainsTextTagException] if the 'text' key is missing.
   void _openingContainsTextTag(Map<dynamic, dynamic> object) {
-    if (object.keys.toList().first == 'opening' &&
-        !((object['opening'] as Map).containsKey('text'))) {
+    if (object.keys.toList().first == opening &&
+        !((object[opening] as Map).containsKey(text))) {
       throw BlogOpeningDoesNotContainsTextTagException();
     }
   }
@@ -160,7 +161,7 @@ class Blog extends ContentTemplate {
   /// The [object] parameter is the map representing the current object.
   /// Throws a [BlogSecondObjectIsNotOpeningException] if the second object is not an 'opening' object.
   void _checkIfSecondObjectIsOpening(int index, Map<dynamic, dynamic> object) {
-    if (index == 1 && object.keys.toList().first != 'opening') {
+    if (index == 1 && object.keys.toList().first  != opening) {
       throw BlogSecondObjectIsNotOpeningException();
     }
   }
@@ -171,7 +172,7 @@ class Blog extends ContentTemplate {
   /// The [object] parameter is the map representing the current object.
   /// Throws a [BlogFirstObjectIsNotHeadlineException] if the first object is not a 'headline' object.
   void _checkIfFirstObjectIsHeadline(int index, Map<dynamic, dynamic> object) {
-    if (index == 0 && object.keys.first != 'headline') {
+    if (index == 0 && object.keys.first != headline) {
       throw BlogFirstObjectIsNotHeadlineException();
     }
   }

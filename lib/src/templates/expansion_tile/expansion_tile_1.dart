@@ -7,115 +7,103 @@
 // ID: 20231013100811
 // 13.10.2023 10:08
 import 'package:flutter/material.dart';
+import 'package:leoml_parser/src/exception/expansion_tile_1_contains_more_than_one_subheadline_exception.dart';
+import 'package:leoml_parser/src/exception/expansion_tile_1_content_does_not_follows_header_exception.dart';
+import 'package:leoml_parser/src/exception/expansion_tile_1_does_not_contains_section_exception.dart';
 import 'package:leoml_parser/src/exception/list_is_empty_exception.dart';
 import 'package:leoml_parser/src/templates/constants.dart';
 import 'package:leoml_parser/src/templates/content_template.dart';
 import 'package:leoml_parser/src/widget_builder/leo_ml_widget_builder.dart';
 import 'package:leoml_parser/src/widget_builder/widget_factory.dart';
 
-/// A custom implementation of an expansion tile for LeoML content.
-///
-/// The `ExpansionTile1` class extends [ContentTemplate] and provides support
-/// for rendering various LeoML elements within an expansion tile. It allows
-/// customization of the rendering behavior for specific elements like headers,
-/// text, and list items through builders.
-///
-/// Usage:
-///
-/// ```dart
-/// ExpansionTile1(
-///   h1Builder: (object) => MyHeaderWidget(object: object),
-///   txBuilder: (object) => MyTextWidget(object: object),
-///   liBuilder: (object) => MyListItemWidget(object: object),
-/// )
-/// ```
 class ExpansionTile1 extends ContentTemplate {
-  /// Creates an `ExpansionTile1` instance.
-  ///
-  /// The [defaultWidgetFactory] parameter allows you to specify a custom widget
-  /// factory to use when creating widgets. The [h1Builder], [h2Builder],
-  /// [h3Builder], [h4Builder], [txBuilder], and [liBuilder] parameters are
-  /// optional builders for specific LeoML elements.
-  ///
-  /// Example usage:
-  ///
-  /// ```dart
-  /// ExpansionTile1(
-  ///   h1Builder: (object) => MyHeaderWidget(object: object),
-  ///   txBuilder: (object) => MyTextWidget(object: object),
-  ///   liBuilder: (object) => MyListItemWidget(object: object),
-  /// )
-  /// ```
   ExpansionTile1({
     WidgetFactory defaultWidgetFactory =
         const LeoMLParserDefaultWidgetFactory(),
-    this.h1Builder,
-    this.h2Builder,
-    this.h3Builder,
-    this.h4Builder,
-    this.txBuilder,
-    this.liBuilder,
+    this.headerBuilder,
+    this.contentBuilder,
+    super.customExpansionTile,
+    super.headlineBuilder,
+    super.citationBuilder,
+    super.imageBuilder,
+    super.listBuilder,
+    super.sectionBuilder,
+    super.sectionHeadlineBuilder,
+    super.subHeadlineBuilder,
   }) : super(
-          type: 'expansion_tile_1',
+          type: expansionTile1,
           defaultWidgetFactory: defaultWidgetFactory,
         );
 
-  /// A builder for rendering LeoML `h1` elements.
-  final LeoMLWidgetBuilder? h1Builder;
-
-  /// A builder for rendering LeoML `h2` elements.
-  final LeoMLWidgetBuilder? h2Builder;
-
-  /// A builder for rendering LeoML `h3` elements.
-  final LeoMLWidgetBuilder? h3Builder;
-
-  /// A builder for rendering LeoML `h4` elements.
-  final LeoMLWidgetBuilder? h4Builder;
-
-  /// A builder for rendering LeoML `tx` (text) elements.
-  final LeoMLWidgetBuilder? txBuilder;
-
-  /// A builder for rendering LeoML `li` (list item) elements.
-  final LeoMLWidgetBuilder? liBuilder;
+  final LeoMLWidgetBuilder? headerBuilder;
+  final LeoMLWidgetBuilder? contentBuilder;
 
   @override
   bool assertLeoMLStructure(List parsedLeoMLDocument) {
-    for (var index = 0; index < parsedLeoMLDocument.length; index++) {
-      final object = parsedLeoMLDocument[index] as Map<String, dynamic>;
-      _listIsNotEmpty(object);
-    }
+    // bool hasSection = false;
+    // bool hasSubHeadline = false;
+    // bool hasExactlyOneSubheadline = false;
+    // bool contentFollowsHeader = false;
+    // bool hasHeader = false;
+    // bool hasContent = false;
+    // var header = <String, dynamic>{};
+    //
+    // for (int index = 0; index < parsedLeoMLDocument.length; index++) {
+    //   final object = parsedLeoMLDocument[index];
+    //
+    //   if (object is Map<String, dynamic>) {
+    //     _listIsNotEmpty(object);
+    //     hasSubHeadline = _containsSubHeadline(hasSubHeadline, object);
+    //     if (hasSubHeadline) {
+    //       hasExactlyOneSubheadline =
+    //           _containsExactlyOneSubheadline(hasSubHeadline, object);
+    //     }
+    //
+    //     hasSection = _containsAtLeastOneSection(hasSection, object);
+    //     imageHasImageURL(object);
+    //     hasHeader = _containsHeader(object);
+    //     if (hasHeader && header.isEmpty) {
+    //       header = object;
+    //     }
+    //     hasContent = _containsContent(object);
+    //     if (hasHeader && hasContent) {
+    //       contentFollowsHeader = _contentFollowsHeader(header, object);
+    //     }
+    //   } else {
+    //     assertLeoMLStructure(parsedLeoMLDocument[index]);
+    //   }
+    // }
+    //
+    // if (!hasSection) {
+    //   throw ExpansionTile1DoesNotContainsSectionException();
+    // }
+    //
+    // if (hasSubHeadline && !hasExactlyOneSubheadline) {
+    //   throw ExpansionTile1ContainsMoreThanOneSubheadlineException();
+    // }
+    //
+    // if (contentFollowsHeader) {
+    //   throw ExpansionTile1ContentDoesNotFollowsHeaderException();
+    // }
 
     return true;
   }
 
   @override
-  Widget buildCustomWidget({required String key, required Map<String, dynamic> object}) {
+  Widget buildCustomWidget({
+    required String key,
+    required Map<String, dynamic> object,
+  }) {
     // Implement logic to build custom widgets based on the provided key.
     // You can use the specified builders for customization.
     // If no custom builder is provided for a key, return a Placeholder widget.
 
-    if (key == h1 && h1Builder != null) {
-      return h1Builder?.build(object: object) ?? const Placeholder();
+    if (key == header && headerBuilder != null) {
+      return headerBuilder?.build(object: object) ?? const Placeholder();
     }
 
-    if (key == h2 && h2Builder != null) {
-      return h2Builder?.build(object: object) ?? const Placeholder();
-    }
-
-    if (key == h3 && h3Builder != null) {
-      return h3Builder?.build(object: object) ?? const Placeholder();
-    }
-
-    if (key == h4 && h4Builder != null) {
-      return h4Builder?.build(object: object) ?? const Placeholder();
-    }
-
-    if (key == tx && txBuilder != null) {
-      return txBuilder?.build(object: object) ?? const Placeholder();
-    }
-
-    if (key == li && liBuilder != null) {
-      return liBuilder?.build(object: object) ?? const Placeholder();
+    if (key == content && contentBuilder != null) {
+      return contentBuilder?.build(object: object) ?? const Placeholder();
     }
 
     // If the key doesn't match any custom builders, use a general custom widget builder.
@@ -127,26 +115,87 @@ class ExpansionTile1 extends ContentTemplate {
     // Check if a custom builder is available for the specified key.
     // Return true if a custom builder exists, false otherwise.
     switch (key) {
-      case h1:
-        return h1Builder != null;
-      case h2:
-        return h2Builder != null;
-      case h3:
-        return h3Builder != null;
-      case h4:
-        return h4Builder != null;
-      case tx:
-        return txBuilder != null;
-      case li:
-        return liBuilder != null;
+      case header:
+        return headerBuilder != null;
+      case content:
+        return contentBuilder != null;
+      case headline:
+        return headlineBuilder != null;
       default:
         return false;
     }
   }
 
   void _listIsNotEmpty(Map<dynamic, dynamic> object) {
-    if (object.keys.toList().first == li && (object[li] as List).isEmpty) {
+    if (object.keys.toList().first == list && (object[list] as List).isEmpty) {
       throw ListIsEmptyException();
     }
+  }
+
+  /// Checks if the provided object contains at least one section.
+  ///
+  /// The [hasSection] parameter represents whether a section has already been found.
+  /// The [object] parameter is a LeoML object from which the check is performed.
+  ///
+  /// Returns `true` if the object contains a section, otherwise returns `false`.
+  bool _containsAtLeastOneSection(
+    bool hasSection,
+    Map<dynamic, dynamic> object,
+  ) {
+    if (!hasSection && object.keys.toList().first == section) {
+      hasSection = true;
+    }
+
+    return hasSection;
+  }
+
+  bool _containsSubHeadline(
+    bool hasSubHeadline,
+    Map<dynamic, dynamic> object,
+  ) {
+    if (!hasSubHeadline && object.keys.toList().first == subHeadline) {
+      hasSubHeadline = true;
+    }
+
+    return hasSubHeadline;
+  }
+
+  bool _containsExactlyOneSubheadline(
+    bool hasSubheadline,
+    Map<dynamic, dynamic> object,
+  ) {
+    return hasSubheadline;
+  }
+
+  bool _containsHeader(
+    Map<dynamic, dynamic> object,
+  ) {
+    if (object.containsKey(headerBuilder)) {
+      return true;
+    }
+
+    return false;
+  }
+
+  bool _containsContent(
+    Map<dynamic, dynamic> object,
+  ) {
+    if (object.containsKey(contentBuilder)) {
+      return true;
+    }
+
+    return false;
+  }
+
+  bool _contentFollowsHeader(
+    Map<dynamic, dynamic> object1,
+    Map<dynamic, dynamic> object2,
+  ) {
+    if (object1.containsKey(headerBuilder) &&
+        object2.containsKey(contentBuilder)) {
+      return true;
+    }
+
+    return false;
   }
 }

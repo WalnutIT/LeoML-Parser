@@ -18,7 +18,7 @@ class Article extends ContentTemplate {
   Article({
     WidgetFactory defaultWidgetFactory =
         const LeoMLParserDefaultWidgetFactory(),
-    this.sectionHeadlineBuilder,
+    super.sectionHeadlineBuilder,
     this.catchLineBuilder,
     super.headlineBuilder,
     super.subHeadlineBuilder,
@@ -31,18 +31,14 @@ class Article extends ContentTemplate {
           defaultWidgetFactory: defaultWidgetFactory,
         );
 
-  /// The custom sectionHeadline widget builder for the article template.
-  final LeoMLWidgetBuilder? sectionHeadlineBuilder;
+
 
   /// The custom catch line widget builder for the article template.
   final LeoMLWidgetBuilder? catchLineBuilder;
 
   @override
   Widget buildCustomWidget({required String key, required Map<String, dynamic> object}) {
-    if (key == 'sectionHeadline' && sectionHeadlineBuilder != null) {
-      return sectionHeadlineBuilder?.build(object: object) ??
-          const Placeholder();
-    }
+
 
     if (key == 'catchLine' && catchLineBuilder != null) {
       return catchLineBuilder?.build(object: object) ?? const Placeholder();

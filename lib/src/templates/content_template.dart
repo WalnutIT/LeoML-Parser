@@ -6,9 +6,11 @@
 // Copyright: Walnut IT 2023
 // ID: 20230704083502
 // 04.07.2023 08:35
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 import 'package:leoml_parser/src/exception/image_url_is_missing_exception.dart';
 import 'package:leoml_parser/src/exception/list_does_not_contains_enough_elements_exception.dart';
+import 'package:leoml_parser/src/templates/constants.dart';
+import 'package:leoml_parser/src/templates/expansion_tile/custom_expansion_tile_builder.dart';
 import 'package:leoml_parser/src/widget_builder/leo_ml_widget_builder.dart';
 import 'package:leoml_parser/src/widget_builder/widget_factory.dart';
 
@@ -27,6 +29,8 @@ abstract class ContentTemplate {
     this.listBuilder,
     this.citationBuilder,
     this.imageBuilder,
+    this.sectionHeadlineBuilder,
+    this.customExpansionTile,
   });
 
   /// The type of the content template.
@@ -53,31 +57,86 @@ abstract class ContentTemplate {
   /// The custom image widget builder for the content template.
   final LeoMLWidgetBuilder? imageBuilder;
 
+  /// The custom sectionHeadline widget builder for the content template.
+  final LeoMLWidgetBuilder? sectionHeadlineBuilder;
+
+  final CustomWidgetBuilder? customExpansionTile;
+
   /// Parses the LeoML document into a column of widgets.
   ///
   /// The [parsedLeoMLDocument] parameter is a List containing the parsed LeoML document.
   /// It processes each element in the document and creates corresponding widgets.
   ///
   /// Returns a Column widget that contains the parsed LeoML document as a list of widgets.
-  Column parseToColumn({required List parsedLeoMLDocument}) {
+  Column parseToColumn({
+    required List parsedLeoMLDocument,
+    required String type,
+    required bool isRoot,
+  }) {
     // Ensure the structure of the parsed LeoML document is valid.
     assertLeoMLStructure(parsedLeoMLDocument);
 
-    final columnContent = <Widget>[];
+    var columnContent = <Widget>[];
 
-    for (Map<String, dynamic> map in parsedLeoMLDocument) {
+    for (Object object in parsedLeoMLDocument) {
+      if (object is List) {
+        final columnOfWidgets = parseToColumn(
+          parsedLeoMLDocument: object,
+          type: type,
+          isRoot: false,
+        );
+        columnContent.add(columnOfWidgets);
+
+        continue;
+      }
+
       Widget widget = const Placeholder();
 
       // Check if a custom widget builder is available for the current key.
       // If available, use it to build the widget; otherwise, use the default widget factory.
-      widget = _createWidget(widget, map);
+      widget = _createWidget(widget, object as Map<String, dynamic>);
 
       // Add padding to the widget and add it to the column content.
       columnContent.add(
-        Padding(
-          padding: const EdgeInsets.only(top: 12.0),
-          child: widget,
-        ),
+        widget,
+      );
+    }
+
+    if (!isRoot && type == expansionTile1) {
+      final listOfExpansionTiles = <Widget>[];
+
+      if (customExpansionTile == null) {
+        listOfExpansionTiles.add(
+          Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 12.0,
+              vertical: 6.0,
+            ),
+            child: ExpansionTile(
+              title: columnContent[0],
+              children: [
+                columnContent[1],
+              ],
+            ),
+          ),
+        );
+      } else {
+        final widget = customExpansionTile?.build(
+          header: columnContent[0],
+          content: columnContent[1],
+        );
+        listOfExpansionTiles.add(Padding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: 12.0,
+            vertical: 6.0,
+          ),
+          child: widget ?? const Placeholder(),
+        ));
+      }
+
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: listOfExpansionTiles,
       );
     }
 
@@ -94,18 +153,33 @@ abstract class ContentTemplate {
   /// It processes each element in the document and creates corresponding widgets.
   ///
   /// Returns a Set of widgets representing the parsed LeoML document.
-  Set<Widget> parseToSet({required List parsedLeoMLDocument}) {
+  Set<Widget> parseToSet({
+    required List parsedLeoMLDocument,
+    required String type,
+    required bool isRoot,
+  }) {
     // Ensure the structure of the parsed LeoML document is valid.
     assertLeoMLStructure(parsedLeoMLDocument);
 
     final widgetSet = <Widget>{};
 
-    for (Map<String, dynamic> map in parsedLeoMLDocument) {
+    for (Object object in parsedLeoMLDocument) {
+      if (object is List) {
+        final setOfWidgets = parseToSet(
+          parsedLeoMLDocument: object,
+          type: type,
+          isRoot: false,
+        );
+        widgetSet.addAll(setOfWidgets);
+
+        continue;
+      }
+
       Widget widget = const Placeholder();
 
       // Check if a custom widget builder is available for the current key.
       // If available, use it to build the widget; otherwise, use the default widget factory.
-      widget = _createWidget(widget, map);
+      widget = _createWidget(widget, object as Map<String, dynamic>);
 
       // Add the widget to the set.
       widgetSet.add(widget);
@@ -141,28 +215,36 @@ abstract class ContentTemplate {
   /// The [object] parameter contains the properties or data needed to configure the widget.
   ///
   /// Returns the created custom widget or a [Placeholder] if no matching conditions are met.
-  Widget buildGeneralCustomWidget({required key, required Map<String, dynamic> object}) {
-    if (key == 'headline' && headlineBuilder != null) {
+  Widget buildGeneralCustomWidget({
+    required key,
+    required Map<String, dynamic> object,
+  }) {
+    if (key == headline && headlineBuilder != null) {
       return headlineBuilder?.build(object: object) ?? const Placeholder();
     }
-    if (key == 'subHeadline' && subHeadlineBuilder != null) {
+    if (key == subHeadline && subHeadlineBuilder != null) {
       return subHeadlineBuilder?.build(object: object) ?? const Placeholder();
     }
 
-    if (key == 'section' && sectionBuilder != null) {
+    if (key == section && sectionBuilder != null) {
       return sectionBuilder?.build(object: object) ?? const Placeholder();
     }
 
-    if (key == 'list' && listBuilder != null) {
+    if (key == list && listBuilder != null) {
       return listBuilder?.build(object: object) ?? const Placeholder();
     }
 
-    if (key == 'citation' && citationBuilder != null) {
+    if (key == citation && citationBuilder != null) {
       return citationBuilder?.build(object: object) ?? const Placeholder();
     }
 
-    if (key == 'image' && imageBuilder != null) {
+    if (key == image && imageBuilder != null) {
       return imageBuilder?.build(object: object) ?? const Placeholder();
+    }
+
+    if (key == sectionHeadline && sectionHeadlineBuilder != null) {
+      return sectionHeadlineBuilder?.build(object: object) ??
+          const Placeholder();
     }
 
     return const Placeholder();
@@ -211,9 +293,15 @@ abstract class ContentTemplate {
   /// The [object] contains the properties or data needed to configure the custom widget.
   ///
   /// Returns the created custom widget, or a default fallback widget if the [key] is not found.
-  Widget buildCustomWidget({required String key, required Map<String, dynamic> object});
+  Widget buildCustomWidget({
+    required String key,
+    required Map<String, dynamic> object,
+  });
 
-  Widget _createWidget(Widget widget, Map<String, dynamic> map) {
+  Widget _createWidget(
+    Widget widget,
+    Map<String, dynamic> map,
+  ) {
     // Check if a custom widget builder is available for the current key.
     // If available, use it to build the widget; otherwise, use the default widget factory.
     widget = hasCustomWidget(

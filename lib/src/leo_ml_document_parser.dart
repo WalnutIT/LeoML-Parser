@@ -69,24 +69,28 @@ class _IsolateModel {
 
 /// Creates a [Column] widget based on the parsed LeoML document.
 Column _createColumn(_IsolateModel isolateModel) {
-  var list = _parseLeoMLDocument(isolateModel);
+  var record = _parseLeoMLDocument(isolateModel);
 
   return isolateModel.contentTemplate.parseToColumn(
-    parsedLeoMLDocument: list,
+    parsedLeoMLDocument: record.$1,
+    type: record.$2,
+    isRoot: true,
   );
 }
 
 /// Creates a set of [Widget]s based on the parsed LeoML document.
 Set<Widget> _createSet(_IsolateModel isolateModel) {
-  var list = _parseLeoMLDocument(isolateModel);
+  var record = _parseLeoMLDocument(isolateModel);
 
   return isolateModel.contentTemplate.parseToSet(
-    parsedLeoMLDocument: list,
+    parsedLeoMLDocument: record.$1,
+    type: record.$2,
+    isRoot: true,
   );
 }
 
 /// Parses the LeoML document, asserts its validity, and returns the parsed list.
-List _parseLeoMLDocument(_IsolateModel isolateModel) {
+(List, String) _parseLeoMLDocument(_IsolateModel isolateModel) {
   final list = jsonDecode(
     isolateModel.leoMLDocument,
   );
@@ -103,7 +107,9 @@ List _parseLeoMLDocument(_IsolateModel isolateModel) {
     throw TypeDoesNotMatchException();
   }
 
+  final type = list.first['type'];
+
   list.removeAt(0);
 
-  return list;
+  return (list, type);
 }

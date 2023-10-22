@@ -9,3 +9,5 @@ export 'src/templates/blog/blog.dart' show Blog;
 export 'src/templates/expansion_tile/expansion_tile_1.dart' show ExpansionTile1;
 export 'src/templates/stateless_widget_template.dart'
     show StatelessWidgetTemplate;
+export 'src/templates/constants.dart';
+export 'src/templates/expansion_tile/custom_expansion_tile_builder.dart';

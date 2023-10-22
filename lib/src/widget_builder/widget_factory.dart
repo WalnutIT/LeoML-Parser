@@ -8,6 +8,7 @@
 // 04.07.2023 15:23
 import 'package:flutter/widgets.dart';
 import 'package:leoml_parser/src/exception/widget_map_does_not_contains_requested_key_exception.dart';
+import 'package:leoml_parser/src/templates/constants.dart';
 import 'package:leoml_parser/src/widget_builder/default_widgets_builder.dart';
 import 'package:leoml_parser/src/widget_builder/leo_ml_widget_builder.dart';
 
@@ -16,15 +17,19 @@ abstract class WidgetFactory {
   const WidgetFactory();
 
   static final _defaultWidgetsMap = <String, LeoMLWidgetBuilder>{
-    'headline': HeadlineBuilder(),
-    'subHeadline': SubHeadlineBuilder(),
-    'sectionHeadline': SectionHeadlineBuilder(),
-    'section': SectionBuilder(),
-    'citation': CitationBuilder(),
-    'list': ListBuilder(),
-    'image': ImageBuilder(),
-    'opening': OpeningBuilder(),
-    'catchLine': CatchLineBuilder(),
+    headline: HeadlineBuilder(),
+    subHeadline: SubHeadlineBuilder(),
+    sectionHeadline: SectionHeadlineBuilder(),
+    paragraphHeadline : ParagraphHeadlineBuilder(),
+    section: SectionBuilder(),
+    paragraph: ParagraphBuilder(),
+    citation: CitationBuilder(),
+    list: ListBuilder(),
+    image: ImageBuilder(),
+    opening: OpeningBuilder(),
+    catchLine: CatchLineBuilder(),
+    header: HeaderBuilder(),
+    content: ContentBuilder(),
   };
 
   /// Retrieves the default widget associated with the given [key].

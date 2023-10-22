@@ -9,7 +9,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:leoml_parser/src/exception/atomic_object_is_not_string_exception.dart';
-import 'package:leoml_parser/src/templates/article/widgets/section_headline.dart';
+import 'package:leoml_parser/src/templates/widgets/section_headline.dart';
 
 void main() {
   group('Positive test', () {

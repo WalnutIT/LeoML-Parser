@@ -8,6 +8,7 @@
 // 04.07.2023 08:51
 import 'package:flutter/widgets.dart';
 import 'package:leoml_parser/src/exception/atomic_object_is_not_string_exception.dart';
+import 'package:leoml_parser/src/templates/constants.dart';
 import 'package:leoml_parser/src/templates/default_text_styles.dart';
 import 'package:leoml_parser/src/templates/stateless_widget_template.dart';
 
@@ -23,15 +24,15 @@ class Headline extends StatelessWidgetTemplate {
 
   @override
   Widget build(BuildContext context) => Text(
-        object['headline'],
+        object[headline],
         style: h2TextStyle(),
       );
 
   @override
   void validateObject() {
-    if (object['headline'] is! String) {
+    if (object[headline] is! String) {
       throw AtomicObjectIsNotStringException(
-        subTagName: 'headline',
+        subTagName: headline,
       );
     }
   }

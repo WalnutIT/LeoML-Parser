@@ -7,9 +7,26 @@
 // ID: 20231013100113
 // 13.10.2023 10:01
 
-const String h1 = 'h1';
-const String h2 = 'h2';
-const String h3 = 'h3';
-const String h4 = 'h4';
-const String tx = 'tx';
-const String li = 'li';
+
+// types
+
+const String expansionTile1 = 'expansion_tile_1';
+
+// keys
+
+const String citation = 'citation';
+const String headline = 'headline';
+const String image = 'image';
+const String list = 'list';
+const String section = 'section';
+const String sectionHeadline = 'sectionHeadline';
+const String subHeadline = 'subHeadline';
+const String paragraphHeadline = 'paragraphHeadline';
+const String paragraph = 'paragraph';
+const String opening = 'opening';
+const String catchLine = 'catchLine';
+const String header ='header';
+const String content = 'content';
+const String text = 'text';
+const String imageURL = 'imageURL';
+const String imageDescription = 'imageDescription';
