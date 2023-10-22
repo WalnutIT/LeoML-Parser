@@ -22,6 +22,8 @@ class ExpansionTile1 extends ContentTemplate {
         const LeoMLParserDefaultWidgetFactory(),
     this.headerBuilder,
     this.contentBuilder,
+    this.paragraphHeadlineBuilder,
+    this.paragraphBuilder,
     super.customExpansionTile,
     super.headlineBuilder,
     super.citationBuilder,
@@ -37,6 +39,8 @@ class ExpansionTile1 extends ContentTemplate {
 
   final LeoMLWidgetBuilder? headerBuilder;
   final LeoMLWidgetBuilder? contentBuilder;
+  final LeoMLWidgetBuilder? paragraphHeadlineBuilder;
+  final LeoMLWidgetBuilder? paragraphBuilder;
 
   @override
   bool assertLeoMLStructure(List parsedLeoMLDocument) {
@@ -106,6 +110,15 @@ class ExpansionTile1 extends ContentTemplate {
       return contentBuilder?.build(object: object) ?? const Placeholder();
     }
 
+    if (key == paragraph && paragraphBuilder != null) {
+      return paragraphBuilder?.build(object: object) ?? const Placeholder();
+    }
+
+    if (key == paragraphHeadline && paragraphHeadlineBuilder != null) {
+      return paragraphHeadlineBuilder?.build(object: object) ??
+          const Placeholder();
+    }
+
     // If the key doesn't match any custom builders, use a general custom widget builder.
     return buildGeneralCustomWidget(key: key, object: object);
   }
@@ -117,10 +130,26 @@ class ExpansionTile1 extends ContentTemplate {
     switch (key) {
       case header:
         return headerBuilder != null;
+      case subHeadline:
+        return subHeadlineBuilder != null;
       case content:
         return contentBuilder != null;
       case headline:
         return headlineBuilder != null;
+      case citation:
+        return citationBuilder != null;
+      case section:
+        return sectionBuilder != null;
+      case sectionHeadline:
+        return sectionHeadlineBuilder != null;
+      case paragraphHeadline:
+        return paragraphHeadlineBuilder != null;
+      case paragraph:
+        return paragraphBuilder != null;
+      case list:
+        return listBuilder != null;
+      case image:
+        return imageBuilder != null;
       default:
         return false;
     }
